@@ -7,41 +7,51 @@
 
 import UIKit
 
+// logSwitch variable of type Bool is responsible for enabling / disabling logs.
+// If you want to enable logging, set the variable to true, otherwise false
+var logSwitch : Bool = true
+
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
+        logPrint(#function)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(#function)
+        logPrint(#function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
-        print(#function)
+        logPrint(#function)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print(#function)
+        logPrint(#function)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print(#function)
+        logPrint(#function)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print(#function)
+        logPrint(#function)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print(#function)
+        logPrint(#function)
+    }
+    
+    func logPrint(_ methodName : String) {
+        if (logSwitch) {
+            print(methodName)
+        }
     }
 }
 
