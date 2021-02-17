@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
-		E5A09E5625DD267F009CCE18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5525DD267F009CCE18 /* SceneDelegate.swift */; };
 		E5A09E5825DD267F009CCE18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5725DD267F009CCE18 /* ViewController.swift */; };
 		E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5925DD267F009CCE18 /* Main.storyboard */; };
 		E5A09E5D25DD2681009CCE18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5C25DD2681009CCE18 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A09E5325DD267F009CCE18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E5A09E5525DD267F009CCE18 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E5A09E5725DD267F009CCE18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E5A09E5A25DD267F009CCE18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E5A09E5C25DD2681009CCE18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
-				E5A09E5525DD267F009CCE18 /* SceneDelegate.swift */,
 				E5A09E5725DD267F009CCE18 /* ViewController.swift */,
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 				E5A09E5C25DD2681009CCE18 /* Assets.xcassets */,
@@ -139,7 +136,6 @@
 			files = (
 				E5A09E5825DD267F009CCE18 /* ViewController.swift in Sources */,
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
-				E5A09E5625DD267F009CCE18 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +285,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				INFOPLIST_FILE = FinChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.VartSoft.FinChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				INFOPLIST_FILE = FinChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +313,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.VartSoft.FinChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
