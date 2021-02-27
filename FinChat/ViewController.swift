@@ -17,25 +17,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageAvatar: UIImageView!
     @IBOutlet weak var buttonEdit: UIButton!
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        // The init will be constantly displayed "none", because the view has not even loaded yet
-        if let frame = buttonEdit?.frame {
-            print("\(#function) \(frame)")
-        } else {
-             print("\(#function) none")
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let frame = buttonEdit?.frame {
-            print("\(#function) \(frame)")
-        } else {
-             print("\(#function) none")
-        }
         
         // Make the avatar round
         imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2
@@ -52,23 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageAvatar.addGestureRecognizer(gestureRecognizer)
         imageAvatar.isUserInteractionEnabled = true
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        /* The original ViewController is loaded from the storyboard.
-        Then this View will change to fit the simulator screen.
-            
-        Since the iPhone SE is selected in the strodyboard, and in the simulator we
-        select the iPhone 11 Pro, which is larger in size, the button resizes.
-         */
-        if let frame = buttonEdit?.frame {
-            print("\(#function) \(frame)")
-        } else {
-             print("\(#function) none")
-        }
-    }
-    
+
     @objc func tapOnAvatarImage(_ sender: UITapGestureRecognizer) {
         let tapPoint = sender.location(in: self.view)
         let centerPoint = imageAvatar.center

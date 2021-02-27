@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
+		E55BA8B025EA7A2F00EFB351 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AF25EA7A2F00EFB351 /* SecondViewController.swift */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
 		E5A09E5825DD267F009CCE18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5725DD267F009CCE18 /* ViewController.swift */; };
 		E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5925DD267F009CCE18 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		E55BA8AF25EA7A2F00EFB351 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A09E5325DD267F009CCE18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5A09E5725DD267F009CCE18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,10 +60,12 @@
 			children = (
 				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
 				E5A09E5725DD267F009CCE18 /* ViewController.swift */,
+				E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */,
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 				E5A09E5C25DD2681009CCE18 /* Assets.xcassets */,
 				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
 				E5A09E6125DD2681009CCE18 /* Info.plist */,
+				E55BA8AF25EA7A2F00EFB351 /* SecondViewController.swift */,
 			);
 			path = FinChat;
 			sourceTree = "<group>";
@@ -134,8 +140,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55BA8B025EA7A2F00EFB351 /* SecondViewController.swift in Sources */,
 				E5A09E5825DD267F009CCE18 /* ViewController.swift in Sources */,
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
+				E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
