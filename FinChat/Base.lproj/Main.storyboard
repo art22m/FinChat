@@ -96,17 +96,29 @@
             </objects>
             <point key="canvasLocation" x="-15" y="19"/>
         </scene>
-        <!--TInkoff Chat-->
+        <!--Tinkoff Chat-->
         <scene sceneID="LJ3-Ei-758">
             <objects>
                 <viewController id="JcI-ZZ-SKg" customClass="ConversationsListViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b4c-Ua-ai4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Y5a-4c-J0S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F1u-Ig-8Ny" firstAttribute="top" secondItem="Y5a-4c-J0S" secondAttribute="top" id="FEk-7I-tZN"/>
+                            <constraint firstItem="Y5a-4c-J0S" firstAttribute="trailing" secondItem="F1u-Ig-8Ny" secondAttribute="trailing" id="NuZ-oA-uNy"/>
+                            <constraint firstItem="Y5a-4c-J0S" firstAttribute="bottom" secondItem="F1u-Ig-8Ny" secondAttribute="bottom" id="Tg1-3N-eo0"/>
+                            <constraint firstItem="F1u-Ig-8Ny" firstAttribute="leading" secondItem="Y5a-4c-J0S" secondAttribute="leading" id="xkl-nj-TVs"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="TInkoff Chat" id="Rd1-MA-lWp">
+                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="Rd1-MA-lWp">
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="0Up-YW-eUe">
                             <connections>
                                 <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
@@ -116,11 +128,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buttonProfile" destination="0Up-YW-eUe" id="vv5-NX-wVa"/>
+                        <outlet property="tableViewMessages" destination="F1u-Ig-8Ny" id="J4V-ul-4MF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWG-th-Wsr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-798" y="18"/>
+            <point key="canvasLocation" x="-799.20000000000005" y="17.541229385307346"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qcX-Ac-C8Z">
