@@ -16,6 +16,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var labelInitials: UILabel!
     @IBOutlet weak var imageAvatar: UIImageView!
     @IBOutlet weak var buttonEdit: UIButton!
+    @IBAction func buttonClose(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Make the avatar round
         imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2
         imageAvatar.clipsToBounds = true
+        imageAvatar.layer.borderWidth = 1
         
         // Make the button rounded
         buttonEdit.layer.cornerRadius = 15
@@ -54,14 +58,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.showImagePickerController(sourceType: .photoLibrary)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                self.showImagePickerController(sourceType: .camera)
-            } else {
-                // We can show alert if the camera is not available
-                print("Camera is not available")
-            }
-        }))
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
+                    self.showImagePickerController(sourceType: .camera)
+            }))
+        }
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         

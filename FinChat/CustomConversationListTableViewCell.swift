@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ConversationCellConfiguration {
+protocol ConversationCellConfiguration : class {
     var name : String? {get set}
     var message : String? {get set}
     var date : Date? {get set}
@@ -20,17 +20,25 @@ class CustomConversationListTableViewCell: UITableViewCell {
     @IBOutlet weak var labelMessage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     
-    static let identifier = "CustomConversationTableViewCell"
+    static let identifier = "CustomConversationListTableViewCell"
     static func nib() -> UINib {
-        return UINib(nibName: "CustomConversationTableViewCell", bundle: nil)
+        return UINib(nibName: "CustomConversationListTableViewCell", bundle: nil)
     }
     
-    struct Model : ConversationCellConfiguration {
+    class Model : ConversationCellConfiguration {
         var name: String?
         var message: String?
         var date: Date?
         var online: Bool
         var hasUnreadMessages: Bool
+        
+        init(name: String?, message: String?, date: Date?, online: Bool, hasUnreadMessages: Bool) {
+            self.name = name
+            self.message = message
+            self.date = date
+            self.online = online
+            self.hasUnreadMessages = hasUnreadMessages
+        }
     }
     
     func configure(with pattern: Model) {
@@ -42,10 +50,10 @@ class CustomConversationListTableViewCell: UITableViewCell {
         
         if let message = pattern.message {
             self.labelMessage.text = message
+            self.labelMessage.font = UIFont.systemFont(ofSize: 17.0)
         } else {
             self.labelMessage.text = "No messages yet"
-            self.labelMessage.font = UIFont(name:"HelveticaNeue-Italic", size: 17.0)
-            
+            self.labelMessage.font = UIFont(name: "Roboto", size: 17.0)
         }
         
         if let date = pattern.date {
@@ -72,4 +80,3 @@ class CustomConversationListTableViewCell: UITableViewCell {
         }
     }
 }
-
