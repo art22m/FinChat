@@ -170,7 +170,7 @@
         <!--Settings-->
         <scene sceneID="bUS-Rc-WrQ">
             <objects>
-                <viewController id="UfO-9L-5Dh" sceneMemberID="viewController">
+                <viewController id="UfO-9L-5Dh" customClass="ThemesViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OgN-xF-igs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,6 +302,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="G6i-H3-SvW"/>
+                    <connections>
+                        <outlet property="classicLabel" destination="dFG-k6-7lG" id="IJx-XC-OUf"/>
+                        <outlet property="classicLeftView" destination="uRM-Rv-P3G" id="Xeq-Iw-6lZ"/>
+                        <outlet property="classicRightView" destination="qw2-9b-fFw" id="27y-gF-laJ"/>
+                        <outlet property="classicView" destination="sXM-FQ-IGk" id="eUW-Hc-HO6"/>
+                        <outlet property="dayLabel" destination="F6k-9h-N6J" id="5rX-r5-wm8"/>
+                        <outlet property="dayLeftView" destination="tXl-Or-Ogg" id="tdc-sg-Na0"/>
+                        <outlet property="dayRightView" destination="izP-st-aKt" id="THa-PD-pdm"/>
+                        <outlet property="dayView" destination="fY0-DL-APw" id="7mk-Ry-m9t"/>
+                        <outlet property="nightLabel" destination="png-kE-0lG" id="2os-RM-0qG"/>
+                        <outlet property="nightLeftView" destination="0tu-07-7Yp" id="wVc-UL-jRE"/>
+                        <outlet property="nightRightView" destination="2sC-eW-Dmr" id="oTK-83-XY6"/>
+                        <outlet property="nightView" destination="uR4-mN-jjk" id="4Eb-0t-NnS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWa-Nc-XnS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

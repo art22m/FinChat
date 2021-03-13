@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ThemesDelegate: class {
+    func updateTheme(_ newTheme: VCTheme.Theme)
+}
+
 // Temporary structure CellModel and array listOfUsers for test
 struct CellModel {
     var name: String?
@@ -45,6 +49,9 @@ class ConversationsListViewController: UIViewController {
     
     let headers : [String] = ["Online", "History"]
     
+    // Initialize variable theme of class VCTheme() to change the theme of the screen
+    var theme = VCTheme()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,12 +89,22 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ConversationViewController {
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
             destination.title = listOfUsers.filter{$0.online == (indexPath.section == 0 ? true : false)}[indexPath.row].name
+        } else if let themesVC = segue.destination as? ThemesViewController {
+            themesVC.themeDelegate = self
+            themesVC.theme.currentTheme = self.theme.currentTheme
         }
+    }
+}
+
+extension ConversationsListViewController: ThemesDelegate {
+    func updateTheme(_ newTheme: VCTheme.Theme) {
+        theme.currentTheme = newTheme
     }
 }
