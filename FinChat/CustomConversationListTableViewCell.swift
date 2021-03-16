@@ -13,12 +13,14 @@ protocol ConversationCellConfiguration : class {
     var date : Date? {get set}
     var online : Bool {get set}
     var hasUnreadMessages : Bool {get set}
+    var theme : VCTheme {get set}
 }
 
 class CustomConversationListTableViewCell: UITableViewCell {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelMessage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
+    
     
     static let identifier = "CustomConversationListTableViewCell"
     static func nib() -> UINib {
@@ -31,17 +33,29 @@ class CustomConversationListTableViewCell: UITableViewCell {
         var date: Date?
         var online: Bool
         var hasUnreadMessages: Bool
+        var theme: VCTheme
         
-        init(name: String?, message: String?, date: Date?, online: Bool, hasUnreadMessages: Bool) {
+        init(name: String?, message: String?, date: Date?, online: Bool, hasUnreadMessages: Bool, theme: VCTheme) {
             self.name = name
             self.message = message
             self.date = date
             self.online = online
             self.hasUnreadMessages = hasUnreadMessages
+            self.theme = theme
         }
     }
     
     func configure(with pattern: Model) {
+        self.labelName.textColor = pattern.theme.getCurrentFontColor()
+        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
+        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
+        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        selectedBackgroundView = backgroundView
+        
         if let name = pattern.name {
             self.labelName.text = name
         } else {
@@ -67,12 +81,12 @@ class CustomConversationListTableViewCell: UITableViewCell {
             self.labelDate.text = ""
         }
         
-        if pattern.online == true {
-            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 242.0/255.0, blue: 212.0/255.0, alpha: 1.0)
-        } else {
-            self.contentView.backgroundColor = .white
-        }
-        
+//        if pattern.online == true {
+//            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 242.0/255.0, blue: 212.0/255.0, alpha: 1.0)
+//        } else {
+//            self.contentView.backgroundColor = .white
+//        }
+//        
         if pattern.hasUnreadMessages == true {
             self.labelMessage.font = .boldSystemFont(ofSize: 17.0)
         } else {

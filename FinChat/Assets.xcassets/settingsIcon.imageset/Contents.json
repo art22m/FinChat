@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "iconfinder_settings_2561383.png",
+      "filename" : "carbon_settings.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iconfinder_settings_2561383@2x.png",
+      "filename" : "carbon_settings@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iconfinder_settings_2561383@3x.png",
+      "filename" : "carbon_settings@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

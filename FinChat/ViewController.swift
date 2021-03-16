@@ -14,14 +14,30 @@ var logSwitch : Bool = false
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var labelInitials: UILabel!
+    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelLocation: UILabel!
     @IBOutlet weak var imageAvatar: UIImageView!
     @IBOutlet weak var buttonEdit: UIButton!
+    @IBOutlet weak var buttonClose: UIBarButtonItem!
+    
     @IBAction func buttonClose(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    // Initialize variable theme of class VCTheme() to change the theme of the screen
+    var theme = VCTheme()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set the current appearence
+        view.backgroundColor = theme.getCurrentBackgroundColor()
+        labelName.textColor = theme.getCurrentFontColor()
+        labelDescription.textColor = theme.getCurrentFontColor()
+        labelLocation.textColor = theme.getCurrentFontColor()
+//        buttonClose.tintColor = .black
         
         // Make the avatar round
         imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2

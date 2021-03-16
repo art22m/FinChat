@@ -9,6 +9,7 @@ import UIKit
 
 protocol MessageCellConfiguration : class {
     var text : String? {get set}
+    var theme : VCTheme {get set}
 }
 
 class CustomConversationIncomeTableViewCell: UITableViewCell {
@@ -22,7 +23,6 @@ class CustomConversationIncomeTableViewCell: UITableViewCell {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
             addSubview(viewIncomeMessageBackground)
-            viewIncomeMessageBackground.backgroundColor = UIColor(red: 233.0/255.0, green: 232.0/255.0, blue: 55.0/255.0, alpha: 1.0)
             viewIncomeMessageBackground.layer.cornerRadius = 14
             viewIncomeMessageBackground.translatesAutoresizingMaskIntoConstraints = false
             
@@ -41,7 +41,8 @@ class CustomConversationIncomeTableViewCell: UITableViewCell {
                                       viewIncomeMessageBackground.bottomAnchor.constraint(equalTo: labelIncomeMessage.bottomAnchor, constant: 16),
                                       viewIncomeMessageBackground.trailingAnchor.constraint(equalTo: labelIncomeMessage.trailingAnchor, constant: 16),
                                       ]
-            
+        
+            sendSubviewToBack(contentView)
             NSLayoutConstraint.activate(messageConstraints)
         }
         
@@ -51,16 +52,25 @@ class CustomConversationIncomeTableViewCell: UITableViewCell {
     
     class Model : MessageCellConfiguration {
         var text: String?
+        var theme: VCTheme
         
-        init(text: String?) {
+        init(text: String?, theme: VCTheme) {
             self.text = text
+            self.theme = theme
         }
     }
     
     func configure(with pattern: Model) {
         if let text = pattern.text {
             labelIncomeMessage.text = text
+        } else {
+            self.labelIncomeMessage.text = ""
         }
+        
+        // Change the appearence of the cells
+        backgroundColor = pattern.theme.getCurrentBackgroundColor()
+        labelIncomeMessage.textColor = pattern.theme.getCurrentFontColor()
+        viewIncomeMessageBackground.backgroundColor = pattern.theme.getCurrentIncomeColor()
     }
 }
 
@@ -75,7 +85,6 @@ class CustomConversationOutcomeTableViewCell: UITableViewCell {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
             addSubview(viewOutcomeMessageBackground)
-        viewOutcomeMessageBackground.backgroundColor = .lightGray
             viewOutcomeMessageBackground.layer.cornerRadius = 14
             viewOutcomeMessageBackground.translatesAutoresizingMaskIntoConstraints = false
             
@@ -94,7 +103,8 @@ class CustomConversationOutcomeTableViewCell: UITableViewCell {
                                       viewOutcomeMessageBackground.bottomAnchor.constraint(equalTo: labelOutcomeMessage.bottomAnchor, constant: 16),
                                       viewOutcomeMessageBackground.trailingAnchor.constraint(equalTo: labelOutcomeMessage.trailingAnchor, constant: 16),
                                       ]
-            
+        
+            sendSubviewToBack(contentView)
             NSLayoutConstraint.activate(messageConstraints)
         }
         
@@ -104,9 +114,11 @@ class CustomConversationOutcomeTableViewCell: UITableViewCell {
     
     class Model : MessageCellConfiguration {
         var text: String?
+        var theme: VCTheme
         
-        init(text: String?) {
+        init(text: String?, theme: VCTheme) {
             self.text = text
+            self.theme = theme
         }
     }
     
@@ -116,8 +128,11 @@ class CustomConversationOutcomeTableViewCell: UITableViewCell {
         } else {
             self.labelOutcomeMessage.text = ""
         }
+        
+        // Change the appearence of the cells
+        backgroundColor = pattern.theme.getCurrentBackgroundColor()
+        
+        labelOutcomeMessage.textColor = pattern.theme.getCurrentFontColor()
+        viewOutcomeMessageBackground.backgroundColor = pattern.theme.getCurrentOutcomeColor()
     }
 }
-
-
-

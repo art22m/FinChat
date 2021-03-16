@@ -27,9 +27,22 @@ class ConversationViewController: UIViewController {
 
     @IBOutlet weak var messageInput: UITextView!
     @IBOutlet weak var tableViewMessages: UITableView!
+    @IBOutlet weak var sendButton: UIButton!
+    
+    // Initialize variable theme of class VCTheme() to change the theme of the screen
+    var theme = VCTheme()
        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = theme.getCurrentBackgroundColor()
+        tableViewMessages.backgroundColor = theme.getCurrentBackgroundColor()
+        
+        let origImage = UIImage(named: "sendMessageIcon")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        sendButton.setImage(tintedImage, for: .normal)
+        sendButton.tintColor = theme.getCurrentFontColor()
+        
         
         messageInput.layer.cornerRadius = 16
         messageInput.layer.borderWidth = 1
@@ -52,11 +65,11 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         
         if messageModel.isIncome == true {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomConversationIncomeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: .init(text: messageModel.message))
+            cell.configure(with: .init(text: messageModel.message, theme: theme))
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomConversationOutcomeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: .init(text: messageModel.message))
+            cell.configure(with: .init(text: messageModel.message, theme: theme))
             return cell
         }
     }
