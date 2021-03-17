@@ -13,16 +13,34 @@ var logSwitch : Bool = false
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - @IBOutlet
     @IBOutlet weak var labelInitials: UILabel!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
-    @IBOutlet weak var labelLocation: UILabel!
+    
+    @IBOutlet weak var textFieldName: UITextField!
+    @IBOutlet weak var textFieldDescription: UITextField!
+    @IBOutlet weak var textFieldLocation: UITextField!
+    
     @IBOutlet weak var imageAvatar: UIImageView!
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var buttonClose: UIBarButtonItem!
+    @IBOutlet weak var buttonCancel: UIButton!
+    @IBOutlet weak var buttonSaveGCD: UIButton!
+    @IBOutlet weak var buttonSaveOperations: UIButton!
+    
+    // MARK: - @IBActions
+    @IBAction func saveOperationsTapped(_ sender: Any) {
+        print("Right")
+    }
+    @IBAction func saveGCDTapped(_ sender: Any) {
+        print("Left")
+    }
+    
+    @IBAction func cancelTapped(_ sender: Any) {
+        self.normalMode()
+    }
     
     @IBAction func editTapped(_ sender: Any) {
-        print("edit")
+        self.editMode()
     }
     
     @IBAction func buttonClose(_ sender: Any) {
@@ -36,20 +54,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        normalMode()
+        
+        textFieldName.returnKeyType = .continue
+        textFieldName.autocapitalizationType = .words
+        textFieldName.autocorrectionType = .no
+        textFieldName.delegate = self
+        
+        textFieldDescription.returnKeyType = .continue
+        textFieldDescription.autocorrectionType = .no
+        textFieldDescription.delegate = self
+        
+        textFieldLocation.returnKeyType = .done
+        textFieldLocation.autocapitalizationType = .words
+        textFieldLocation.autocorrectionType = .no
+        textFieldLocation.delegate = self
+        
+        self.hideKeyboardWhenTappedAround()
+        
         // Set the current appearence
         view.backgroundColor = theme.getCurrentBackgroundColor()
-        labelName.textColor = theme.getCurrentFontColor()
-        labelDescription.textColor = theme.getCurrentFontColor()
-        labelLocation.textColor = theme.getCurrentFontColor()
-//        buttonClose.tintColor = .black
+        textFieldName.textColor = theme.getCurrentFontColor()
+        textFieldDescription.textColor = theme.getCurrentFontColor()
+        textFieldLocation.textColor = theme.getCurrentFontColor()
         
         // Make the avatar round
         imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2
         imageAvatar.clipsToBounds = true
         imageAvatar.layer.borderWidth = 1
         
-        // Make the button rounded
+        // Make buttons and TextFields rounded
         buttonEdit.layer.cornerRadius = 15
+        buttonCancel.layer.cornerRadius = 15
+        buttonSaveOperations.layer.cornerRadius = 15
+        buttonSaveGCD.layer.cornerRadius = 15
+        textFieldName.layer.cornerRadius = 15
+        textFieldLocation.layer.cornerRadius = 15
+        textFieldDescription.layer.cornerRadius = 15
         
         // Make avatar clickable
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatarImage(_:)))
@@ -69,6 +110,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard pow((tapPoint.x - centerPoint.x), 2) + pow((tapPoint.y - centerPoint.y), 2) <= pow(radius, 2) else {return}
         
         showActionSheet()
+    }
+    
+    
+    func normalMode() {
+        textFieldName.isUserInteractionEnabled = false
+        textFieldDescription.isUserInteractionEnabled = false
+        textFieldLocation.isUserInteractionEnabled = false
+        
+        textFieldName.borderStyle = .none
+        textFieldDescription.borderStyle = .none
+        textFieldLocation.borderStyle = .none
+        
+        buttonEdit.isHidden = false
+        buttonCancel.isHidden = true
+        buttonSaveGCD.isHidden = true
+        buttonSaveOperations.isHidden = true
+    }
+    
+    func editMode() {
+        textFieldName.isUserInteractionEnabled = true
+        textFieldDescription.isUserInteractionEnabled = true
+        textFieldLocation.isUserInteractionEnabled = true
+        textFieldName.becomeFirstResponder()
+        
+        textFieldName.borderStyle = .roundedRect
+        textFieldDescription.borderStyle = .roundedRect
+        textFieldLocation.borderStyle = .roundedRect
+        
+        buttonEdit.isHidden = true
+        buttonCancel.isHidden = false
+        buttonSaveGCD.isHidden = false
+        buttonSaveOperations.isHidden = false
     }
     
     func showActionSheet() {
@@ -109,5 +182,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch (textField) {
+            case textFieldName:
+                textField.resignFirstResponder()
+                textFieldDescription.becomeFirstResponder()
+                break
+            case textFieldDescription:
+                textField.resignFirstResponder()
+                textFieldLocation.becomeFirstResponder()
+                break
+            case textFieldLocation:
+                textFieldLocation.resignFirstResponder()
+                break
+            default:
+                break
+        }
+        return true
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
