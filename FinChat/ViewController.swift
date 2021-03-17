@@ -21,6 +21,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var buttonClose: UIBarButtonItem!
     
+    @IBAction func editTapped(_ sender: Any) {
+        print("edit")
+    }
+    
     @IBAction func buttonClose(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

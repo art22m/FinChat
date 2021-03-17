@@ -53,6 +53,9 @@
                                 <state key="normal" title="Edit">
                                     <color key="titleColor" red="0.35805149260000002" green="0.37863170699999998" blue="0.36687209440000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="editTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q7B-my-VGC"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSp-Gw-Gf4">
                                 <rect key="frame" x="149" y="150" width="77.5" height="80"/>
