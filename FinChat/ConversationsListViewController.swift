@@ -116,7 +116,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
             themesVC.theme.currentTheme = self.theme.currentTheme
-        } else if let profileVC = segue.destination as? ViewController {
+        } else if let profileVC = segue.destination as?  {
             profileVC.theme.currentTheme = self.theme.currentTheme
         }
     }

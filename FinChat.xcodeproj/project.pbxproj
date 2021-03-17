@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE41E25FD4675009B1DF3 /* VCTheme.swift */; };
-		E50DE42225FD46D1009B1DF3 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE42125FD46D1009B1DF3 /* ThemesViewController.swift */; };
 		E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */; };
 		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
 		E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		E50DE41E25FD4675009B1DF3 /* VCTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTheme.swift; sourceTree = "<group>"; };
-		E50DE42125FD46D1009B1DF3 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 				E50DE41E25FD4675009B1DF3 /* VCTheme.swift */,
 				E5A09E5725DD267F009CCE18 /* ViewController.swift */,
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
-				E50DE42125FD46D1009B1DF3 /* ThemesViewController.swift */,
 				E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */,
 				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
 				E5A81FE625ED41720042DDDD /* CustomConversationListTableViewCell.xib */,
@@ -158,7 +155,6 @@
 			files = (
 				E5A09E5825DD267F009CCE18 /* ViewController.swift in Sources */,
 				E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */,
-				E50DE42225FD46D1009B1DF3 /* ThemesViewController.swift in Sources */,
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
 				E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */,
 				E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */,

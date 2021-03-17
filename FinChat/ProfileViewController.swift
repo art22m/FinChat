@@ -1,0 +1,108 @@
+//
+//  ViewController.swift
+//  FinChat
+//
+//  Created by Артём Мурашко on 17.02.2021.
+//
+
+import UIKit
+
+// logSwitch variable of type Bool is responsible for enabling / disabling logs for AppDelegate (previous HW).
+// If you want to enable logging, set the variable to true, otherwise false
+var logSwitch : Bool = false
+
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var labelInitials: UILabel!
+    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelLocation: UILabel!
+    @IBOutlet weak var imageAvatar: UIImageView!
+    @IBOutlet weak var buttonEdit: UIButton!
+    @IBOutlet weak var buttonClose: UIBarButtonItem!
+    
+    @IBAction func buttonClose(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // Initialize variable theme of class VCTheme() to change the theme of the screen
+    var theme = VCTheme()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set the current appearence
+        view.backgroundColor = theme.getCurrentBackgroundColor()
+        labelName.textColor = theme.getCurrentFontColor()
+        labelDescription.textColor = theme.getCurrentFontColor()
+        labelLocation.textColor = theme.getCurrentFontColor()
+        
+        // Make the avatar round
+        imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2
+        imageAvatar.clipsToBounds = true
+        imageAvatar.layer.borderWidth = 1
+        
+        // Make the button rounded
+        buttonEdit.layer.cornerRadius = 15
+        
+        // Make avatar clickable
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatarImage(_:)))
+        gestureRecognizer.numberOfTapsRequired = 1
+        gestureRecognizer.numberOfTouchesRequired = 1
+        
+        imageAvatar.addGestureRecognizer(gestureRecognizer)
+        imageAvatar.isUserInteractionEnabled = true
+    }
+
+    @objc func tapOnAvatarImage(_ sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: self.view)
+        let centerPoint = imageAvatar.center
+        let radius = imageAvatar.frame.size.width / 2
+            
+        // Check if the click coordinates is inside the circle ((x-x0)^2 + (y - y0)^2 <= r^2)
+        guard pow((tapPoint.x - centerPoint.x), 2) + pow((tapPoint.y - centerPoint.y), 2) <= pow(radius, 2) else {return}
+        
+        showActionSheet()
+    }
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: "Change avatar", message: "Choose a source to change the avatar", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (UIAlertAction) in
+            self.showImagePickerController(sourceType: .photoLibrary)
+        }))
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
+                    self.showImagePickerController(sourceType: .camera)
+            }))
+        }
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showImagePickerController(sourceType: UIImagePickerController.SourceType) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = sourceType
+    
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            imageAvatar.image = editedImage
+            labelInitials.isHidden = true
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageAvatar.image = originalImage
+            labelInitials.isHidden = true
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
