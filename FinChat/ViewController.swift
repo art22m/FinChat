@@ -1,109 +1,147 @@
 //
-//  ViewController.swift
+//  ThemesViewController.swift
 //  FinChat
 //
-//  Created by Артём Мурашко on 17.02.2021.
+//  Created by Артём Мурашко on 10.03.2021.
 //
-
 import UIKit
 
-// logSwitch variable of type Bool is responsible for enabling / disabling logs for AppDelegate (previous HW).
-// If you want to enable logging, set the variable to true, otherwise false
-var logSwitch : Bool = false
+class ThemesViewController: UIViewController {
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var classicLabel: UILabel!
+    @IBOutlet weak var classicView: UIView!
+    @IBOutlet weak var classicLeftView: UIView!
+    @IBOutlet weak var classicRightView: UIView!
     
-    @IBOutlet weak var labelInitials: UILabel!
-    @IBOutlet weak var labelName: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
-    @IBOutlet weak var labelLocation: UILabel!
-    @IBOutlet weak var imageAvatar: UIImageView!
-    @IBOutlet weak var buttonEdit: UIButton!
-    @IBOutlet weak var buttonClose: UIBarButtonItem!
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var dayView: UIView!
+    @IBOutlet weak var dayLeftView: UIView!
+    @IBOutlet weak var dayRightView: UIView!
     
-    @IBAction func buttonClose(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
+    @IBOutlet weak var nightLabel: UILabel!
+    @IBOutlet weak var nightView: UIView!
+    @IBOutlet weak var nightLeftView: UIView!
+    @IBOutlet weak var nightRightView: UIView!
     
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
     
+    weak var themeDelegate: ThemesDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the current appearence
-        view.backgroundColor = theme.getCurrentBackgroundColor()
-        labelName.textColor = theme.getCurrentFontColor()
-        labelDescription.textColor = theme.getCurrentFontColor()
-        labelLocation.textColor = theme.getCurrentFontColor()
-//        buttonClose.tintColor = .black
+        view.backgroundColor = UIColor(red: 15.0/255.0, green: 54.0/255.0, blue: 100.0/255.0, alpha: 1.0)
         
-        // Make the avatar round
-        imageAvatar.layer.cornerRadius = imageAvatar.frame.size.width / 2
-        imageAvatar.clipsToBounds = true
-        imageAvatar.layer.borderWidth = 1
-        
-        // Make the button rounded
-        buttonEdit.layer.cornerRadius = 15
-        
-        // Make avatar clickable
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnAvatarImage(_:)))
-        gestureRecognizer.numberOfTapsRequired = 1
-        gestureRecognizer.numberOfTouchesRequired = 1
-        
-        imageAvatar.addGestureRecognizer(gestureRecognizer)
-        imageAvatar.isUserInteractionEnabled = true
-    }
-
-    @objc func tapOnAvatarImage(_ sender: UITapGestureRecognizer) {
-        let tapPoint = sender.location(in: self.view)
-        let centerPoint = imageAvatar.center
-        let radius = imageAvatar.frame.size.width / 2
-            
-        // Check if the click coordinates is inside the circle ((x-x0)^2 + (y - y0)^2 <= r^2)
-        guard pow((tapPoint.x - centerPoint.x), 2) + pow((tapPoint.y - centerPoint.y), 2) <= pow(radius, 2) else {return}
-        
-        showActionSheet()
-    }
+        // Top button
+        classicView.layer.cornerRadius = 16
+        classicView.layer.borderColor = UIColor(red: 87.0/255.0, green: 118.0/255.0, blue: 233.0/255.0, alpha: 1.0).cgColor
+        classicLeftView.layer.cornerRadius = 14
+        classicRightView.layer.cornerRadius = 14
     
-    func showActionSheet() {
-        let actionSheet = UIAlertController(title: "Change avatar", message: "Choose a source to change the avatar", preferredStyle: .actionSheet)
+        classicView.backgroundColor = theme.classicBackgroundColor
+        classicLeftView.backgroundColor = theme.classicIncomeColor
+        classicRightView.backgroundColor = theme.classicOutcomeColor
+        classicLabel.textColor = .white
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (UIAlertAction) in
-            self.showImagePickerController(sourceType: .photoLibrary)
-        }))
+        // Middle button
+        dayView.layer.cornerRadius = 16
+        dayView.layer.borderColor = UIColor(red: 87.0/255.0, green: 118.0/255.0, blue: 233.0/255.0, alpha: 1.0).cgColor
+        dayLeftView.layer.cornerRadius = 14
+        dayRightView.layer.cornerRadius = 14
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-                    self.showImagePickerController(sourceType: .camera)
-            }))
+        dayView.backgroundColor = theme.dayBackgroundColor
+        dayLeftView.backgroundColor = theme.dayIncomeColor
+        dayRightView.backgroundColor = theme.dayOutcomeColor
+        dayLabel.textColor = .white
+        
+        // Bottom button
+        nightView.layer.cornerRadius = 16
+        nightView.layer.borderColor = UIColor(red: 87.0/255.0, green: 118.0/255.0, blue: 233.0/255.0, alpha: 1.0).cgColor
+        nightLeftView.layer.cornerRadius = 14
+        nightRightView.layer.cornerRadius = 14
+        
+        nightView.backgroundColor = theme.nightBackgroundColor
+        nightLeftView.backgroundColor = theme.nightIncomeColor
+        nightRightView.backgroundColor = theme.nightOutcomeColor
+        nightLabel.textColor = .white
+        
+        // Determine the border of button for current theme
+        changeBorder()
+        
+        // Make Classic View tapable
+        var gestureRecognizerTop: UITapGestureRecognizer {
+               get {
+                   return UITapGestureRecognizer(target: self, action: #selector(tapOnClassicView(_:)))
+               }
         }
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        classicView.addGestureRecognizer(gestureRecognizerTop)
+        classicView.isUserInteractionEnabled = true
+        classicLabel.addGestureRecognizer(gestureRecognizerTop)
+        classicLabel.isUserInteractionEnabled = true
         
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    func showImagePickerController(sourceType: UIImagePickerController.SourceType) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        imagePickerController.sourceType = sourceType
-    
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            imageAvatar.image = editedImage
-            labelInitials.isHidden = true
-        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            imageAvatar.image = originalImage
-            labelInitials.isHidden = true
+        // Make Day View tapable
+        var gestureRecognizerMiddle: UITapGestureRecognizer {
+               get {
+                   return UITapGestureRecognizer(target: self, action: #selector(tapOnDayView(_:)))
+               }
         }
         
-        dismiss(animated: true, completion: nil)
+        dayView.addGestureRecognizer(gestureRecognizerMiddle)
+        dayView.isUserInteractionEnabled = true
+        dayLabel.addGestureRecognizer(gestureRecognizerMiddle)
+        dayLabel.isUserInteractionEnabled = true
+        
+        
+        // Make Night View tapable
+        var gestureRecognizerBottom: UITapGestureRecognizer {
+               get {
+                   return UITapGestureRecognizer(target: self, action: #selector(tapOnNightivView(_:)))
+               }
+        }
+        
+        nightView.addGestureRecognizer(gestureRecognizerBottom)
+        nightView.isUserInteractionEnabled = true
+        nightLabel.addGestureRecognizer(gestureRecognizerBottom)
+        nightLabel.isUserInteractionEnabled = true
     }
+    
+    @objc func tapOnClassicView(_ sender: UITapGestureRecognizer) {
+        theme.currentTheme = .classic
+        changeBorder()
+        themeDelegate?.updateTheme(theme.currentTheme)
+    }
+    
+    
+    @objc func tapOnDayView(_ sender: UITapGestureRecognizer) {
+        theme.currentTheme = .day
+        changeBorder()
+        themeDelegate?.updateTheme(theme.currentTheme)
+    }
+    
+    @objc func tapOnNightivView(_ sender: UITapGestureRecognizer) {
+        theme.currentTheme = .night
+        changeBorder()
+        themeDelegate?.updateTheme(theme.currentTheme)
+    }
+    
+    func changeBorder() {
+        switch theme.currentTheme {
+            case .classic:
+                classicView.layer.borderWidth = 4
+                dayView.layer.borderWidth = 0
+                nightView.layer.borderWidth = 0
+            case .day:
+                classicView.layer.borderWidth = 0
+                dayView.layer.borderWidth = 4
+                nightView.layer.borderWidth = 0
+            case .night:
+                classicView.layer.borderWidth = 0
+                dayView.layer.borderWidth = 0
+                nightView.layer.borderWidth = 4
+        }
+    }
+    
 }
