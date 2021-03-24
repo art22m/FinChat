@@ -20,27 +20,7 @@ struct CellModel {
     var hasUnreadMessages: Bool
 }
 
-let listOfUsers : [CellModel] = [CellModel(name: "Artem Murashko", message: "Where are you?", date: Date.init(),                                      online: true, hasUnreadMessages: true),
-                                CellModel(name: "Barack Obama", message: "What's up bro!", date: Date.init(timeIntervalSinceNow: -240), online: true, hasUnreadMessages: false),
-                                CellModel(name: "Laylah Slater-Dan-Jark-Man", message: "Okay!", date: nil, online: true, hasUnreadMessages: true),
-                                CellModel(name: "Ella Fulton", message: "Hahaha :D", date: nil, online: true, hasUnreadMessages: false),
-                                CellModel(name: "Ayaana Church", message: nil, date: nil, online: true, hasUnreadMessages: false),
-                                CellModel(name: "Mikolaj Mcconnell", message: nil, date: nil, online: true, hasUnreadMessages: true),
-                                CellModel(name: nil, message: nil, date: nil, online: true, hasUnreadMessages: false),
-                                CellModel(name: nil, message: nil, date: nil, online: true, hasUnreadMessages: true),
-                                CellModel(name: nil, message: "Idk dude", date: Date.init(timeIntervalSinceNow: -86400), online: true, hasUnreadMessages: true),
-                                CellModel(name: "Humzah Mckay", message: nil, date: Date.init(timeIntervalSinceNow: -259200), online: true, hasUnreadMessages: false),
-                                CellModel(name: "Nafeesa Preece", message: "Who r u?", date: Date.init(timeIntervalSinceNow: -600),  online: false, hasUnreadMessages: true),
-                                CellModel(name: "Lindsay Bond", message: "Mmm. Sound's good!", date: Date.init(timeIntervalSinceNow: -1200), online: false, hasUnreadMessages: false),
-                                CellModel(name: "Nakita Raymond", message: "What was in that picture?", date: nil, online: false, hasUnreadMessages: true),
-                                CellModel(name: "Vihaan Gibbs", message: "Rly? I can't believe it! :D", date: nil, online: false, hasUnreadMessages: false),
-                                CellModel(name: "Amin Daniel", message: nil, date: nil, online: false, hasUnreadMessages: false),
-                                CellModel(name: "Menna Frazier", message: nil, date: nil, online: false, hasUnreadMessages: true),
-                                CellModel(name: nil, message: nil, date: nil, online: false, hasUnreadMessages: false),
-                                CellModel(name: nil, message: nil, date: nil, online: false, hasUnreadMessages: true),
-                                CellModel(name: nil, message: "How much is it?", date: Date.init(timeIntervalSinceNow: -86400), online: false, hasUnreadMessages: true),
-                                CellModel(name: "Michael Lomonosov", message: nil, date: Date.init(timeIntervalSinceNow: -259200), online: false, hasUnreadMessages: false),
-]
+let listOfUsers : [CellModel] = []
 
 class ConversationsListViewController: UIViewController {
     
