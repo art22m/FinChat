@@ -355,7 +355,7 @@
             </objects>
             <point key="canvasLocation" x="129" y="-316"/>
         </scene>
-        <!--Tinkoff Chat-->
+        <!--Channels-->
         <scene sceneID="LJ3-Ei-758">
             <objects>
                 <viewController id="JcI-ZZ-SKg" customClass="ConversationsListViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -363,7 +363,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="35" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="35" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -377,8 +377,8 @@
                             <constraint firstItem="F1u-Ig-8Ny" firstAttribute="leading" secondItem="Y5a-4c-J0S" secondAttribute="leading" id="xkl-nj-TVs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" largeTitleDisplayMode="always" id="Rd1-MA-lWp">
-                        <barButtonItem key="backBarButtonItem" title="Chat" id="2AO-P9-5BE"/>
+                    <navigationItem key="navigationItem" title="Channels" largeTitleDisplayMode="always" id="Rd1-MA-lWp">
+                        <barButtonItem key="backBarButtonItem" title="Channels" id="2AO-P9-5BE"/>
                         <barButtonItem key="leftBarButtonItem" image="settingsIcon" id="hqZ-Uf-8bm">
                             <connections>
                                 <segue destination="UfO-9L-5Dh" kind="show" id="5Jo-BL-De2"/>
