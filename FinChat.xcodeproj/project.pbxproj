@@ -13,7 +13,6 @@
 		E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54ACEFB2602BE440049B9DF /* DataManager.swift */; };
 		E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810A92603EE8700E861A2 /* ProfileDataManager.swift */; };
 		E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810AD2603F04400E861A2 /* GCDManager.swift */; };
-		E55810B22603F05500E861A2 /* OperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810B12603F05500E861A2 /* OperationManager.swift */; };
 		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
 		E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
@@ -32,7 +31,6 @@
 		E54ACEFB2602BE440049B9DF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E55810A92603EE8700E861A2 /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
 		E55810AD2603F04400E861A2 /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
-		E55810B12603F05500E861A2 /* OperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationManager.swift; sourceTree = "<group>"; };
 		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				E50DE41E25FD4675009B1DF3 /* VCTheme.swift */,
-				E55810B12603F05500E861A2 /* OperationManager.swift */,
 				E55810AD2603F04400E861A2 /* GCDManager.swift */,
 				E54ACEFB2602BE440049B9DF /* DataManager.swift */,
 				E55810A92603EE8700E861A2 /* ProfileDataManager.swift */,
@@ -173,7 +170,6 @@
 				E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */,
 				E50DE42225FD46D1009B1DF3 /* ThemesViewController.swift in Sources */,
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
-				E55810B22603F05500E861A2 /* OperationManager.swift in Sources */,
 				E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */,
 				E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */,
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,

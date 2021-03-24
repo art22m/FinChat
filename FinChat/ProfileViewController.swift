@@ -14,7 +14,6 @@ var logSwitch : Bool = false
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - @IBOutlet
     @IBOutlet weak var labelInitials: UILabel!
-    @IBOutlet weak var savingIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var textFieldName: UITextField!
     @IBOutlet weak var textFieldDescription: UITextField!
@@ -24,79 +23,48 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var buttonClose: UIBarButtonItem!
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var buttonSaveGCD: UIButton!
-    @IBOutlet weak var buttonSaveOperations: UIButton!
     
     enum EditingMode {
         case image
         case textFields
     }
     
+    // Use to make save button active / not active
     var initialTextFieldName: String? = ""
     var initialTextFieldDescription: String? = ""
     var initialAvatarImage: UIImage? = UIImage(named: "avatarPlaceholder")
     
-    let alert1 = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
+    let alertSuccess = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
     
-    let alert2 = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
+    let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
     private var dataManagerGCD: DataManager = GCDDataManager()
-    private var dataManagerOperation: DataManager = OperationDataManager()
     
     // Used to send data for saving
     private var dataFromProfile: WorkingData = WorkingData()
     
     // MARK: - @IBActions
-    @IBAction func saveOperationsTapped(_ sender: Any) {
-        dataFromProfile.nameFromProfile = textFieldName.text
-        dataFromProfile.descriptionFromProfile = textFieldDescription.text
-        dataFromProfile.imageFromProfile = imageAvatar.image
-        
-        var statusOp: SuccessStatus = .success
-        
-        savingIndicator.isHidden = false
-        
-        dataManagerOperation.saveData(dataToSave: dataFromProfile, isSuccessful: { status in
-                statusOp = status
-        })
-        
-        sleep(3)
-        
-        if statusOp == .success {
-            self.present(alert1, animated: true)
-        } else {
-            self.present(alert2, animated: true)
-        }
-        
-        savingIndicator.stopAnimating()
-        editMode(.textFields)
-    }
     @IBAction func saveGCDTapped(_ sender: Any) {
-        indicator()
-        
         dataFromProfile.nameFromProfile = textFieldName.text
         dataFromProfile.descriptionFromProfile = textFieldDescription.text
-        dataFromProfile.imageFromProfile = imageAvatar.image
-        
+        if imageAvatar.image == UIImage(named: "avatarPlaceholder") {
+            dataFromProfile.imageFromProfile = nil
+        } else {
+            dataFromProfile.imageFromProfile = imageAvatar.image
+        }
+    
         var statusGCD: SuccessStatus = .success
         
-        
-        savingIndicator.isHidden = false
         dataManagerGCD.saveData(dataToSave: dataFromProfile, isSuccessful: { status in
                 statusGCD = status
         })
         
-        sleep(3)
-        
         if statusGCD == .success {
-            self.present(alert1, animated: true)
+            self.present(alertSuccess, animated: true)
         } else {
-            self.present(alert2, animated: true)
+            self.present(alertError, animated: true)
         }
         
-        DispatchQueue.main.async{
-            self.savingIndicator.stopAnimating()
-            self.savingIndicator.isHidden = true
-        }
         editMode(.textFields)
     }
     
@@ -104,6 +72,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         textFieldName.text = initialTextFieldName
         textFieldDescription.text = initialTextFieldDescription
         imageAvatar.image = initialAvatarImage
+        
+        displayInitials()
+        
         self.normalMode()
     }
     
@@ -122,15 +93,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Нужно доделать Инициалы
-        labelInitials.isHidden = true
-        
         normalMode()
         updateData()
         
-        alert1.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-        alert2.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
-        alert2.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] action in
+        alertSuccess.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        alertError.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        alertError.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [self] action in
             saveGCDTapped((Any).self)
         }))
         
@@ -161,7 +129,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Make buttons and TextFields rounded
         buttonEdit.layer.cornerRadius = 15
         buttonCancel.layer.cornerRadius = 15
-        buttonSaveOperations.layer.cornerRadius = 15
         buttonSaveGCD.layer.cornerRadius = 15
         textFieldName.layer.cornerRadius = 15
         textFieldDescription.layer.cornerRadius = 15
@@ -197,12 +164,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         buttonEdit.isHidden = false
         buttonCancel.isHidden = true
         buttonSaveGCD.isHidden = true
-        buttonSaveOperations.isHidden = true
     }
     
     private func editMode(_ mode: EditingMode) {
-        checkForDifference()
-        
         if (mode == .textFields) {
             textFieldName.backgroundColor = theme.getCurrentBackgroundColor()
             textFieldDescription.backgroundColor = theme.getCurrentBackgroundColor()
@@ -214,31 +178,35 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
             initialTextFieldName = textFieldName.text
             initialTextFieldDescription = textFieldDescription.text
-            if let image = imageAvatar.image {
-                initialAvatarImage = image
-            } else {
-                initialAvatarImage = UIImage(named: "avatarPlaceholder")
-            }
+            initialAvatarImage = imageAvatar.image
+        } else if (mode == .image) {
+            displayInitials()
         }
+        
+        checkForDifference()
         
         buttonEdit.isHidden = true
         buttonCancel.isHidden = false
         buttonSaveGCD.isHidden = false
-        buttonSaveOperations.isHidden = false
     }
     
     // Check if UILabelField or UIImage was changed. If yes -> make save button available.
     private func checkForDifference() {
         if (initialTextFieldName == textFieldName.text && initialTextFieldDescription == textFieldDescription.text && initialAvatarImage == imageAvatar.image) {
             buttonSaveGCD.alpha = 0.3
-            buttonSaveOperations.alpha = 0.3
             buttonSaveGCD.isEnabled = false
-            buttonSaveOperations.isEnabled = false
         } else {
+            labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
             buttonSaveGCD.alpha = 0.7
-            buttonSaveOperations.alpha = 0.7
             buttonSaveGCD.isEnabled = true
-            buttonSaveOperations.isEnabled = true
+        }
+    }
+    
+    private func displayInitials() {
+        if imageAvatar.image == UIImage(named: "avatarPlaceholder")  {
+            self.labelInitials.isHidden = false
+        } else {
+            self.labelInitials.isHidden = true
         }
     }
     
@@ -253,15 +221,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     self.initialTextFieldName = self.textFieldName.text
                     self.initialTextFieldDescription = self.textFieldDescription.text
                     self.initialAvatarImage = self.imageAvatar.image
+                    
+                    self.labelInitials.text = self.textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+                    
+                    self.displayInitials()
                 })
             }
         })
-        
-    }
-    
-    func indicator() {
-        savingIndicator.isHidden = false
-        savingIndicator.startAnimating()
     }
 }
 
@@ -308,6 +274,13 @@ extension ProfileViewController {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
                     self.showImagePickerController(sourceType: .camera)
+            }))
+        }
+        
+        if initialAvatarImage != UIImage(named: "avatarPlaceholder") {
+            actionSheet.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { [self] (UIAlertAction) in
+                    imageAvatar.image = UIImage(named: "avatarPlaceholder")
+                    editMode(.image)
             }))
         }
         

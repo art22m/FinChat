@@ -11,4 +11,3 @@ protocol DataManager {
     func saveData(dataToSave: WorkingData, isSuccessful: @escaping (SuccessStatus) -> Void)
     func readData(isSuccessful: @escaping ((WorkingData, SuccessStatus)) -> Void)
 }
-
