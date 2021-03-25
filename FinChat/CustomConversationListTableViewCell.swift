@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ConversationCellConfiguration : class {
+    var identifier : String {get set}
     var name : String? {get set}
     var message : String? {get set}
     var date : Date? {get set}
@@ -26,12 +27,14 @@ class CustomConversationListTableViewCell: UITableViewCell {
     }
     
     class Model : ConversationCellConfiguration {
+        var identifier: String
         var name: String?
         var message: String?
         var date: Date?
         var theme: VCTheme
         
-        init(name: String?, message: String?, date: Date?, theme: VCTheme) {
+        init(identifier: String, name: String?, message: String?, date: Date?, theme: VCTheme) {
+            self.identifier = identifier
             self.name = name
             self.message = message
             self.date = date

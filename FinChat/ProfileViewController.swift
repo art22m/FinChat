@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var initialAvatarImage: UIImage? = UIImage(named: "avatarPlaceholder")
     
     let alertSuccess = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
-    
     let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
     private var dataManagerGCD: DataManager = GCDDataManager()
@@ -102,12 +101,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             saveGCDTapped((Any).self)
         }))
         
-        
-        textFieldName.attributedPlaceholder = NSAttributedString(string: "Name Surname", attributes: [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor().withAlphaComponent(0.5)])
         textFieldName.returnKeyType = .continue
         textFieldName.autocapitalizationType = .words
         textFieldName.autocorrectionType = .no
         textFieldName.delegate = self
+        textFieldName.attributedPlaceholder = NSAttributedString(string: "Name Surname", attributes: [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor().withAlphaComponent(0.5)])
 
         textFieldDescription.returnKeyType = .done
         textFieldDescription.autocorrectionType = .no

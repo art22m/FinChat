@@ -23,23 +23,38 @@ class ConversationsListViewController: UIViewController {
     
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSettings: UIBarButtonItem!
+    @IBOutlet weak var buttonAdd: UIBarButtonItem!
     @IBOutlet weak var tableViewConversations: UITableView!
     
+    @IBAction func addTapped(_ sender: Any) {
+        self.present(alertAdd, animated: true)
+    }
+    
+    let alertAdd = UIAlertController(title: "Channel", message: "Add channel", preferredStyle: .alert)
     
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
     
     private var channels = [Channel]()
     private lazy var db = Firestore.firestore()
+    private lazy var reference = db.collection("channels")
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         fetchData()
         
+        alertAdd.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertAdd.addAction(UIAlertAction(title: "Add", style: .default, handler: { [self] action in
+            addChannel()
+        }))
+        alertAdd.addTextField()
+        alertAdd.textFields![0].placeholder = "Enter name of the channel"
+        
         // Change color of Bar Buttons
         buttonSettings.tintColor = theme.getCurrentFontColor()
         buttonProfile.tintColor = theme.getCurrentFontColor()
+        buttonAdd.tintColor = theme.getCurrentFontColor()
         
         // Initialize the table
         tableViewConversations.register(CustomConversationListTableViewCell.nib(), forCellReuseIdentifier: CustomConversationListTableViewCell.identifier)
@@ -51,7 +66,17 @@ class ConversationsListViewController: UIViewController {
         tableViewConversations.reloadData()
     }
     
-    func fetchData() {
+    private func addChannel() {
+        if (alertAdd.textFields![0].text == "") {
+            print("Empty name")
+            return
+        }
+        
+        let channelName = alertAdd.textFields![0].text
+        
+        reference.addDocument(data: ["name" : channelName ?? ""])
+    }
+    private func fetchData() {
         db.collection("channels").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No channels")
@@ -61,15 +86,18 @@ class ConversationsListViewController: UIViewController {
             self.channels = documents.map{ (queryDocumentSnapshot) -> Channel in
                 let data = queryDocumentSnapshot.data()
                 
-                let id = data["identifier"] as? String ?? ""
-                let name = data["name"] as? String ?? ""
-                let lastMessage = data["lastMessage"] as? String? ?? ""
+                let id = queryDocumentSnapshot.documentID
+                let name = data["name"] as? String ?? "No name"
+                let lastMessage = data["lastMessage"] as? String? ?? nil
                 let lastActivityTimeStamp = data["lastActivity"] as? Timestamp? ?? nil
                 let lastActivity = lastActivityTimeStamp?.dateValue()
                 
                 return Channel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
             }
             
+            self.channels.sort { (Channel1, Channel2) -> Bool in
+                Channel1.lastActivity ?? Date.init() > Channel2.lastActivity ?? Date.init()
+            }
             self.tableViewConversations.reloadData()
         }
     }
@@ -85,7 +113,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         
         
         let channel = channels[indexPath.row]
-        cell.configure(with: .init(name: channel.name, message: channel.lastMessage, date: channel.lastActivity, theme: theme))
+        cell.configure(with: .init(identifier: channel.identifier, name: channel.name, message: channel.lastMessage, date: channel.lastActivity, theme: theme))
         
         return cell
     }
@@ -101,6 +129,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
             destination.title = channels[indexPath.row].name
+            destination.identifierOfChannel = channels[indexPath.row].identifier
             
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
@@ -128,6 +157,7 @@ extension ConversationsListViewController: ThemesDelegate {
         // Change color of Bar Buttons
         buttonSettings.tintColor = theme.getCurrentFontColor()
         buttonProfile.tintColor = theme.getCurrentFontColor()
+        buttonAdd.tintColor = theme.getCurrentFontColor()
         
         tableViewConversations.reloadData()
     }
