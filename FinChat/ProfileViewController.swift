@@ -194,7 +194,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             buttonSaveGCD.alpha = 0.3
             buttonSaveGCD.isEnabled = false
         } else {
-            labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+            if (textFieldName.text?.isEmpty == false) {
+                labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+            }
+            
             buttonSaveGCD.alpha = 0.7
             buttonSaveGCD.isEnabled = true
         }

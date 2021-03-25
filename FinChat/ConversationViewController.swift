@@ -149,11 +149,11 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         
         if message.senderId != uniqueID {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomConversationIncomeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: .init(text: message.content, theme: theme))
+            cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomConversationOutcomeTableViewCell else { return UITableViewCell() }
-            cell.configure(with: .init(text: message.content, theme: theme))
+            cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         }
     }
