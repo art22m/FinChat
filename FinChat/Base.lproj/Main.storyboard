@@ -163,36 +163,40 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="sendMessageIcon"/>
+                                <connections>
+                                    <action selector="sendTapped:" destination="DSe-zg-0Bm" eventType="touchUpInside" id="rLl-pA-FSm"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-Rf-3Vq">
-                                <rect key="frame" x="0.0" y="44" width="375" height="586"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="585"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZO0-Y7-1da">
-                                <rect key="frame" x="5" y="632" width="330" height="33"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <color key="textColor" systemColor="labelColor"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ms5-9o-IhW" userLabel="Message Input">
+                                <rect key="frame" x="2" y="631" width="336" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NC7-fh-sGP"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rLi-cT-Xdc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OQX-OW-HfP" firstAttribute="leading" secondItem="ZO0-Y7-1da" secondAttribute="trailing" constant="5" id="5Nb-7I-dT6"/>
                             <constraint firstItem="1fA-Rf-3Vq" firstAttribute="top" secondItem="rLi-cT-Xdc" secondAttribute="top" id="Ae7-iw-E2i"/>
                             <constraint firstItem="rLi-cT-Xdc" firstAttribute="trailing" secondItem="OQX-OW-HfP" secondAttribute="trailing" constant="2" id="Joe-jD-dgc"/>
                             <constraint firstItem="rLi-cT-Xdc" firstAttribute="bottom" secondItem="OQX-OW-HfP" secondAttribute="bottom" constant="2" id="Kkz-Qb-bm7"/>
-                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="bottom" secondItem="ZO0-Y7-1da" secondAttribute="bottom" constant="2" id="WZR-3v-2gV"/>
+                            <constraint firstItem="ms5-9o-IhW" firstAttribute="top" secondItem="1fA-Rf-3Vq" secondAttribute="bottom" constant="2" id="NAJ-eb-bKj"/>
                             <constraint firstItem="rLi-cT-Xdc" firstAttribute="trailing" secondItem="1fA-Rf-3Vq" secondAttribute="trailing" id="fb8-CH-MWD"/>
-                            <constraint firstItem="ZO0-Y7-1da" firstAttribute="leading" secondItem="rLi-cT-Xdc" secondAttribute="leading" constant="5" id="kRJ-A1-ZP9"/>
+                            <constraint firstItem="ms5-9o-IhW" firstAttribute="leading" secondItem="rLi-cT-Xdc" secondAttribute="leading" constant="2" id="gKb-fk-eF8"/>
+                            <constraint firstItem="OQX-OW-HfP" firstAttribute="leading" secondItem="ms5-9o-IhW" secondAttribute="trailing" constant="2" id="jI2-mY-efg"/>
                             <constraint firstItem="1fA-Rf-3Vq" firstAttribute="leading" secondItem="rLi-cT-Xdc" secondAttribute="leading" id="n8Y-f9-sEi"/>
-                            <constraint firstItem="ZO0-Y7-1da" firstAttribute="top" secondItem="1fA-Rf-3Vq" secondAttribute="bottom" constant="2" id="rlo-bJ-ZA7"/>
+                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="bottom" secondItem="ms5-9o-IhW" secondAttribute="bottom" constant="2" id="wRa-nE-NG0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VhO-S9-8cL"/>
                     <connections>
-                        <outlet property="messageInput" destination="ZO0-Y7-1da" id="x0i-Ih-klS"/>
+                        <outlet property="messageInput" destination="ms5-9o-IhW" id="ihZ-iy-L13"/>
                         <outlet property="sendButton" destination="OQX-OW-HfP" id="csa-fq-qOv"/>
                         <outlet property="tableViewMessages" destination="1fA-Rf-3Vq" id="9D8-jJ-6xv"/>
                     </connections>
@@ -355,7 +359,7 @@
             </objects>
             <point key="canvasLocation" x="129" y="-316"/>
         </scene>
-        <!--Tinkoff Chat-->
+        <!--Channels-->
         <scene sceneID="LJ3-Ei-758">
             <objects>
                 <viewController id="JcI-ZZ-SKg" customClass="ConversationsListViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -363,7 +367,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="35" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="35" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -377,21 +381,29 @@
                             <constraint firstItem="F1u-Ig-8Ny" firstAttribute="leading" secondItem="Y5a-4c-J0S" secondAttribute="leading" id="xkl-nj-TVs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" largeTitleDisplayMode="always" id="Rd1-MA-lWp">
-                        <barButtonItem key="backBarButtonItem" title="Chat" id="2AO-P9-5BE"/>
+                    <navigationItem key="navigationItem" title="Channels" largeTitleDisplayMode="always" id="Rd1-MA-lWp">
+                        <barButtonItem key="backBarButtonItem" title="Channels" id="2AO-P9-5BE"/>
                         <barButtonItem key="leftBarButtonItem" image="settingsIcon" id="hqZ-Uf-8bm">
                             <connections>
                                 <segue destination="UfO-9L-5Dh" kind="show" id="5Jo-BL-De2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="profileIcon" id="0Up-YW-eUe">
-                            <connections>
-                                <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="bSG-Jy-fcW"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="profileIcon" id="0Up-YW-eUe">
+                                <connections>
+                                    <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="bSG-Jy-fcW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="addButtonIcon" id="FTF-2f-HWK">
+                                <connections>
+                                    <action selector="addTapped:" destination="JcI-ZZ-SKg" id="LnF-An-gg2"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonAdd" destination="FTF-2f-HWK" id="nUv-2S-rGC"/>
                         <outlet property="buttonProfile" destination="0Up-YW-eUe" id="vv5-NX-wVa"/>
                         <outlet property="buttonSettings" destination="hqZ-Uf-8bm" id="qOL-yl-Ipj"/>
                         <outlet property="tableViewConversations" destination="F1u-Ig-8Ny" id="J4V-ul-4MF"/>
@@ -422,21 +434,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addButtonIcon" width="25" height="25"/>
         <image name="avatarPlaceholder" width="169" height="169"/>
         <image name="profileIcon" width="25" height="25"/>
         <image name="sendMessageIcon" width="170.5" height="170.5"/>
         <image name="settingsIcon" width="25" height="25"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

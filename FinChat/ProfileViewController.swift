@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var initialAvatarImage: UIImage? = UIImage(named: "avatarPlaceholder")
     
     let alertSuccess = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
-    
     let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
     private var dataManagerGCD: DataManager = GCDDataManager()
@@ -102,12 +101,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             saveGCDTapped((Any).self)
         }))
         
-        
-        textFieldName.attributedPlaceholder = NSAttributedString(string: "Name Surname", attributes: [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor().withAlphaComponent(0.5)])
         textFieldName.returnKeyType = .continue
         textFieldName.autocapitalizationType = .words
         textFieldName.autocorrectionType = .no
         textFieldName.delegate = self
+        textFieldName.attributedPlaceholder = NSAttributedString(string: "Name Surname", attributes: [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor().withAlphaComponent(0.5)])
 
         textFieldDescription.returnKeyType = .done
         textFieldDescription.autocorrectionType = .no
@@ -196,7 +194,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             buttonSaveGCD.alpha = 0.3
             buttonSaveGCD.isEnabled = false
         } else {
-            labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+            if (textFieldName.text?.isEmpty == false) {
+                labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+            }
+            
             buttonSaveGCD.alpha = 0.7
             buttonSaveGCD.isEnabled = true
         }

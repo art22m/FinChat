@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */; };
 		E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE41E25FD4675009B1DF3 /* VCTheme.swift */; };
 		E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */; };
 		E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54ACEFB2602BE440049B9DF /* DataManager.swift */; };
@@ -15,6 +16,7 @@
 		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
 		E55BD298260FC54000EB24B5 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BD297260FC54000EB24B5 /* ThemesViewController.swift */; };
 		E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */; };
+		E578D216260B4AEE008422A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E578D215260B4AEE008422A8 /* GoogleService-Info.plist */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
 		E5A09E5825DD267F009CCE18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */; };
 		E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5925DD267F009CCE18 /* Main.storyboard */; };
@@ -25,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		871295635414B919374025BA /* Pods-FinChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.debug.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.debug.xcconfig"; sourceTree = "<group>"; };
+		CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.release.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.release.xcconfig"; sourceTree = "<group>"; };
 		E50DE41E25FD4675009B1DF3 /* VCTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTheme.swift; sourceTree = "<group>"; };
 		E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E54ACEFB2602BE440049B9DF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -33,6 +38,7 @@
 		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E55BD297260FC54000EB24B5 /* ThemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		E578D215260B4AEE008422A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A09E5325DD267F009CCE18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -49,17 +55,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		386846EF5F7AF7E289602080 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				871295635414B919374025BA /* Pods-FinChat.debug.xcconfig */,
+				CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8012722FD6F32EA3C1094464 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E5A09E4725DD267F009CCE18 = {
 			isa = PBXGroup;
 			children = (
 				E5A09E5225DD267F009CCE18 /* FinChat */,
 				E5A09E5125DD267F009CCE18 /* Products */,
+				386846EF5F7AF7E289602080 /* Pods */,
+				8012722FD6F32EA3C1094464 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,14 +107,16 @@
 				E55810A92603EE8700E861A2 /* ProfileDataManager.swift */,
 				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
 				E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */,
-				E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */,
+				E50DE42125FD46D1009B1DF3 /* ThemesViewController.swift */,
 				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
 				E5A81FE625ED41720042DDDD /* CustomConversationListTableViewCell.xib */,
+				E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */,
 				E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */,
 				E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */,
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
 				E5A09E5C25DD2681009CCE18 /* Assets.xcassets */,
+				E578D215260B4AEE008422A8 /* GoogleService-Info.plist */,
 				E5A09E6125DD2681009CCE18 /* Info.plist */,
 			);
 			path = FinChat;
@@ -101,9 +129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5A09E6425DD2681009CCE18 /* Build configuration list for PBXNativeTarget "FinChat" */;
 			buildPhases = (
+				D78EC4D86AAE48C52363E25E /* [CP] Check Pods Manifest.lock */,
 				E5A09E4C25DD267F009CCE18 /* Sources */,
 				E5A09E4D25DD267F009CCE18 /* Frameworks */,
 				E5A09E4E25DD267F009CCE18 /* Resources */,
+				E97BB2CBFD7C0766BB81CB03 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -153,12 +183,55 @@
 			files = (
 				E5A09E6025DD2681009CCE18 /* LaunchScreen.storyboard in Resources */,
 				E5A81FE825ED41720042DDDD /* CustomConversationListTableViewCell.xib in Resources */,
+				E578D216260B4AEE008422A8 /* GoogleService-Info.plist in Resources */,
 				E5A09E5D25DD2681009CCE18 /* Assets.xcassets in Resources */,
 				E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D78EC4D86AAE48C52363E25E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FinChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E97BB2CBFD7C0766BB81CB03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FinChat/Pods-FinChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FinChat/Pods-FinChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FinChat/Pods-FinChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E5A09E4C25DD267F009CCE18 /* Sources */ = {
@@ -319,6 +392,7 @@
 		};
 		E5A09E6525DD2681009CCE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 871295635414B919374025BA /* Pods-FinChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -330,7 +404,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.VartSoft.FinChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -339,6 +413,7 @@
 		};
 		E5A09E6625DD2681009CCE18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -350,7 +425,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.VartSoft.FinChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

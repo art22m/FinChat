@@ -8,11 +8,10 @@
 import UIKit
 
 protocol ConversationCellConfiguration : class {
+    var identifier : String {get set}
     var name : String? {get set}
     var message : String? {get set}
     var date : Date? {get set}
-    var online : Bool {get set}
-    var hasUnreadMessages : Bool {get set}
     var theme : VCTheme {get set}
 }
 
@@ -28,19 +27,17 @@ class CustomConversationListTableViewCell: UITableViewCell {
     }
     
     class Model : ConversationCellConfiguration {
+        var identifier: String
         var name: String?
         var message: String?
         var date: Date?
-        var online: Bool
-        var hasUnreadMessages: Bool
         var theme: VCTheme
         
-        init(name: String?, message: String?, date: Date?, online: Bool, hasUnreadMessages: Bool, theme: VCTheme) {
+        init(identifier: String, name: String?, message: String?, date: Date?, theme: VCTheme) {
+            self.identifier = identifier
             self.name = name
             self.message = message
             self.date = date
-            self.online = online
-            self.hasUnreadMessages = hasUnreadMessages
             self.theme = theme
         }
     }
@@ -79,18 +76,6 @@ class CustomConversationListTableViewCell: UITableViewCell {
             self.labelDate.text = formatter.string(from: date)
         } else {
             self.labelDate.text = ""
-        }
-        
-//        if pattern.online == true {
-//            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 242.0/255.0, blue: 212.0/255.0, alpha: 1.0)
-//        } else {
-//            self.contentView.backgroundColor = .white
-//        }
-//        
-        if pattern.hasUnreadMessages == true {
-            self.labelMessage.font = .boldSystemFont(ofSize: 17.0)
-        } else {
-            self.labelMessage.font = .systemFont(ofSize: 17.0)
         }
     }
 }
