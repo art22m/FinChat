@@ -16,7 +16,7 @@
 		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
 		E55BD298260FC54000EB24B5 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BD297260FC54000EB24B5 /* ThemesViewController.swift */; };
 		E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */; };
-		E578D216260B4AEE008422A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E578D215260B4AEE008422A8 /* GoogleService-Info.plist */; };
+		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
 		E5A09E5825DD267F009CCE18 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */; };
 		E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5925DD267F009CCE18 /* Main.storyboard */; };
@@ -38,7 +38,7 @@
 		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E55BD297260FC54000EB24B5 /* ThemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
-		E578D215260B4AEE008422A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E570E5542614CFAC001A3065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A09E5325DD267F009CCE18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +107,6 @@
 				E55810A92603EE8700E861A2 /* ProfileDataManager.swift */,
 				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
 				E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */,
-				E50DE42125FD46D1009B1DF3 /* ThemesViewController.swift */,
 				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
 				E5A81FE625ED41720042DDDD /* CustomConversationListTableViewCell.xib */,
 				E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */,
@@ -116,7 +115,7 @@
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
 				E5A09E5C25DD2681009CCE18 /* Assets.xcassets */,
-				E578D215260B4AEE008422A8 /* GoogleService-Info.plist */,
+				E570E5542614CFAC001A3065 /* GoogleService-Info.plist */,
 				E5A09E6125DD2681009CCE18 /* Info.plist */,
 			);
 			path = FinChat;
@@ -183,9 +182,9 @@
 			files = (
 				E5A09E6025DD2681009CCE18 /* LaunchScreen.storyboard in Resources */,
 				E5A81FE825ED41720042DDDD /* CustomConversationListTableViewCell.xib in Resources */,
-				E578D216260B4AEE008422A8 /* GoogleService-Info.plist in Resources */,
 				E5A09E5D25DD2681009CCE18 /* Assets.xcassets in Resources */,
 				E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */,
+				E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
