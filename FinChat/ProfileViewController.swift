@@ -303,6 +303,7 @@ extension ProfileViewController {
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             imageAvatar.image = editedImage
+
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageAvatar.image = originalImage
         }
