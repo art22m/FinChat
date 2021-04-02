@@ -111,24 +111,24 @@ class CoreDataStack {
 
     @objc
     private func managedObjectContextObjectsDidChange(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
+//        guard let userInfo = notification.userInfo else { return }
 
         didUpdateDataBase?(self)
 
-        if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>,
-           inserts.count > 0 {
-            print("Added Objects Keys: ", inserts.count)
-        }
-
-        if let updates = userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject>,
-           updates.count > 0 {
-            print("Updated Objects Keys: ", updates.count)
-        }
-
-        if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject>,
-           deletes.count > 0 {
-            print("Deleted Objects Keys: ", deletes.count)
-        }
+//        if let inserts = userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>,
+//           inserts.count > 0 {
+//            print("Added Objects Keys: ", inserts.count)
+//        }
+//
+//        if let updates = userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject>,
+//           updates.count > 0 {
+//            print("Updated Objects Keys: ", updates.count)
+//        }
+//
+//        if let deletes = userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject>,
+//           deletes.count > 0 {
+//            print("Deleted Objects Keys: ", deletes.count)
+//        }
     }
 
     // MARK: - Core Data Logs
@@ -141,7 +141,7 @@ class CoreDataStack {
                 print("\(count) channels")
                 let array = try self.mainContext.fetch(Channel_db.fetchRequest()) as? [Channel_db] ?? []
                 for ch in array {
-                    print(ch.name ?? "")
+                    print(ch.getInfo)
                 }
             } catch {
                 fatalError(error.localizedDescription)

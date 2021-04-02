@@ -20,6 +20,12 @@ extension Channel_db {
         self.lastActivity = lastActivity
         self.lastMessage = lastMessage
     }
+    
+    var getInfo: String {
+        let description = "Channel name: \(String(describing: name ?? ""))"
+        let count = ", number of messages: \(String(describing: self.messages?.allObjects.count ?? 0))"
+        return description + count
+    }
 }
 
 extension Message_db {
@@ -36,5 +42,7 @@ extension Message_db {
         self.senderId = senderId
         self.senderName = senderName
     }
+    var about: String {
+            return "message: \(String(describing: content))"
+        }
 }
-
