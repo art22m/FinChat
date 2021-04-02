@@ -39,6 +39,8 @@ class ConversationsListViewController: UIViewController {
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
+    let coreDataStack = CoreDataStack()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -50,6 +52,11 @@ class ConversationsListViewController: UIViewController {
         }))
         alertAdd.addTextField()
         alertAdd.textFields![0].placeholder = "Enter name of the channel"
+        
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDatabaseStatistics()
+        }
+        coreDataStack.enableObservers()
         
         // Change color of Bar Buttons
         buttonSettings.tintColor = theme.getCurrentFontColor()
@@ -76,6 +83,7 @@ class ConversationsListViewController: UIViewController {
         
         reference.addDocument(data: ["name" : channelName ?? ""])
     }
+    
     private func fetchData() {
         db.collection("channels").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -98,9 +106,44 @@ class ConversationsListViewController: UIViewController {
             self.channels.sort { (Channel1, Channel2) -> Bool in
                 Channel1.lastActivity ?? Date.init() > Channel2.lastActivity ?? Date.init()
             }
+            
+            self.saveDB()
             self.tableViewConversations.reloadData()
         }
     }
+    
+    // Save Channels and Messages to Data Base
+    private func saveDB() {
+        for channelFB in channels {
+            self.coreDataStack.performSave{ context in
+                
+                let referenceToMessages = self.db.collection("channels").document(channelFB.identifier).collection("messages")
+                
+                let channelDB = Channel_db(name: channelFB.name, identifier: channelFB.identifier, lastActivity: channelFB.lastActivity ?? Date.init(), lastMessage: channelFB.lastMessage ?? "", in: context)
+
+                referenceToMessages.addSnapshotListener { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        print("No messages")
+                        return
+                    }
+                    
+                    documents.forEach { document in
+                        let content = document.data()["content"] as? String
+                        let createdTimeStamp = document.data()["created"] as? Timestamp
+                        let created = createdTimeStamp?.dateValue()
+                        let senderId = document.data()["senderId"] as? String
+                        let senderName = document.data()["senderName"] as? String
+                        let messageId = document.documentID
+
+                        let message = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
+
+                        channelDB.addToMessages(message)
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {    
@@ -121,7 +164,6 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

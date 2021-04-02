@@ -43,7 +43,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         fetchMessages()
         updateName()
-        
         self.hideKeyboardWhenTappedAround()
         
         view.backgroundColor = theme.getCurrentBackgroundColor()
@@ -113,7 +112,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let created = createdTimeStamp?.dateValue()
                 let senderId = data["senderId"] as? String
                 let senderName = data["senderName"] as? String
-            
+                
                 return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
             }
             

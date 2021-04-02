@@ -6,16 +6,27 @@
         <attribute name="lastMessage" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message_db" inverseName="channel" inverseEntity="Message_db"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="identifier"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Message_db" representedClassName="Message_db" syncable="YES" codeGenerationType="class">
         <attribute name="content" attributeType="String"/>
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="messageId" optional="YES" attributeType="String"/>
         <attribute name="senderId" attributeType="String"/>
         <attribute name="senderName" attributeType="String"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel_db" inverseName="messages" inverseEntity="Channel_db"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="messageId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Channel_db" positionX="84.52288818359375" positionY="-468.4112243652344" width="128" height="118"/>
-        <element name="Message_db" positionX="83.0609130859375" positionY="-144.3684692382812" width="128" height="118"/>
+        <element name="Message_db" positionX="83.0609130859375" positionY="-144.3684692382812" width="128" height="133"/>
     </elements>
 </model>

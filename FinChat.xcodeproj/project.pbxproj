@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */; };
 		E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE41E25FD4675009B1DF3 /* VCTheme.swift */; };
+		E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53BB2FC261673FD00407853 /* ObjectsExtension.swift */; };
 		E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */; };
 		E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54ACEFB2602BE440049B9DF /* DataManager.swift */; };
 		E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810A92603EE8700E861A2 /* ProfileDataManager.swift */; };
@@ -33,6 +34,7 @@
 		871295635414B919374025BA /* Pods-FinChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.debug.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.debug.xcconfig"; sourceTree = "<group>"; };
 		CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.release.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.release.xcconfig"; sourceTree = "<group>"; };
 		E50DE41E25FD4675009B1DF3 /* VCTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTheme.swift; sourceTree = "<group>"; };
+		E53BB2FC261673FD00407853 /* ObjectsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsExtension.swift; sourceTree = "<group>"; };
 		E5475A0F25EE32680005D0B6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E54ACEFB2602BE440049B9DF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E55810A92603EE8700E861A2 /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				E5978D1826165802001DFF18 /* CoreDataStack.swift */,
 				E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */,
+				E53BB2FC261673FD00407853 /* ObjectsExtension.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
 				E5475A1025EE32680005D0B6 /* ConversationViewController.swift in Sources */,
 				E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */,
+				E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */,
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,
 				E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */,
 				E55BD298260FC54000EB24B5 /* ThemesViewController.swift in Sources */,
