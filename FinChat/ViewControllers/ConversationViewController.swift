@@ -80,22 +80,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-//    func prr() {
-//        coreDataStack.mainContext.perform {
-//            do {
-//                let count = try self.coreDataStack.mainContext.count(for: Channel_db.fetchRequest())
-//                print("\n-----------------\n")
-//                print("\(count) channels")
-//                let array = try self.coreDataStack.mainContext.fetch(Channel_db.fetchRequest()) as? [Channel_db] ?? []
-//                for ch in array {
-//                    print(ch.getInfo)
-//                }
-//            } catch {
-//                fatalError(error.localizedDescription)
-//            }
-//        }
-//    }
-    
     // Dismiss keyboard when tap on done
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         messageInput.resignFirstResponder()
@@ -142,12 +126,14 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let senderName = data["senderName"] as? String
                 let messageId = queryDocumentSnapshot.documentID
                     
-                self.coreDataStack.performSave{ context in
-                    let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
-                    
-                    let channelDB = Channel_db(name: self.nameOfChannel, identifier: self.identifierOfChannel, lastActivity: self.dateOfChannel ?? Date.init(), lastMessage: self.lastMessage ?? "", in: context)
-                    
-                    channelDB.addToMessages(messageDB)
+                DispatchQueue.global().async {
+                    self.coreDataStack.performSave{ context in
+                        let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
+                        
+                        let channelDB = Channel_db(name: self.nameOfChannel, identifier: self.identifierOfChannel, lastActivity: self.dateOfChannel ?? Date.init(), lastMessage: self.lastMessage ?? "", in: context)
+                        
+                        channelDB.addToMessages(messageDB)
+                    }
                 }
 
                 return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
