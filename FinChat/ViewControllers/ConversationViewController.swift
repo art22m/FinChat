@@ -30,8 +30,15 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
+    
     var identifierOfChannel: String = ""
+    var nameOfChannel: String = ""
+    var dateOfChannel: Date? = Date.init()
+    var lastMessage: String? = ""
+    
     var name: String = "" // Name of the user
+    
+    var coreDataStack = CoreDataStack()
     
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
     private var messages = [Message]()
@@ -43,7 +50,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
         fetchMessages()
         updateName()
-        
         self.hideKeyboardWhenTappedAround()
         
         view.backgroundColor = theme.getCurrentBackgroundColor()
@@ -53,6 +59,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         sendButton.setImage(tintedImage, for: .normal)
         sendButton.tintColor = theme.getCurrentFontColor()
+        
+        coreDataStack.didUpdateDataBase = { stack in
+            stack.printDatabaseStatistics()
+        }
+        coreDataStack.enableObservers()
         
         messageInput.textColor = theme.getCurrentFontColor()
         messageInput.backgroundColor = theme.getCurrentIncomeColor()
@@ -113,7 +124,18 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let created = createdTimeStamp?.dateValue()
                 let senderId = data["senderId"] as? String
                 let senderName = data["senderName"] as? String
-            
+                let messageId = queryDocumentSnapshot.documentID
+                    
+                DispatchQueue.global().async {
+                    self.coreDataStack.performSave{ context in
+                        let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
+                        
+                        let channelDB = Channel_db(name: self.nameOfChannel, identifier: self.identifierOfChannel, lastActivity: self.dateOfChannel ?? Date.init(), lastMessage: self.lastMessage ?? "", in: context)
+                        
+                        channelDB.addToMessages(messageDB)
+                    }
+                }
+
                 return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
             }
             

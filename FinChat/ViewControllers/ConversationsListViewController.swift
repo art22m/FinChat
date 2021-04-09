@@ -39,6 +39,8 @@ class ConversationsListViewController: UIViewController {
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
+    let coreDataStack = CoreDataStack()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -50,6 +52,11 @@ class ConversationsListViewController: UIViewController {
         }))
         alertAdd.addTextField()
         alertAdd.textFields![0].placeholder = "Enter name of the channel"
+        
+//        coreDataStack.didUpdateDataBase = { stack in
+//            stack.printDatabaseStatistics()
+//        }
+//        coreDataStack.enableObservers()
         
         // Change color of Bar Buttons
         buttonSettings.tintColor = theme.getCurrentFontColor()
@@ -76,6 +83,7 @@ class ConversationsListViewController: UIViewController {
         
         reference.addDocument(data: ["name" : channelName ?? ""])
     }
+    
     private func fetchData() {
         db.collection("channels").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -92,12 +100,17 @@ class ConversationsListViewController: UIViewController {
                 let lastActivityTimeStamp = data["lastActivity"] as? Timestamp? ?? nil
                 let lastActivity = lastActivityTimeStamp?.dateValue()
                 
+                self.coreDataStack.performSave{ context in
+                    let _ = Channel_db(name: name, identifier: id, lastActivity: lastActivity ?? Date.init(), lastMessage: lastMessage ?? "", in: context)
+                }
+                
                 return Channel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
             }
             
             self.channels.sort { (Channel1, Channel2) -> Bool in
                 Channel1.lastActivity ?? Date.init() > Channel2.lastActivity ?? Date.init()
             }
+            
             self.tableViewConversations.reloadData()
         }
     }
@@ -121,7 +134,6 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,6 +142,10 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
             destination.title = channels[indexPath.row].name
             destination.identifierOfChannel = channels[indexPath.row].identifier
+            destination.dateOfChannel = channels[indexPath.row].lastActivity
+            destination.lastMessage = channels[indexPath.row].lastMessage
+            destination.nameOfChannel = channels[indexPath.row].name
+            destination.coreDataStack = coreDataStack
             
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
