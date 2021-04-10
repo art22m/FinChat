@@ -104,6 +104,9 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1bD-tk-m2Y">
+                                <rect key="frame" x="177.5" y="443" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -117,10 +120,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tMw-D5-fVX" secondAttribute="trailing" constant="30" id="QZE-Ue-cYL"/>
                             <constraint firstItem="XSp-Gw-Gf4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="V9b-m1-f3Y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ywm-q7-1S7" secondAttribute="bottom" constant="78" id="WA8-Cz-rKD"/>
+                            <constraint firstItem="1bD-tk-m2Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WMw-Ms-kg8"/>
                             <constraint firstItem="FvW-Wt-CAL" firstAttribute="top" secondItem="jh1-ME-5m8" secondAttribute="bottom" constant="20" id="Wvu-Ug-64x"/>
                             <constraint firstItem="tMw-D5-fVX" firstAttribute="top" secondItem="FvW-Wt-CAL" secondAttribute="bottom" constant="20" id="bC8-tg-2AW"/>
                             <constraint firstItem="FvW-Wt-CAL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="bdC-Hc-BUJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ywm-q7-1S7" secondAttribute="trailing" constant="45" id="dnL-0U-MlC"/>
+                            <constraint firstItem="1bD-tk-m2Y" firstAttribute="top" secondItem="tMw-D5-fVX" secondAttribute="bottom" constant="50" id="fMd-sf-AZn"/>
                             <constraint firstItem="vMZ-3X-P69" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="isU-MS-72I"/>
                             <constraint firstItem="tMw-D5-fVX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="nQI-6s-g3o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vMZ-3X-P69" secondAttribute="trailing" constant="45" id="nSi-hx-75R"/>
@@ -139,6 +144,7 @@
                         <outlet property="buttonSaveGCD" destination="tcq-CH-2kC" id="wBh-Vv-Zvv"/>
                         <outlet property="imageAvatar" destination="jh1-ME-5m8" id="7ZU-i2-Jxa"/>
                         <outlet property="labelInitials" destination="XSp-Gw-Gf4" id="vFJ-1d-6YK"/>
+                        <outlet property="saveIndicator" destination="1bD-tk-m2Y" id="Zoy-BX-Njc"/>
                         <outlet property="textFieldDescription" destination="tMw-D5-fVX" id="KUO-EC-2Tp"/>
                         <outlet property="textFieldName" destination="FvW-Wt-CAL" id="HIQ-o7-cEq"/>
                     </connections>

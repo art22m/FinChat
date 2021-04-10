@@ -24,6 +24,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var buttonSaveGCD: UIButton!
     
+    @IBOutlet weak var saveIndicator: UIActivityIndicatorView!
+    
+    
     enum EditingMode {
         case image
         case textFields
@@ -44,6 +47,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // MARK: - @IBActions
     @IBAction func saveGCDTapped(_ sender: Any) {
+        saveIndicator.startAnimating()
+        
         dataFromProfile.nameFromProfile = textFieldName.text
         dataFromProfile.descriptionFromProfile = textFieldDescription.text
         if imageAvatar.image == UIImage(named: "avatarPlaceholder") {
@@ -58,13 +63,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 statusGCD = status
         })
         
-        if statusGCD == .success {
-            self.present(alertSuccess, animated: true)
-        } else {
-            self.present(alertError, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.saveIndicator.stopAnimating()
+            
+            if statusGCD == .success {
+                self.present(self.alertSuccess, animated: true)
+            } else {
+                self.present(self.alertError, animated: true)
+            }
+            
+            self.editMode(.textFields)
         }
-        
-        editMode(.textFields)
     }
     
     @IBAction func cancelTapped(_ sender: Any) {
