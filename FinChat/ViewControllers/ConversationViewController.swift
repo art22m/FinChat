@@ -141,7 +141,9 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     private func scrollToBottom(){
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.messages.count-1, section: 0)
-            self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            if (self.messages.count != 0) {
+                self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
     }
 }
