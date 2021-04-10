@@ -138,7 +138,6 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
             destination.channel = channels[indexPath.row]
             destination.title = channels[indexPath.row].name
             destination.coreDataStack = coreDataStack
-            
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
             themesVC.theme.currentTheme = self.theme.currentTheme

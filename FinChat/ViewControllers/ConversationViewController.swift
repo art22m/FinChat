@@ -117,7 +117,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let senderId = data["senderId"] as? String
                 let senderName = data["senderName"] as? String
                 let messageId = queryDocumentSnapshot.documentID
-                print(self.channel.name)
                 
                 self.coreDataStack.container.performBackgroundTask { context in
                     let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
@@ -135,6 +134,14 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             }
         
             self.tableViewMessages.reloadData()
+            self.scrollToBottom()
+        }
+    }
+    
+    private func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+            self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
 }
