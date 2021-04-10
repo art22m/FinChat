@@ -39,7 +39,7 @@ class ConversationsListViewController: UIViewController {
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
-    let coreDataStack = CoreDataStack()
+    let coreDataStack = ModernCoreDataStack()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,6 @@ class ConversationsListViewController: UIViewController {
         }))
         alertAdd.addTextField()
         alertAdd.textFields![0].placeholder = "Enter name of the channel"
-        
-//        coreDataStack.didUpdateDataBase = { stack in
-//            stack.printDatabaseStatistics()
-//        }
-//        coreDataStack.enableObservers()
         
         // Change color of Bar Buttons
         buttonSettings.tintColor = theme.getCurrentFontColor()
@@ -100,7 +95,7 @@ class ConversationsListViewController: UIViewController {
                 let lastActivityTimeStamp = data["lastActivity"] as? Timestamp? ?? nil
                 let lastActivity = lastActivityTimeStamp?.dateValue()
                 
-                self.coreDataStack.performSave{ context in
+                self.coreDataStack.container.performBackgroundTask { context in
                     let _ = Channel_db(name: name, identifier: id, lastActivity: lastActivity ?? Date.init(), lastMessage: lastMessage ?? "", in: context)
                 }
                 
@@ -140,11 +135,8 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         if let destination = segue.destination as? ConversationViewController {
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
+            destination.channel = channels[indexPath.row]
             destination.title = channels[indexPath.row].name
-            destination.identifierOfChannel = channels[indexPath.row].identifier
-            destination.dateOfChannel = channels[indexPath.row].lastActivity
-            destination.lastMessage = channels[indexPath.row].lastMessage
-            destination.nameOfChannel = channels[indexPath.row].name
             destination.coreDataStack = coreDataStack
             
         } else if let themesVC = segue.destination as? ThemesViewController {
