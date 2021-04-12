@@ -144,10 +144,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
             self.tableViewMessages.reloadData()
             self.scrollToBottom()
-            self.simpleFertchRequest()
+//            self.simpleFertchRequest()
         }
     }
     
+    /*
     func simpleFertchRequest() {
             print("Simple Fetch Request")
             
@@ -156,7 +157,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
             print(objects.count)
             print("")
-    }
+    }*/
     
     private func scrollToBottom(){
         DispatchQueue.main.async {

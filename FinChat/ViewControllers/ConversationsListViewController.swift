@@ -20,7 +20,66 @@ struct Channel {
     let lastActivity: Date?
 }
 
-class ConversationsListViewController: UIViewController {
+class TableViewDataSource: NSObject, UITableViewDataSource {
+    let fetchedResultsController: NSFetchedResultsController<Channel_db>
+    let context: NSManagedObjectContext
+    var theme = VCTheme()
+    
+    init(fetchedResultsController: NSFetchedResultsController<Channel_db>, context: NSManagedObjectContext) {
+        self.fetchedResultsController = fetchedResultsController
+        self.context = context
+        
+//        fetchedResultsController.fetchRequest.fetchBatchSize = 20
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+    }
+    
+    public func updateData() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Error fetching data: \(error)")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        updateData()
+        guard let sections = self.fetchedResultsController.sections else {
+            fatalError("No sections")
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        updateData()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomConversationListTableViewCell.identifier, for: indexPath) as? CustomConversationListTableViewCell else { return UITableViewCell() }
+        
+        let channel = self.fetchedResultsController.object(at: indexPath)
+        cell.configure(with: .init(identifier: channel.identifier ?? "", name: channel.name, message: channel.lastMessage, date: channel.lastActivity))
+        
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let db = Firestore.firestore()
+            guard let id = self.fetchedResultsController.object(at: indexPath).identifier else { return }
+            db.collection("channels").document(id).delete()
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.context.delete(self.fetchedResultsController.object(at: indexPath))
+            print("removed")
+            updateData()
+        }
+    }
+    
+}
+
+class ConversationsListViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSettings: UIBarButtonItem!
@@ -42,18 +101,25 @@ class ConversationsListViewController: UIViewController {
     
     let coreData = ModernCoreDataStack()
     
-//    private lazy var tableViewDataSource: UITableViewDataSource = {
-//        let fetchRequest: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-//        let context = coreData.persistentContainer.viewContext
-//        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-//        frc.delegate = self
-//        return frc
-//        }()
+    private lazy var tableViewDataSource: UITableViewDataSource = {
+        let context = coreData.persistentContainer.viewContext
+        let request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+        let sortDesctiptor = NSSortDescriptor(keyPath: \Channel_db.name, ascending: false)
+        request.sortDescriptors = [sortDesctiptor]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+        
+        return TableViewDataSource(fetchedResultsController: fetchedResultsController, context: context)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchData()
+        
+        self.tableViewConversations.dataSource = self.tableViewDataSource
         
         alertAdd.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertAdd.addAction(UIAlertAction(title: "Add", style: .default, handler: { [self] action in
@@ -70,7 +136,47 @@ class ConversationsListViewController: UIViewController {
         // Initialize the table
         tableViewConversations.register(CustomConversationListTableViewCell.nib(), forCellReuseIdentifier: CustomConversationListTableViewCell.identifier)
         tableViewConversations.delegate = self
-        tableViewConversations.dataSource = self
+    }
+    
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?)
+    {
+        print("\(#function)")
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableViewConversations.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableViewConversations.deleteRows(at: [indexPath], with: .top)
+                tableViewConversations.insertRows(at: [newIndexPath], with: .top)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableViewConversations.reloadRows(at: [indexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableViewConversations.deleteRows(at: [indexPath], with: .left)
+            }
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("\(#function)")
+        self.tableViewConversations.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("\(#function)")
+        self.tableViewConversations.endUpdates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +212,6 @@ class ConversationsListViewController: UIViewController {
                 
                 self.coreData.persistentContainer.performBackgroundTask { context in
                     let _ = Channel_db(name: name, identifier: id, lastActivity: lastActivity ?? Date.init(), lastMessage: lastMessage ?? "", in: context)
-                    
                     do {
                         context.automaticallyMergesChangesFromParent = true
                         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -115,59 +220,34 @@ class ConversationsListViewController: UIViewController {
                         print(error)
                     }
                 }
-                
                 return Channel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
-            }
-            
-            self.channels.sort { (Channel1, Channel2) -> Bool in
-                Channel1.lastActivity ?? Date.init() > Channel2.lastActivity ?? Date.init()
             }
             
             self.tableViewConversations.reloadData()
         }
     }
     
-    func simpleFertchRequest() {
-            print("Simple Fetch Request")
-            
-            let fetchRequest: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
+    /*
+    func performChannelChanges() {
+        let request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+        let context = coreData.persistentContainer.newBackgroundContext()
         
-            print(objects.count)
-            
-            print("")
-    }
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        context.performAndWait {
+            guard let channels_db = try? context.fetch(request) else { return }
+            print(channels_db.count)
+//            for channel in channels {
+//                let id = channel.identifier
+//            }
+        }
+    } */
 }
 
-extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomConversationListTableViewCell.identifier, for: indexPath) as? CustomConversationListTableViewCell else { return UITableViewCell() }
-        
-        
-        let channel = channels[indexPath.row]
-        cell.configure(with: .init(identifier: channel.identifier, name: channel.name, message: channel.lastMessage, date: channel.lastActivity, theme: theme))
-        
-        return cell
-    }
-    
+extension ConversationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            db.collection("channels").document(channels[indexPath.row].identifier).delete()
-//            channels.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-            print("removed")
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ConversationViewController {
             destination.theme.currentTheme = self.theme.currentTheme
