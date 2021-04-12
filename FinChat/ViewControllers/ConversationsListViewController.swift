@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 protocol ThemesDelegate: class {
     func updateTheme(_ newTheme: VCTheme.Theme)
@@ -39,11 +40,19 @@ class ConversationsListViewController: UIViewController {
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
-    let coreDataStack = ModernCoreDataStack()
+    let coreData = ModernCoreDataStack()
+    
+//    private lazy var tableViewDataSource: UITableViewDataSource = {
+//        let fetchRequest: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+//        let context = coreData.persistentContainer.viewContext
+//        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+//        frc.delegate = self
+//        return frc
+//        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         fetchData()
         
         alertAdd.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -95,8 +104,16 @@ class ConversationsListViewController: UIViewController {
                 let lastActivityTimeStamp = data["lastActivity"] as? Timestamp? ?? nil
                 let lastActivity = lastActivityTimeStamp?.dateValue()
                 
-                self.coreDataStack.container.performBackgroundTask { context in
+                self.coreData.persistentContainer.performBackgroundTask { context in
                     let _ = Channel_db(name: name, identifier: id, lastActivity: lastActivity ?? Date.init(), lastMessage: lastMessage ?? "", in: context)
+                    
+                    do {
+                        context.automaticallyMergesChangesFromParent = true
+                        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                        try context.save()
+                    } catch {
+                        print(error)
+                    }
                 }
                 
                 return Channel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
@@ -108,6 +125,17 @@ class ConversationsListViewController: UIViewController {
             
             self.tableViewConversations.reloadData()
         }
+    }
+    
+    func simpleFertchRequest() {
+            print("Simple Fetch Request")
+            
+            let fetchRequest: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
+        
+            print(objects.count)
+            
+            print("")
     }
 }
 
@@ -131,13 +159,22 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            db.collection("channels").document(channels[indexPath.row].identifier).delete()
+//            channels.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            print("removed")
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ConversationViewController {
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
             destination.channel = channels[indexPath.row]
             destination.title = channels[indexPath.row].name
-            destination.coreDataStack = coreDataStack
+            destination.coreData = coreData
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
             themesVC.theme.currentTheme = self.theme.currentTheme

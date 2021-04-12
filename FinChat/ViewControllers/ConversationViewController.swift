@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 struct Message {
     let content: String
@@ -34,7 +35,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     var name: String = "" // Name of the user
     
-    var coreDataStack = ModernCoreDataStack()
+    var coreData = ModernCoreDataStack()
     
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
     private var messages = [Message]()
@@ -118,12 +119,20 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let senderName = data["senderName"] as? String
                 let messageId = queryDocumentSnapshot.documentID
                 
-                self.coreDataStack.container.performBackgroundTask { context in
+                self.coreData.persistentContainer.performBackgroundTask { context in
                     let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
                     
                     let channelDB = Channel_db(name: self.channel.name, identifier: self.channel.identifier, lastActivity: self.channel.lastActivity ?? Date.init(), lastMessage: self.channel.lastMessage ?? "", in: context)
                     
                     channelDB.addToMessages(messageDB)
+                    
+                    do {
+                        context.automaticallyMergesChangesFromParent = true
+                        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                        try context.save()
+                    } catch {
+                        print(error)
+                    }
                 }
 
                 return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
@@ -135,7 +144,18 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
             self.tableViewMessages.reloadData()
             self.scrollToBottom()
+            self.simpleFertchRequest()
         }
+    }
+    
+    func simpleFertchRequest() {
+            print("Simple Fetch Request")
+            
+            let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
+            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
+        
+            print(objects.count)
+            print("")
     }
     
     private func scrollToBottom(){
