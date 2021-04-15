@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DSe-zg-0Bm">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Conversation View Controller-->
+        <scene sceneID="FXc-EN-32b">
+            <objects>
+                <viewController id="DSe-zg-0Bm" customClass="ConversationViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vwM-Jb-cgl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQX-OW-HfP" userLabel="Send Message">
+                                <rect key="frame" x="340" y="632" width="33" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33" id="Vt8-wP-Dwg"/>
+                                    <constraint firstAttribute="height" constant="33" id="wjJ-aq-nsC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" backgroundImage="sendMessageIcon"/>
+                                <connections>
+                                    <action selector="sendTapped:" destination="DSe-zg-0Bm" eventType="touchUpInside" id="rLl-pA-FSm"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-Rf-3Vq">
+                                <rect key="frame" x="0.0" y="44" width="375" height="585"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ms5-9o-IhW" userLabel="Message Input">
+                                <rect key="frame" x="2" y="631" width="336" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="NC7-fh-sGP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rLi-cT-Xdc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1fA-Rf-3Vq" firstAttribute="top" secondItem="rLi-cT-Xdc" secondAttribute="top" id="Ae7-iw-E2i"/>
+                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="trailing" secondItem="OQX-OW-HfP" secondAttribute="trailing" constant="2" id="Joe-jD-dgc"/>
+                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="bottom" secondItem="OQX-OW-HfP" secondAttribute="bottom" constant="2" id="Kkz-Qb-bm7"/>
+                            <constraint firstItem="ms5-9o-IhW" firstAttribute="top" secondItem="1fA-Rf-3Vq" secondAttribute="bottom" constant="2" id="NAJ-eb-bKj"/>
+                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="trailing" secondItem="1fA-Rf-3Vq" secondAttribute="trailing" id="fb8-CH-MWD"/>
+                            <constraint firstItem="ms5-9o-IhW" firstAttribute="leading" secondItem="rLi-cT-Xdc" secondAttribute="leading" constant="2" id="gKb-fk-eF8"/>
+                            <constraint firstItem="OQX-OW-HfP" firstAttribute="leading" secondItem="ms5-9o-IhW" secondAttribute="trailing" constant="2" id="jI2-mY-efg"/>
+                            <constraint firstItem="1fA-Rf-3Vq" firstAttribute="leading" secondItem="rLi-cT-Xdc" secondAttribute="leading" id="n8Y-f9-sEi"/>
+                            <constraint firstItem="rLi-cT-Xdc" firstAttribute="bottom" secondItem="ms5-9o-IhW" secondAttribute="bottom" constant="2" id="wRa-nE-NG0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VhO-S9-8cL"/>
+                    <connections>
+                        <outlet property="messageInput" destination="ms5-9o-IhW" id="ihZ-iy-L13"/>
+                        <outlet property="sendButton" destination="OQX-OW-HfP" id="csa-fq-qOv"/>
+                        <outlet property="tableViewMessages" destination="1fA-Rf-3Vq" id="9D8-jJ-6xv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X3T-z4-3Ni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-786.39999999999998" y="906.29685157421295"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sendMessageIcon" width="170.5" height="170.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

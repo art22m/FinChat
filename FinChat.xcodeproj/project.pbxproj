@@ -17,6 +17,9 @@
 		E55BA8AC25EA727000EFB351 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */; };
 		E55BD298260FC54000EB24B5 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BD297260FC54000EB24B5 /* ThemesViewController.swift */; };
 		E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */; };
+		E56F79062628DFD30043F913 /* Themes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F79042628DFD30043F913 /* Themes.storyboard */; };
+		E56F79092628DFE50043F913 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F79082628DFE50043F913 /* Profile.storyboard */; };
+		E56F790D2628E0090043F913 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F790B2628E0090043F913 /* Chat.storyboard */; };
 		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
 		E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5978D1826165802001DFF18 /* CoreDataStack.swift */; };
 		E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */; };
@@ -42,6 +45,9 @@
 		E55BA8AB25EA727000EFB351 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E55BD297260FC54000EB24B5 /* ThemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
+		E56F79052628DFD30043F913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Themes.storyboard; sourceTree = "<group>"; };
+		E56F79082628DFE50043F913 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = SOURCE_ROOT; };
+		E56F790C2628E0090043F913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		E570E5542614CFAC001A3065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E5978D2226165A31001DFF18 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
@@ -126,6 +132,9 @@
 		E56F79022628DF5F0043F913 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E56F790B2628E0090043F913 /* Chat.storyboard */,
+				E56F79082628DFE50043F913 /* Profile.storyboard */,
+				E56F79042628DFD30043F913 /* Themes.storyboard */,
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 			);
 			path = View;
@@ -263,8 +272,11 @@
 			files = (
 				E5A09E6025DD2681009CCE18 /* LaunchScreen.storyboard in Resources */,
 				E5A81FE825ED41720042DDDD /* CustomConversationListTableViewCell.xib in Resources */,
+				E56F79062628DFD30043F913 /* Themes.storyboard in Resources */,
 				E5A09E5D25DD2681009CCE18 /* Assets.xcassets in Resources */,
 				E5A09E5B25DD267F009CCE18 /* Main.storyboard in Resources */,
+				E56F79092628DFE50043F913 /* Profile.storyboard in Resources */,
+				E56F790D2628E0090043F913 /* Chat.storyboard in Resources */,
 				E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +350,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		E56F79042628DFD30043F913 /* Themes.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E56F79052628DFD30043F913 /* Base */,
+			);
+			name = Themes.storyboard;
+			sourceTree = "<group>";
+		};
+		E56F790B2628E0090043F913 /* Chat.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E56F790C2628E0090043F913 /* Base */,
+			);
+			name = Chat.storyboard;
+			sourceTree = "<group>";
+		};
 		E5A09E5925DD267F009CCE18 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
