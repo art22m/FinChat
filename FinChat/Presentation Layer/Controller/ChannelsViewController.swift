@@ -79,7 +79,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
     
 }
 
-class ConversationsListViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSettings: UIBarButtonItem!
@@ -243,13 +243,13 @@ class ConversationsListViewController: UIViewController, NSFetchedResultsControl
     } */
 }
 
-extension ConversationsListViewController: UITableViewDelegate {
+extension ChannelsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowConversation", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ConversationViewController {
+        if let destination = segue.destination as? ChatViewController {
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
             destination.channel = channels[indexPath.row]
@@ -264,7 +264,7 @@ extension ConversationsListViewController: UITableViewDelegate {
     }
 }
 
-extension ConversationsListViewController: ThemesDelegate {
+extension ChannelsViewController: ThemesDelegate {
     func updateTheme(_ newTheme: VCTheme.Theme) {
         theme.currentTheme = newTheme
         

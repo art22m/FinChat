@@ -7,16 +7,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Conversation View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="FXc-EN-32b">
             <objects>
-                <viewController id="DSe-zg-0Bm" customClass="ConversationViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DSe-zg-0Bm" customClass="ChatViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vwM-Jb-cgl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQX-OW-HfP" userLabel="Send Message">
-                                <rect key="frame" x="340" y="632" width="33" height="33"/>
+                                <rect key="frame" x="565" y="565" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="Vt8-wP-Dwg"/>
                                     <constraint firstAttribute="height" constant="33" id="wjJ-aq-nsC"/>
@@ -28,11 +28,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-Rf-3Vq">
-                                <rect key="frame" x="0.0" y="44" width="375" height="585"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="562"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ms5-9o-IhW" userLabel="Message Input">
-                                <rect key="frame" x="2" y="631" width="336" height="34"/>
+                                <rect key="frame" x="2" y="564" width="561" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="NC7-fh-sGP"/>
                                 </constraints>

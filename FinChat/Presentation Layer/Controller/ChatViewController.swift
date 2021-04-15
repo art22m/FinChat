@@ -16,7 +16,7 @@ struct Message {
     let senderName: String
 }
 
-class ConversationViewController: UIViewController, UITextFieldDelegate {
+class ChatViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var messageInput: UITextField!
     @IBOutlet weak var tableViewMessages: UITableView!
@@ -170,9 +170,9 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
 }
 
 // Hide the keyboard then we tapped outside UITextField
-extension ConversationViewController {
+extension ChatViewController {
     func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
@@ -182,7 +182,7 @@ extension ConversationViewController {
     }
 }
 
-extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
