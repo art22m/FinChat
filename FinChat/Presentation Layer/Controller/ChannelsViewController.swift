@@ -50,7 +50,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         updateData()
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomConversationListTableViewCell.identifier, for: indexPath) as? CustomConversationListTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomChannelTableViewCell.identifier, for: indexPath) as? CustomChannelTableViewCell else { return UITableViewCell() }
         
         let channel = self.fetchedResultsController.object(at: indexPath)
         cell.configure(with: .init(identifier: channel.identifier ?? "", name: channel.name, message: channel.lastMessage, date: channel.lastActivity))
@@ -127,7 +127,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
         buttonAdd.tintColor = theme.getCurrentFontColor()
         
         // Initialize the table
-        tableViewConversations.register(CustomConversationListTableViewCell.nib(), forCellReuseIdentifier: CustomConversationListTableViewCell.identifier)
+        tableViewConversations.register(CustomChannelTableViewCell.nib(), forCellReuseIdentifier: CustomChannelTableViewCell.identifier)
         tableViewConversations.delegate = self
     }
     

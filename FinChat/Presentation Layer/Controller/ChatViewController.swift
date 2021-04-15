@@ -48,8 +48,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         messageInput.layer.borderWidth = 1
         messageInput.layer.cornerRadius = 12
 
-        tableViewMessages.register(CustomConversationIncomeTableViewCell.self, forCellReuseIdentifier: "id1")
-        tableViewMessages.register(CustomConversationOutcomeTableViewCell.self, forCellReuseIdentifier: "id2")
+        tableViewMessages.register(CustomIncomeMessageTableViewCell.self, forCellReuseIdentifier: "id1")
+        tableViewMessages.register(CustomOutcomeMessageTableViewCell.self, forCellReuseIdentifier: "id2")
         tableViewMessages.delegate = self
         tableViewMessages.dataSource = self
     }
@@ -164,11 +164,11 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let message = messages[indexPath.row]
         
         if message.senderId != uniqueID {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomConversationIncomeTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomIncomeMessageTableViewCell else { return UITableViewCell() }
             cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomConversationOutcomeTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomOutcomeMessageTableViewCell else { return UITableViewCell() }
             cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         }
