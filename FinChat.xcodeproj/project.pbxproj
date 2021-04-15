@@ -102,8 +102,33 @@
 		E56F78FB2628DEAE0043F913 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
+				E56F79022628DF5F0043F913 /* View */,
+				E56F79012628DF580043F913 /* Controller */,
+				E56F79002628DF4E0043F913 /* Model */,
 			);
 			path = "Presentation Layer";
+			sourceTree = "<group>";
+		};
+		E56F79002628DF4E0043F913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E56F79012628DF580043F913 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E56F79022628DF5F0043F913 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E5978D1B26165815001DFF18 /* ViewControllers */ = {
@@ -125,15 +150,6 @@
 				E55810A92603EE8700E861A2 /* ProfileDataManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		E5978D1E2616588D001DFF18 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
-				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		E5978D1F261658A0001DFF18 /* CoreData */ = {
@@ -171,10 +187,10 @@
 				E56F78FA2628DEA10043F913 /* Service Layer */,
 				E56F78F92628DE8C0043F913 /* Core Layer */,
 				E5978D1F261658A0001DFF18 /* CoreData */,
-				E5978D1E2616588D001DFF18 /* Storyboards */,
 				E5978D1C26165857001DFF18 /* Managers */,
 				E5978D1B26165815001DFF18 /* ViewControllers */,
 				E50DE41E25FD4675009B1DF3 /* VCTheme.swift */,
+				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
 				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
 				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
 				E5A81FE625ED41720042DDDD /* CustomConversationListTableViewCell.xib */,
