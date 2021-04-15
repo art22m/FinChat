@@ -20,6 +20,9 @@
 		E56F790D2628E0090043F913 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F790B2628E0090043F913 /* Chat.storyboard */; };
 		E56F79172628E25D0043F913 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79162628E25D0043F913 /* ThemesViewController.swift */; };
 		E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F791A2628E2820043F913 /* ChatViewController.swift */; };
+		E56F79222628E8C50043F913 /* EditingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79212628E8C50043F913 /* EditingMode.swift */; };
+		E56F79252628EAAF0043F913 /* WorkingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79242628EAAF0043F913 /* WorkingData.swift */; };
+		E56F79282628EC250043F913 /* InitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79272628EC250043F913 /* InitialData.swift */; };
 		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
 		E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5978D1826165802001DFF18 /* CoreDataStack.swift */; };
 		E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */; };
@@ -48,6 +51,9 @@
 		E56F790C2628E0090043F913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		E56F79162628E25D0043F913 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E56F791A2628E2820043F913 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		E56F79212628E8C50043F913 /* EditingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingMode.swift; sourceTree = "<group>"; };
+		E56F79242628EAAF0043F913 /* WorkingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingData.swift; sourceTree = "<group>"; };
+		E56F79272628EC250043F913 /* InitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialData.swift; sourceTree = "<group>"; };
 		E570E5542614CFAC001A3065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E5978D2226165A31001DFF18 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 		E56F79002628DF4E0043F913 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E56F79212628E8C50043F913 /* EditingMode.swift */,
+				E56F79242628EAAF0043F913 /* WorkingData.swift */,
+				E56F79272628EC250043F913 /* InitialData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,15 +334,18 @@
 				E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */,
 				E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */,
 				E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */,
+				E56F79222628E8C50043F913 /* EditingMode.swift in Sources */,
 				E5A09E5825DD267F009CCE18 /* ProfileViewController.swift in Sources */,
 				E5676B0025EEE1E300DF4E75 /* ConversationTableViewCell.swift in Sources */,
 				E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */,
+				E56F79252628EAAF0043F913 /* WorkingData.swift in Sources */,
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
 				E56F79172628E25D0043F913 /* ThemesViewController.swift in Sources */,
 				E55BA8AC25EA727000EFB351 /* ChannelsViewController.swift in Sources */,
 				E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */,
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,
 				E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */,
+				E56F79282628EC250043F913 /* InitialData.swift in Sources */,
 				E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */,
 				E5A81FE725ED41720042DDDD /* CustomConversationListTableViewCell.swift in Sources */,
 			);

@@ -8,16 +8,6 @@
 import Foundation
 import UIKit
 
-class WorkingData {
-    var nameFromFile: String? = ""
-    var descriptionFromFile: String? = ""
-    var imageFromProfile: UIImage? = UIImage(named: "avatarPlaceholder")
-    
-    var nameFromProfile: String? = ""
-    var descriptionFromProfile: String? = ""
-    var imageFromFile: UIImage? = UIImage(named: "avatarPlaceholder")
-}
-
 class ProfileDataManager: NSObject {
     static let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     static let fileName = "UserProfile.txt"
