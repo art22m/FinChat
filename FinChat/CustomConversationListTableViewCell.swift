@@ -12,7 +12,7 @@ protocol ConversationCellConfiguration : class {
     var name : String? {get set}
     var message : String? {get set}
     var date : Date? {get set}
-    var theme : VCTheme {get set}
+//    var theme : VCTheme {get set}
 }
 
 class CustomConversationListTableViewCell: UITableViewCell {
@@ -31,24 +31,24 @@ class CustomConversationListTableViewCell: UITableViewCell {
         var name: String?
         var message: String?
         var date: Date?
-        var theme: VCTheme
+//        var theme: VCTheme
         
-        init(identifier: String, name: String?, message: String?, date: Date?, theme: VCTheme) {
+        init(identifier: String, name: String?, message: String?, date: Date?) {
             self.identifier = identifier
             self.name = name
             self.message = message
             self.date = date
-            self.theme = theme
+//            self.theme = theme
         }
     }
     
     func configure(with pattern: Model) {
-        self.labelName.textColor = pattern.theme.getCurrentFontColor()
-        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
-        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
-        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
-        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
-        
+//        self.labelName.textColor = pattern.theme.getCurrentFontColor()
+//        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
+//        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
+//        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+//        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+//        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         selectedBackgroundView = backgroundView

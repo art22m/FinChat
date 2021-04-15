@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 struct Message {
     let content: String
@@ -30,15 +31,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
-    
-    var identifierOfChannel: String = ""
-    var nameOfChannel: String = ""
-    var dateOfChannel: Date? = Date.init()
-    var lastMessage: String? = ""
+    var channel = Channel(identifier: "", name: "", lastMessage: "", lastActivity: Date.init())
     
     var name: String = "" // Name of the user
     
-    var coreDataStack = CoreDataStack()
+    var coreData = ModernCoreDataStack()
     
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
     private var messages = [Message]()
@@ -59,11 +56,6 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         sendButton.setImage(tintedImage, for: .normal)
         sendButton.tintColor = theme.getCurrentFontColor()
-        
-        coreDataStack.didUpdateDataBase = { stack in
-            stack.printDatabaseStatistics()
-        }
-        coreDataStack.enableObservers()
         
         messageInput.textColor = theme.getCurrentFontColor()
         messageInput.backgroundColor = theme.getCurrentIncomeColor()
@@ -105,11 +97,12 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         let created = Date.init()
         let senderId = uniqueID
         let senderName = name
-        reference.document(identifierOfChannel).collection("messages").addDocument(data: ["content": content ?? "", "created": created, "senderId": senderId ?? "", "senderName": senderName])
+        
+        reference.document(channel.identifier).collection("messages").addDocument(data: ["content": content ?? "", "created": created, "senderId": senderId ?? "", "senderName": senderName])
     }
 
     private func fetchMessages() {
-        db.collection("channels").document(identifierOfChannel).collection("messages").addSnapshotListener { (querySnapshot, error) in
+        db.collection("channels").document(channel.identifier).collection("messages").addSnapshotListener { (querySnapshot, error) in
             
             guard let documents = querySnapshot?.documents else {
                 print("No channels")
@@ -125,14 +118,20 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 let senderId = data["senderId"] as? String
                 let senderName = data["senderName"] as? String
                 let messageId = queryDocumentSnapshot.documentID
+                
+                self.coreData.persistentContainer.performBackgroundTask { context in
+                    let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
                     
-                DispatchQueue.global().async {
-                    self.coreDataStack.performSave{ context in
-                        let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
-                        
-                        let channelDB = Channel_db(name: self.nameOfChannel, identifier: self.identifierOfChannel, lastActivity: self.dateOfChannel ?? Date.init(), lastMessage: self.lastMessage ?? "", in: context)
-                        
-                        channelDB.addToMessages(messageDB)
+                    let channelDB = Channel_db(name: self.channel.name, identifier: self.channel.identifier, lastActivity: self.channel.lastActivity ?? Date.init(), lastMessage: self.channel.lastMessage ?? "", in: context)
+                    
+                    channelDB.addToMessages(messageDB)
+                    
+                    do {
+                        context.automaticallyMergesChangesFromParent = true
+                        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                        try context.save()
+                    } catch {
+                        print(error)
                     }
                 }
 
@@ -144,6 +143,28 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             }
         
             self.tableViewMessages.reloadData()
+            self.scrollToBottom()
+//            self.simpleFertchRequest()
+        }
+    }
+    
+    /*
+    func simpleFertchRequest() {
+            print("Simple Fetch Request")
+            
+            let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
+            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
+        
+            print(objects.count)
+            print("")
+    }*/
+    
+    private func scrollToBottom(){
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+            if (self.messages.count != 0) {
+                self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
     }
 }
