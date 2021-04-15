@@ -167,10 +167,10 @@ extension ProfileViewController {
             }
         })
     }
-}`
+}
 
 
-// MARK: -Editing
+// MARK: - Editing
 /*
  Change UI depending on EditingMode
  */

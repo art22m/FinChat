@@ -13,13 +13,6 @@ protocol ThemesDelegate: class {
     func updateTheme(_ newTheme: VCTheme.Theme)
 }
 
-struct Channel {
-    let identifier: String
-    let name: String
-    let lastMessage: String?
-    let lastActivity: Date?
-}
-
 class TableViewDataSource: NSObject, UITableViewDataSource {
     let fetchedResultsController: NSFetchedResultsController<Channel_db>
     let context: NSManagedObjectContext
@@ -95,7 +88,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
     
-    private var channels = [Channel]()
+    private var channels = [ChannelModel]()
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
@@ -201,7 +194,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
                 return
             }
             
-            self.channels = documents.map{ (queryDocumentSnapshot) -> Channel in
+            self.channels = documents.map{ (queryDocumentSnapshot) -> ChannelModel in
                 let data = queryDocumentSnapshot.data()
                 
                 let id = queryDocumentSnapshot.documentID
@@ -220,7 +213,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
                         print(error)
                     }
                 }
-                return Channel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
+                return ChannelModel(identifier: id, name: name, lastMessage: lastMessage, lastActivity: lastActivity)
             }
             
             self.tableViewConversations.reloadData()
@@ -252,7 +245,7 @@ extension ChannelsViewController: UITableViewDelegate {
         if let destination = segue.destination as? ChatViewController {
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
-            destination.channel = channels[indexPath.row]
+            destination.currentChannel = channels[indexPath.row]
             destination.title = channels[indexPath.row].name
             destination.coreData = coreData
         } else if let themesVC = segue.destination as? ThemesViewController {

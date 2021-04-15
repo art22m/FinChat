@@ -7,7 +7,7 @@
 import UIKit
 
 class ThemesViewController: UIViewController {
-
+    // MARK: - @IBOutlet
     @IBOutlet weak var classicLabel: UILabel!
     @IBOutlet weak var classicView: UIView!
     @IBOutlet weak var classicLeftView: UIView!
@@ -25,7 +25,6 @@ class ThemesViewController: UIViewController {
     
     // Initialize variable theme of class VCTheme() to change the theme of the screen
     var theme = VCTheme()
-    
     weak var themeDelegate: ThemesDelegate?
     
     override func viewDidLoad() {
@@ -81,7 +80,6 @@ class ThemesViewController: UIViewController {
         classicLabel.addGestureRecognizer(gestureRecognizerTop)
         classicLabel.isUserInteractionEnabled = true
         
-        
         // Make Day View tapable
         var gestureRecognizerMiddle: UITapGestureRecognizer {
                get {
@@ -93,7 +91,6 @@ class ThemesViewController: UIViewController {
         dayView.isUserInteractionEnabled = true
         dayLabel.addGestureRecognizer(gestureRecognizerMiddle)
         dayLabel.isUserInteractionEnabled = true
-        
         
         // Make Night View tapable
         var gestureRecognizerBottom: UITapGestureRecognizer {
@@ -107,7 +104,30 @@ class ThemesViewController: UIViewController {
         nightLabel.addGestureRecognizer(gestureRecognizerBottom)
         nightLabel.isUserInteractionEnabled = true
     }
-    
+}
+
+// MARK: - Button Tapped
+extension ThemesViewController {
+    func changeBorder() {
+        switch theme.currentTheme {
+            case .classic:
+                classicView.layer.borderWidth = 4
+                dayView.layer.borderWidth = 0
+                nightView.layer.borderWidth = 0
+            case .day:
+                classicView.layer.borderWidth = 0
+                dayView.layer.borderWidth = 4
+                nightView.layer.borderWidth = 0
+            case .night:
+                classicView.layer.borderWidth = 0
+                dayView.layer.borderWidth = 0
+                nightView.layer.borderWidth = 4
+        }
+    }
+}
+
+// MARK: - Gesture Recognizer
+extension ThemesViewController {
     @objc func tapOnClassicView(_ sender: UITapGestureRecognizer) {
         theme.currentTheme = .classic
         changeBorder()
@@ -126,22 +146,4 @@ class ThemesViewController: UIViewController {
         changeBorder()
         themeDelegate?.updateTheme(theme.currentTheme)
     }
-    
-    func changeBorder() {
-        switch theme.currentTheme {
-            case .classic:
-                classicView.layer.borderWidth = 4
-                dayView.layer.borderWidth = 0
-                nightView.layer.borderWidth = 0
-            case .day:
-                classicView.layer.borderWidth = 0
-                dayView.layer.borderWidth = 4
-                nightView.layer.borderWidth = 0
-            case .night:
-                classicView.layer.borderWidth = 0
-                dayView.layer.borderWidth = 0
-                nightView.layer.borderWidth = 4
-        }
-    }
-    
 }

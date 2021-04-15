@@ -9,45 +9,28 @@ import UIKit
 import Firebase
 import CoreData
 
-struct Message {
-    let content: String
-    let created: Date
-    let senderId: String
-    let senderName: String
-}
-
 class ChatViewController: UIViewController, UITextFieldDelegate {
-
+    // MARK: - @IBOutlet
     @IBOutlet weak var messageInput: UITextField!
     @IBOutlet weak var tableViewMessages: UITableView!
     @IBOutlet weak var sendButton: UIButton!
     
-    @IBAction func sendTapped(_ sender: Any) {
-        sendMessage()
-        messageInput.text = ""
-    }
-    
-    private var dataManagerGCD: DataManager = GCDDataManager()
-    
-    // Initialize variable theme of class VCTheme() to change the theme of the screen
-    var theme = VCTheme()
-    var channel = Channel(identifier: "", name: "", lastMessage: "", lastActivity: Date.init())
-    
-    var name: String = "" // Name of the user
-    
-    var coreData = ModernCoreDataStack()
-    
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
-    private var messages = [Message]()
+    private var dataManagerGCD: DataManager = GCDDataManager()
     private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
+    private var messages = [MessageModel]()
+    private var nameFromProfile: String = ""
+    
+    var theme = VCTheme()
+    var coreData = ModernCoreDataStack()
+    var currentChannel = ChannelModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchMessages()
         updateName()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         
         view.backgroundColor = theme.getCurrentBackgroundColor()
         tableViewMessages.backgroundColor = theme.getCurrentBackgroundColor()
@@ -69,47 +52,40 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         tableViewMessages.register(CustomConversationOutcomeTableViewCell.self, forCellReuseIdentifier: "id2")
         tableViewMessages.delegate = self
         tableViewMessages.dataSource = self
-        
     }
     
-    // Dismiss keyboard when tap on done
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        messageInput.resignFirstResponder()
-        return true
+    // MARK: - @IBActions
+    @IBAction func sendTapped(_ sender: Any) {
+        sendMessage()
+        messageInput.text = ""
     }
-    
+}
+
+extension ChatViewController {
     private func updateName() {
         dataManagerGCD.readData(isSuccessful: { (profile, responce) in
             if responce == SuccessStatus.success {
                 DispatchQueue.main.async(execute: {
-                    self.name = profile.nameFromFile ?? ""
+                    self.nameFromProfile = profile.nameFromFile ?? ""
                 })
             }
         })
     }
     
     private func sendMessage() {
-        if (messageInput.text == "") {
-            return
-        }
-        
-        let content = messageInput.text
-        let created = Date.init()
-        let senderId = uniqueID
-        let senderName = name
-        
-        reference.document(channel.identifier).collection("messages").addDocument(data: ["content": content ?? "", "created": created, "senderId": senderId ?? "", "senderName": senderName])
+        if (messageInput.text == "") { return }
+        db.collection("channels").document(currentChannel.identifier).collection("messages").addDocument(data: ["content": messageInput.text ?? "", "created": Date.init(), "senderId": uniqueID ?? "", "senderName": nameFromProfile])
     }
 
     private func fetchMessages() {
-        db.collection("channels").document(channel.identifier).collection("messages").addSnapshotListener { (querySnapshot, error) in
+        db.collection("channels").document(currentChannel.identifier).collection("messages").addSnapshotListener { (querySnapshot, error) in
             
             guard let documents = querySnapshot?.documents else {
                 print("No channels")
                 return
             }
             
-            self.messages = documents.map{ (queryDocumentSnapshot) -> Message in
+            self.messages = documents.map{ (queryDocumentSnapshot) -> MessageModel in
                 let data = queryDocumentSnapshot.data()
                 
                 let content = data["content"] as? String
@@ -122,7 +98,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
                 self.coreData.persistentContainer.performBackgroundTask { context in
                     let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
                     
-                    let channelDB = Channel_db(name: self.channel.name, identifier: self.channel.identifier, lastActivity: self.channel.lastActivity ?? Date.init(), lastMessage: self.channel.lastMessage ?? "", in: context)
+                    let channelDB = Channel_db(name: self.currentChannel.name, identifier: self.currentChannel.identifier, lastActivity: self.currentChannel.lastActivity ?? Date.init(), lastMessage: self.currentChannel.lastMessage ?? "", in: context)
                     
                     channelDB.addToMessages(messageDB)
                     
@@ -135,7 +111,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
 
-                return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
+                return MessageModel(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
             }
             
             self.messages.sort { (Message1, Message2) -> Bool in
@@ -144,32 +120,14 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         
             self.tableViewMessages.reloadData()
             self.scrollToBottom()
-//            self.simpleFertchRequest()
-        }
-    }
-    
-    /*
-    func simpleFertchRequest() {
-            print("Simple Fetch Request")
-            
-            let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
-            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
-        
-            print(objects.count)
-            print("")
-    }*/
-    
-    private func scrollToBottom(){
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
-            if (self.messages.count != 0) {
-                self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            }
         }
     }
 }
 
-// Hide the keyboard then we tapped outside UITextField
+// MARK: -Keyboard
+/*
+ Hide the keyboard then we tapped outside UITextField
+ */
 extension ChatViewController {
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
@@ -179,6 +137,21 @@ extension ChatViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    // Dismiss keyboard when tap on done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        messageInput.resignFirstResponder()
+        return true
+    }
+    
+    func scrollToBottom() {
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+            if (self.messages.count != 0) {
+                self.tableViewMessages.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+        }
     }
 }
 
