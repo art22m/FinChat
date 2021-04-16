@@ -14,38 +14,23 @@ protocol ThemesDelegate: class {
 }
 
 class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelegate {
-    
+    // MARK: - @IBOutlet
     @IBOutlet weak var buttonProfile: UIBarButtonItem!
     @IBOutlet weak var buttonSettings: UIBarButtonItem!
     @IBOutlet weak var buttonAdd: UIBarButtonItem!
     @IBOutlet weak var tableViewConversations: UITableView!
     
+    // MARK: - @IBAction
     @IBAction func addTapped(_ sender: Any) {
         self.present(alertAdd, animated: true)
     }
     
-    let alertAdd = UIAlertController(title: "Channel", message: "Add channel", preferredStyle: .alert)
-    
-    // Initialize variable theme of class VCTheme() to change the theme of the screen
-    var theme = VCTheme()
-    
     private var channels = [ChannelModel]()
     private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
+    private let channelActions: IChannelActions = ChannelActions()
+    let alertAdd = UIAlertController(title: "Channel", message: "Add channel", preferredStyle: .alert)
     let coreData = ModernCoreDataStack()
-    
-    private lazy var tableViewDataSource: UITableViewDataSource = {
-        let context = coreData.persistentContainer.viewContext
-        let request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-        let sortDesctiptor = NSSortDescriptor(keyPath: \Channel_db.name, ascending: false)
-        request.sortDescriptors = [sortDesctiptor]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchedResultsController.delegate = self
-        
-        return ChannelsTableViewDataSource(fetchedResultsController: fetchedResultsController, context: context)
-    }()
+    var theme = VCTheme()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,60 +56,71 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
         tableViewConversations.delegate = self
     }
     
-    func controller(
-        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
-        didChange anObject: Any,
-        at indexPath: IndexPath?,
-        for type: NSFetchedResultsChangeType,
-        newIndexPath: IndexPath?)
-    {
-        print("\(#function)")
-        switch type {
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableViewConversations.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        case .move:
-            if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                tableViewConversations.deleteRows(at: [indexPath], with: .top)
-                tableViewConversations.insertRows(at: [newIndexPath], with: .top)
-            }
-        case .update:
-            if let indexPath = indexPath {
-                tableViewConversations.reloadRows(at: [indexPath], with: .automatic)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableViewConversations.deleteRows(at: [indexPath], with: .left)
-            }
-        @unknown default:
-            fatalError()
-        }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("\(#function)")
-        self.tableViewConversations.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("\(#function)")
-        self.tableViewConversations.endUpdates()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         tableViewConversations.reloadData()
     }
     
-    private func addChannel() {
-        if (alertAdd.textFields![0].text == "") {
-            print("Empty name")
-            return
-        }
+    private lazy var tableViewDataSource: UITableViewDataSource = {
+        let context = coreData.persistentContainer.viewContext
+        let request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+        let sortDesctiptor = NSSortDescriptor(keyPath: \Channel_db.name, ascending: false)
+        request.sortDescriptors = [sortDesctiptor]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
         
+        return ChannelsTableViewDataSource(fetchedResultsController: fetchedResultsController, context: context)
+    }()
+}
+
+extension ChannelsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "ShowConversation", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ChatViewController {
+            destination.theme.currentTheme = self.theme.currentTheme
+            guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
+            destination.currentChannel = channels[indexPath.row]
+            destination.title = channels[indexPath.row].name
+            destination.coreData = coreData
+        } else if let themesVC = segue.destination as? ThemesViewController {
+            themesVC.themeDelegate = self
+            themesVC.theme.currentTheme = self.theme.currentTheme
+        } else if let profileVC = segue.destination as? ProfileViewController {
+            profileVC.theme.currentTheme = self.theme.currentTheme
+        }
+    }
+}
+
+extension ChannelsViewController: ThemesDelegate {
+    func updateTheme(_ newTheme: VCTheme.Theme) {
+        theme.currentTheme = newTheme
+        view.backgroundColor = theme.getCurrentBackgroundColor()
+        
+        // Change appearence of Navigation Bar
+        navigationController?.navigationBar.barTintColor = theme.currentTheme == .night ? theme.nightIncomeColor : theme.classicBackgroundColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor()]
+        
+        // Change appearence of Table View
+        tableViewConversations.separatorColor = theme.currentTheme == .night ? theme.nightIncomeColor : theme.classicBackgroundColor
+        tableViewConversations.backgroundColor = theme.getCurrentBackgroundColor()
+        
+        // Change color of Bar Buttons
+        buttonSettings.tintColor = theme.getCurrentFontColor()
+        buttonProfile.tintColor = theme.getCurrentFontColor()
+        buttonAdd.tintColor = theme.getCurrentFontColor()
+        
+        tableViewConversations.reloadData()
+    }
+}
+
+extension ChannelsViewController {
+    private func addChannel() {
+        if (alertAdd.textFields![0].text == "") { return }
         let channelName = alertAdd.textFields![0].text
         
-        reference.addDocument(data: ["name" : channelName ?? ""])
+        channelActions.addChannel(channelName: channelName)
     }
     
     private func fetchData() {
@@ -158,49 +154,5 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
             
             self.tableViewConversations.reloadData()
         }
-    }
-}
-
-extension ChannelsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "ShowConversation", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ChatViewController {
-            destination.theme.currentTheme = self.theme.currentTheme
-            guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
-            destination.currentChannel = channels[indexPath.row]
-            destination.title = channels[indexPath.row].name
-            destination.coreData = coreData
-        } else if let themesVC = segue.destination as? ThemesViewController {
-            themesVC.themeDelegate = self
-            themesVC.theme.currentTheme = self.theme.currentTheme
-        } else if let profileVC = segue.destination as? ProfileViewController {
-            profileVC.theme.currentTheme = self.theme.currentTheme
-        }
-    }
-}
-
-extension ChannelsViewController: ThemesDelegate {
-    func updateTheme(_ newTheme: VCTheme.Theme) {
-        theme.currentTheme = newTheme
-        
-        view.backgroundColor = theme.getCurrentBackgroundColor()
-        
-        // Change appearence of Navigation Bar
-        navigationController?.navigationBar.barTintColor = theme.currentTheme == .night ? theme.nightIncomeColor : theme.classicBackgroundColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.getCurrentFontColor()]
-        
-        // Change appearence of Table View
-        tableViewConversations.separatorColor = theme.currentTheme == .night ? theme.nightIncomeColor : theme.classicBackgroundColor
-        tableViewConversations.backgroundColor = theme.getCurrentBackgroundColor()
-        
-        // Change color of Bar Buttons
-        buttonSettings.tintColor = theme.getCurrentFontColor()
-        buttonProfile.tintColor = theme.getCurrentFontColor()
-        buttonAdd.tintColor = theme.getCurrentFontColor()
-        
-        tableViewConversations.reloadData()
     }
 }

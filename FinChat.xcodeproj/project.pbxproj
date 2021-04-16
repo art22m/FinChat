@@ -29,6 +29,7 @@
 		E56F7958262911F80043F913 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F7957262911F80043F913 /* MessageCellModel.swift */; };
 		E56F795B262913580043F913 /* ChannelsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F795A262913580043F913 /* ChannelsTableViewDataSource.swift */; };
 		E56F79652629183F0043F913 /* MessageActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79642629183F0043F913 /* MessageActionsService.swift */; };
+		E56F796926291CF00043F913 /* ChannelActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F796826291CF00043F913 /* ChannelActionService.swift */; };
 		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
 		E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5978D1826165802001DFF18 /* CoreDataStack.swift */; };
 		E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		E56F7957262911F80043F913 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
 		E56F795A262913580043F913 /* ChannelsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsTableViewDataSource.swift; sourceTree = "<group>"; };
 		E56F79642629183F0043F913 /* MessageActionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionsService.swift; sourceTree = "<group>"; };
+		E56F796826291CF00043F913 /* ChannelActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelActionService.swift; sourceTree = "<group>"; };
 		E570E5542614CFAC001A3065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E5978D2226165A31001DFF18 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				E55810AD2603F04400E861A2 /* GCDManager.swift */,
 				E56F79642629183F0043F913 /* MessageActionsService.swift */,
+				E56F796826291CF00043F913 /* ChannelActionService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -130,10 +133,10 @@
 		E56F78FB2628DEAE0043F913 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E56F794C2629084E0043F913 /* Channels Screen */,
 				E56F7948262907EE0043F913 /* Chat Screen */,
 				E56F7944262907980043F913 /* Profile Screen */,
 				E56F793F262906FE0043F913 /* Themes Screen */,
+				E56F794C2629084E0043F913 /* Channels Screen */,
 			);
 			path = "Presentation Layer";
 			sourceTree = "<group>";
@@ -267,8 +270,8 @@
 		E56F794E2629086A0043F913 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E56F795A262913580043F913 /* ChannelsTableViewDataSource.swift */,
 				E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */,
+				E56F795A262913580043F913 /* ChannelsTableViewDataSource.swift */,
 				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
 			);
 			path = Controller;
@@ -474,6 +477,7 @@
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,
 				E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */,
 				E56F79282628EC250043F913 /* InitialData.swift in Sources */,
+				E56F796926291CF00043F913 /* ChannelActionService.swift in Sources */,
 				E56F792E2628F4770043F913 /* ChannelModel.swift in Sources */,
 				E5A81FE725ED41720042DDDD /* CustomConversationListTableViewCell.swift in Sources */,
 			);

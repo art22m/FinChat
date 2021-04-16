@@ -19,5 +19,4 @@ class MessageActions: IMessageActions {
         if (text == "") { return }
         db.collection("channels").document(identifier).collection("messages").addDocument(data: ["content": text ?? "", "created": Date.init(), "senderId": uniqueID ?? "", "senderName": senderName])
     }
-    
 }

@@ -57,11 +57,9 @@ class ChannelsTableViewDataSource: NSObject, UITableViewDataSource {
             let db = Firestore.firestore()
             guard let id = self.fetchedResultsController.object(at: indexPath).identifier else { return }
             db.collection("channels").document(id).delete()
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
             self.context.delete(self.fetchedResultsController.object(at: indexPath))
             print("removed")
             updateData()
         }
     }
-    
 }
