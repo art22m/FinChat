@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let alertSuccess = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
     let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
-    private var dataManagerGCD: DataManager = GCDDataManager()
+    private let dataManagerGCD: IDataManager = GCDDataManager()
     private var dataFromProfile: CurrentData = CurrentData()
     private var initialData: InitialData = InitialData()
     var theme: VCTheme = VCTheme()
@@ -308,7 +308,6 @@ extension ProfileViewController {
         }
         
         editMode(.image)
-        
         dismiss(animated: true, completion: nil)
     }
 }

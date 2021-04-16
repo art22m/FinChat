@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class ProfileDataManager: NSObject {
+protocol IProfileManager {
+    static func saveToFile(profile: CurrentData) -> SuccessStatus
+    static func readFromFile() -> (CurrentData, SuccessStatus)
+}
+
+class ProfileDataManager: IProfileManager {
     static let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     static let fileName = "UserProfile.txt"
     static let filePath = directory!.appendingPathComponent(fileName)

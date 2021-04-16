@@ -7,13 +7,6 @@
 
 import UIKit
 
-protocol MessageCellConfiguration : class {
-    var text : String? {get set}
-    var date : Date {get set}
-    var name : String {get set}
-    var theme : VCTheme {get set}
-}
-
 class CustomIncomeMessageTableViewCell: UITableViewCell {
     let labelDate = UILabel()
     let labelName = UILabel()
@@ -71,21 +64,7 @@ class CustomIncomeMessageTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    class Model : MessageCellConfiguration {
-        var text: String?
-        var name : String
-        var date : Date
-        var theme: VCTheme
-        
-        init(text: String?, name: String, date: Date, theme: VCTheme) {
-            self.text = text
-            self.name = name
-            self.date = date
-            self.theme = theme
-        }
-    }
-    
-    func configure(with pattern: Model) {
+    func configure(with pattern: MessageCellPattern) {
         if let text = pattern.text {
             labelIncomeMessage.text = text
         } else {

@@ -16,7 +16,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sendButton: UIButton!
     
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
-    private var dataManagerGCD: DataManager = GCDDataManager()
+    private let dataManagerGCD: IDataManager = GCDDataManager()
+    private let messageActions: IMessageActions = MessageActions()
     private lazy var db = Firestore.firestore()
     private var messages = [MessageModel]()
     private var nameFromProfile: String = ""
@@ -50,7 +51,6 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
 
         tableViewMessages.register(CustomIncomeMessageTableViewCell.self, forCellReuseIdentifier: "id1")
         tableViewMessages.register(CustomOutcomeMessageTableViewCell.self, forCellReuseIdentifier: "id2")
-        tableViewMessages.delegate = self
         tableViewMessages.dataSource = self
     }
     
@@ -73,8 +73,7 @@ extension ChatViewController {
     }
     
     private func sendMessage() {
-        if (messageInput.text == "") { return }
-        db.collection("channels").document(currentChannel.identifier).collection("messages").addDocument(data: ["content": messageInput.text ?? "", "created": Date.init(), "senderId": uniqueID ?? "", "senderName": nameFromProfile])
+        messageActions.sendMessage(identifier: currentChannel.identifier, text: messageInput.text, uniqueID: uniqueID, senderName: nameFromProfile)
     }
 
     private func fetchMessages() {
@@ -155,7 +154,7 @@ extension ChatViewController {
     }
 }
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }

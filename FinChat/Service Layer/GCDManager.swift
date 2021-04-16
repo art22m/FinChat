@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol DataManager {
+protocol IDataManager {
     func saveData(dataToSave: CurrentData, isSuccessful: @escaping (SuccessStatus) -> Void)
     func readData(isSuccessful: @escaping ((CurrentData, SuccessStatus)) -> Void)
 }
 
-class GCDDataManager: DataManager {
+class GCDDataManager: IDataManager {
     func saveData(dataToSave: CurrentData, isSuccessful: @escaping (SuccessStatus) -> Void) {
         let globalQueue = DispatchQueue.global(qos: .utility)
         globalQueue.async {

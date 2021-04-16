@@ -7,14 +7,6 @@
 
 import UIKit
 
-protocol ConversationCellConfiguration: class {
-    var identifier : String {get set}
-    var name : String? {get set}
-    var message : String? {get set}
-    var date : Date? {get set}
-    var theme : VCTheme {get set}
-}
-
 class CustomChannelTableViewCell: UITableViewCell {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelMessage: UILabel!
