@@ -10,7 +10,6 @@
 		9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */; };
 		E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE41E25FD4675009B1DF3 /* VCTheme.swift */; };
 		E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53BB2FC261673FD00407853 /* ObjectsExtension.swift */; };
-		E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54ACEFB2602BE440049B9DF /* DataManager.swift */; };
 		E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810A92603EE8700E861A2 /* ProfileDataManager.swift */; };
 		E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810AD2603F04400E861A2 /* GCDManager.swift */; };
 		E55BA8AC25EA727000EFB351 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */; };
@@ -20,7 +19,7 @@
 		E56F790D2628E0090043F913 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56F790B2628E0090043F913 /* Chat.storyboard */; };
 		E56F79172628E25D0043F913 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79162628E25D0043F913 /* ThemesViewController.swift */; };
 		E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F791A2628E2820043F913 /* ChatViewController.swift */; };
-		E56F79222628E8C50043F913 /* EditingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79212628E8C50043F913 /* EditingMode.swift */; };
+		E56F79222628E8C50043F913 /* EditingModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79212628E8C50043F913 /* EditingModes.swift */; };
 		E56F79252628EAAF0043F913 /* WorkingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79242628EAAF0043F913 /* WorkingData.swift */; };
 		E56F79282628EC250043F913 /* InitialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79272628EC250043F913 /* InitialData.swift */; };
 		E56F792B2628F20B0043F913 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F792A2628F20B0043F913 /* MessageModel.swift */; };
@@ -45,17 +44,16 @@
 		CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.release.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.release.xcconfig"; sourceTree = "<group>"; };
 		E50DE41E25FD4675009B1DF3 /* VCTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTheme.swift; sourceTree = "<group>"; };
 		E53BB2FC261673FD00407853 /* ObjectsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsExtension.swift; sourceTree = "<group>"; };
-		E54ACEFB2602BE440049B9DF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E55810A92603EE8700E861A2 /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
 		E55810AD2603F04400E861A2 /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
 		E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		E5676AFE25EEE1E300DF4E75 /* CustomIncomeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIncomeMessageTableViewCell.swift; sourceTree = "<group>"; };
 		E56F79052628DFD30043F913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Themes.storyboard; sourceTree = "<group>"; };
-		E56F79082628DFE50043F913 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = SOURCE_ROOT; };
+		E56F79082628DFE50043F913 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = "FinChat/Presentation Layer/Profile Screen/View/Profile.storyboard"; sourceTree = SOURCE_ROOT; };
 		E56F790C2628E0090043F913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		E56F79162628E25D0043F913 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		E56F791A2628E2820043F913 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		E56F79212628E8C50043F913 /* EditingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingMode.swift; sourceTree = "<group>"; };
+		E56F79212628E8C50043F913 /* EditingModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModes.swift; sourceTree = "<group>"; };
 		E56F79242628EAAF0043F913 /* WorkingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingData.swift; sourceTree = "<group>"; };
 		E56F79272628EC250043F913 /* InitialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialData.swift; sourceTree = "<group>"; };
 		E56F792A2628F20B0043F913 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
@@ -108,6 +106,7 @@
 		E56F78F92628DE8C0043F913 /* Core Layer */ = {
 			isa = PBXGroup;
 			children = (
+				E5978D1C26165857001DFF18 /* DataManagers */,
 				E5978D1F261658A0001DFF18 /* CoreData */,
 			);
 			path = "Core Layer";
@@ -123,68 +122,164 @@
 		E56F78FB2628DEAE0043F913 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E56F79022628DF5F0043F913 /* View */,
-				E56F79012628DF580043F913 /* Controller */,
-				E56F79002628DF4E0043F913 /* Model */,
+				E56F794C2629084E0043F913 /* Channels Screen */,
+				E56F7948262907EE0043F913 /* Chat Screen */,
+				E56F7944262907980043F913 /* Profile Screen */,
+				E56F793F262906FE0043F913 /* Themes Screen */,
 			);
 			path = "Presentation Layer";
 			sourceTree = "<group>";
 		};
-		E56F79002628DF4E0043F913 /* Model */ = {
+		E56F793F262906FE0043F913 /* Themes Screen */ = {
 			isa = PBXGroup;
 			children = (
-				E56F79212628E8C50043F913 /* EditingMode.swift */,
+				E56F7940262907170043F913 /* View */,
+				E56F7942262907300043F913 /* Controller */,
+				E56F7943262907360043F913 /* Model */,
+			);
+			path = "Themes Screen";
+			sourceTree = "<group>";
+		};
+		E56F7940262907170043F913 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E56F79042628DFD30043F913 /* Themes.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E56F7942262907300043F913 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E56F79162628E25D0043F913 /* ThemesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E56F7943262907360043F913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E50DE41E25FD4675009B1DF3 /* VCTheme.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E56F7944262907980043F913 /* Profile Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E56F7947262907B90043F913 /* View */,
+				E56F7946262907B40043F913 /* Controller */,
+				E56F7945262907AD0043F913 /* Model */,
+			);
+			path = "Profile Screen";
+			sourceTree = "<group>";
+		};
+		E56F7945262907AD0043F913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E56F79212628E8C50043F913 /* EditingModes.swift */,
 				E56F79242628EAAF0043F913 /* WorkingData.swift */,
 				E56F79272628EC250043F913 /* InitialData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E56F7946262907B40043F913 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E56F7947262907B90043F913 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E56F79082628DFE50043F913 /* Profile.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E56F7948262907EE0043F913 /* Chat Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E56F794B262908100043F913 /* View */,
+				E56F794A262908090043F913 /* Controller */,
+				E56F7949262908050043F913 /* Model */,
+			);
+			path = "Chat Screen";
+			sourceTree = "<group>";
+		};
+		E56F7949262908050043F913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				E56F792A2628F20B0043F913 /* MessageModel.swift */,
-				E56F792D2628F4770043F913 /* ChannelModel.swift */,
 				E56F79302628FD8D0043F913 /* MessageCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E56F79012628DF580043F913 /* Controller */ = {
+		E56F794A262908090043F913 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E5A09E5725DD267F009CCE18 /* ProfileViewController.swift */,
 				E56F791A2628E2820043F913 /* ChatViewController.swift */,
-				E56F79162628E25D0043F913 /* ThemesViewController.swift */,
-				E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */,
-				E56F79382628FFB60043F913 /* Custom TableView Cells */,
+				E56F79352628FF6F0043F913 /* CustomOutcomeMessageTableViewCell.swift */,
+				E5676AFE25EEE1E300DF4E75 /* CustomIncomeMessageTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		E56F79022628DF5F0043F913 /* View */ = {
+		E56F794B262908100043F913 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E56F79082628DFE50043F913 /* Profile.storyboard */,
 				E56F790B2628E0090043F913 /* Chat.storyboard */,
-				E56F79042628DFD30043F913 /* Themes.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E56F794C2629084E0043F913 /* Channels Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E56F794F262908760043F913 /* View */,
+				E56F794E2629086A0043F913 /* Controller */,
+				E56F794D262908650043F913 /* Model */,
+			);
+			path = "Channels Screen";
+			sourceTree = "<group>";
+		};
+		E56F794D262908650043F913 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E56F792D2628F4770043F913 /* ChannelModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E56F794E2629086A0043F913 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */,
+				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E56F794F262908760043F913 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				E5A09E5925DD267F009CCE18 /* Main.storyboard */,
 				E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		E56F79382628FFB60043F913 /* Custom TableView Cells */ = {
-			isa = PBXGroup;
-			children = (
-				E56F79352628FF6F0043F913 /* CustomOutcomeMessageTableViewCell.swift */,
-				E5676AFE25EEE1E300DF4E75 /* CustomIncomeMessageTableViewCell.swift */,
-				E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */,
-			);
-			path = "Custom TableView Cells";
-			sourceTree = "<group>";
-		};
-		E5978D1C26165857001DFF18 /* Managers */ = {
+		E5978D1C26165857001DFF18 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
 				E55810AD2603F04400E861A2 /* GCDManager.swift */,
-				E54ACEFB2602BE440049B9DF /* DataManager.swift */,
 				E55810A92603EE8700E861A2 /* ProfileDataManager.swift */,
 			);
-			path = Managers;
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
 		E5978D1F261658A0001DFF18 /* CoreData */ = {
@@ -221,13 +316,11 @@
 				E56F78FB2628DEAE0043F913 /* Presentation Layer */,
 				E56F78FA2628DEA10043F913 /* Service Layer */,
 				E56F78F92628DE8C0043F913 /* Core Layer */,
-				E5978D1C26165857001DFF18 /* Managers */,
-				E50DE41E25FD4675009B1DF3 /* VCTheme.swift */,
-				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
-				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
 				E5A09E5C25DD2681009CCE18 /* Assets.xcassets */,
 				E570E5542614CFAC001A3065 /* GoogleService-Info.plist */,
 				E5A09E6125DD2681009CCE18 /* Info.plist */,
+				E5A09E5325DD267F009CCE18 /* AppDelegate.swift */,
+				E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */,
 			);
 			path = FinChat;
 			sourceTree = "<group>";
@@ -354,7 +447,7 @@
 				E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */,
 				E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */,
 				E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */,
-				E56F79222628E8C50043F913 /* EditingMode.swift in Sources */,
+				E56F79222628E8C50043F913 /* EditingModes.swift in Sources */,
 				E5A09E5825DD267F009CCE18 /* ProfileViewController.swift in Sources */,
 				E5676B0025EEE1E300DF4E75 /* CustomIncomeMessageTableViewCell.swift in Sources */,
 				E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */,
@@ -369,7 +462,6 @@
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,
 				E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */,
 				E56F79282628EC250043F913 /* InitialData.swift in Sources */,
-				E54ACEFC2602BE440049B9DF /* DataManager.swift in Sources */,
 				E56F792E2628F4770043F913 /* ChannelModel.swift in Sources */,
 				E5A81FE725ED41720042DDDD /* CustomConversationListTableViewCell.swift in Sources */,
 			);

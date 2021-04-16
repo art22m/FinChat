@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class WorkingData {
+class CurrentData {
     var nameFromFile: String? = ""
     var descriptionFromFile: String? = ""
     var imageFromProfile: UIImage? = UIImage(named: "avatarPlaceholder")

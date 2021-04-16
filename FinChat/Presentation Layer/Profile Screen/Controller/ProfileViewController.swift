@@ -23,7 +23,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
     private var dataManagerGCD: DataManager = GCDDataManager()
-    private var dataFromProfile: WorkingData = WorkingData()
+    private var dataFromProfile: CurrentData = CurrentData()
     private var initialData: InitialData = InitialData()
     var theme: VCTheme = VCTheme()
     

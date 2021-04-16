@@ -13,7 +13,7 @@ class ProfileDataManager: NSObject {
     static let fileName = "UserProfile.txt"
     static let filePath = directory!.appendingPathComponent(fileName)
 
-    static func saveToFile(profile: WorkingData) -> SuccessStatus {
+    static func saveToFile(profile: CurrentData) -> SuccessStatus {
             var dataDictionary: [String: String] = [:]
         
             if let userName = profile.nameFromProfile {
@@ -39,13 +39,13 @@ class ProfileDataManager: NSObject {
         }
 
 
-    static func readFromFile() -> (WorkingData, SuccessStatus) {
+    static func readFromFile() -> (CurrentData, SuccessStatus) {
         do {
             let loadData = try Data(contentsOf: filePath)
             let jsonLoadData = try JSONSerialization.jsonObject(with: loadData, options: .mutableLeaves)
             
             if let userDictionary = jsonLoadData as? [String: String] {
-                let dataFromFile = WorkingData()
+                let dataFromFile = CurrentData()
                 
                 dataFromFile.nameFromFile = userDictionary["userName"]
                 dataFromFile.descriptionFromFile = userDictionary["aboutUser"]
@@ -59,10 +59,10 @@ class ProfileDataManager: NSObject {
                 
                 return (dataFromFile, SuccessStatus.success)
             } else {
-                return (WorkingData(), SuccessStatus.error)
+                return (CurrentData(), SuccessStatus.error)
             }
         } catch {
-            return (WorkingData(), SuccessStatus.error)
+            return (CurrentData(), SuccessStatus.error)
         }
     }
     

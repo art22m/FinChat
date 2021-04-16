@@ -7,8 +7,13 @@
 
 import Foundation
 
+protocol DataManager {
+    func saveData(dataToSave: CurrentData, isSuccessful: @escaping (SuccessStatus) -> Void)
+    func readData(isSuccessful: @escaping ((CurrentData, SuccessStatus)) -> Void)
+}
+
 class GCDDataManager: DataManager {
-    func saveData(dataToSave: WorkingData, isSuccessful: @escaping (SuccessStatus) -> Void) {
+    func saveData(dataToSave: CurrentData, isSuccessful: @escaping (SuccessStatus) -> Void) {
         let globalQueue = DispatchQueue.global(qos: .utility)
         globalQueue.async {
             let status = ProfileDataManager.saveToFile(profile: dataToSave)
@@ -16,10 +21,10 @@ class GCDDataManager: DataManager {
         }
     }
     
-    func readData(isSuccessful: @escaping ((WorkingData, SuccessStatus)) -> Void) {
+    func readData(isSuccessful: @escaping ((CurrentData, SuccessStatus)) -> Void) {
         let globalQueue = DispatchQueue.global(qos: .utility)
         globalQueue.async {
-            let status: (WorkingData, SuccessStatus) = ProfileDataManager.readFromFile()
+            let status: (CurrentData, SuccessStatus) = ProfileDataManager.readFromFile()
             isSuccessful(status)
         }
     }
