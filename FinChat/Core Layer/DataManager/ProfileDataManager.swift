@@ -8,22 +8,17 @@
 import Foundation
 import UIKit
 
-class WorkingData {
-    var nameFromFile: String? = ""
-    var descriptionFromFile: String? = ""
-    var imageFromProfile: UIImage? = UIImage(named: "avatarPlaceholder")
-    
-    var nameFromProfile: String? = ""
-    var descriptionFromProfile: String? = ""
-    var imageFromFile: UIImage? = UIImage(named: "avatarPlaceholder")
+protocol IProfileManager {
+    static func saveToFile(profile: CurrentData) -> SuccessStatus
+    static func readFromFile() -> (CurrentData, SuccessStatus)
 }
 
-class ProfileDataManager: NSObject {
+class ProfileDataManager: IProfileManager {
     static let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     static let fileName = "UserProfile.txt"
     static let filePath = directory!.appendingPathComponent(fileName)
 
-    static func saveToFile(profile: WorkingData) -> SuccessStatus {
+    static func saveToFile(profile: CurrentData) -> SuccessStatus {
             var dataDictionary: [String: String] = [:]
         
             if let userName = profile.nameFromProfile {
@@ -49,13 +44,13 @@ class ProfileDataManager: NSObject {
         }
 
 
-    static func readFromFile() -> (WorkingData, SuccessStatus) {
+    static func readFromFile() -> (CurrentData, SuccessStatus) {
         do {
             let loadData = try Data(contentsOf: filePath)
             let jsonLoadData = try JSONSerialization.jsonObject(with: loadData, options: .mutableLeaves)
             
             if let userDictionary = jsonLoadData as? [String: String] {
-                let dataFromFile = WorkingData()
+                let dataFromFile = CurrentData()
                 
                 dataFromFile.nameFromFile = userDictionary["userName"]
                 dataFromFile.descriptionFromFile = userDictionary["aboutUser"]
@@ -69,10 +64,10 @@ class ProfileDataManager: NSObject {
                 
                 return (dataFromFile, SuccessStatus.success)
             } else {
-                return (WorkingData(), SuccessStatus.error)
+                return (CurrentData(), SuccessStatus.error)
             }
         } catch {
-            return (WorkingData(), SuccessStatus.error)
+            return (CurrentData(), SuccessStatus.error)
         }
     }
     

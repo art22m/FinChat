@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FVA-dr-dhH">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Channels-->
+        <scene sceneID="LJ3-Ei-758">
+            <objects>
+                <viewController id="JcI-ZZ-SKg" customClass="ChannelsViewController" customModule="FinChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b4c-Ua-ai4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="35" sectionFooterHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-Ig-8Ny">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y5a-4c-J0S"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F1u-Ig-8Ny" firstAttribute="top" secondItem="Y5a-4c-J0S" secondAttribute="top" id="FEk-7I-tZN"/>
+                            <constraint firstItem="Y5a-4c-J0S" firstAttribute="trailing" secondItem="F1u-Ig-8Ny" secondAttribute="trailing" id="NuZ-oA-uNy"/>
+                            <constraint firstItem="Y5a-4c-J0S" firstAttribute="bottom" secondItem="F1u-Ig-8Ny" secondAttribute="bottom" id="Tg1-3N-eo0"/>
+                            <constraint firstItem="F1u-Ig-8Ny" firstAttribute="leading" secondItem="Y5a-4c-J0S" secondAttribute="leading" id="xkl-nj-TVs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Channels" largeTitleDisplayMode="always" id="Rd1-MA-lWp">
+                        <barButtonItem key="backBarButtonItem" title="Channels" id="2AO-P9-5BE"/>
+                        <barButtonItem key="leftBarButtonItem" image="settingsIcon" id="hqZ-Uf-8bm">
+                            <connections>
+                                <segue destination="2wP-Tj-tlV" kind="show" id="5Jo-BL-De2"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="profileIcon" id="0Up-YW-eUe">
+                                <connections>
+                                    <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
+                                    <segue destination="jYo-hZ-HgO" kind="presentation" id="bSG-Jy-fcW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="addButtonIcon" id="FTF-2f-HWK">
+                                <connections>
+                                    <action selector="addTapped:" destination="JcI-ZZ-SKg" id="LnF-An-gg2"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buttonAdd" destination="FTF-2f-HWK" id="nUv-2S-rGC"/>
+                        <outlet property="buttonProfile" destination="0Up-YW-eUe" id="vv5-NX-wVa"/>
+                        <outlet property="buttonSettings" destination="hqZ-Uf-8bm" id="qOL-yl-Ipj"/>
+                        <outlet property="tableViewConversations" destination="F1u-Ig-8Ny" id="J4V-ul-4MF"/>
+                        <segue destination="Lbt-VW-oPn" kind="show" identifier="ShowConversation" id="guC-rB-Q8d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pWG-th-Wsr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-786" y="27"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qcX-Ac-C8Z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FVA-dr-dhH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tSx-cB-XYl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JcI-ZZ-SKg" kind="relationship" relationship="rootViewController" id="AkK-fq-IZ7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beX-KB-3AF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1745" y="27"/>
+        </scene>
+        <!--Themes-->
+        <scene sceneID="Kbs-qP-b0Q">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Themes" id="2wP-Tj-tlV" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZMs-r8-kgk"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gpi-FG-w8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="-316"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="vFa-wx-aCU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="jYo-hZ-HgO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l23-I0-0r8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.80000000000001" y="493.40329835082463"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="njh-sB-jxe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Chat" id="Lbt-VW-oPn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dui-9l-l6v"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SNV-vF-PQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-57" y="265"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="addButtonIcon" width="25" height="25"/>
+        <image name="profileIcon" width="25" height="25"/>
+        <image name="settingsIcon" width="25" height="25"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

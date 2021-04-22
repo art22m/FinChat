@@ -9,45 +9,29 @@ import UIKit
 import Firebase
 import CoreData
 
-struct Message {
-    let content: String
-    let created: Date
-    let senderId: String
-    let senderName: String
-}
-
-class ConversationViewController: UIViewController, UITextFieldDelegate {
-
+class ChatViewController: UIViewController, UITextFieldDelegate {
+    // MARK: - @IBOutlet
     @IBOutlet weak var messageInput: UITextField!
     @IBOutlet weak var tableViewMessages: UITableView!
     @IBOutlet weak var sendButton: UIButton!
     
-    @IBAction func sendTapped(_ sender: Any) {
-        sendMessage()
-        messageInput.text = ""
-    }
-    
-    private var dataManagerGCD: DataManager = GCDDataManager()
-    
-    // Initialize variable theme of class VCTheme() to change the theme of the screen
-    var theme = VCTheme()
-    var channel = Channel(identifier: "", name: "", lastMessage: "", lastActivity: Date.init())
-    
-    var name: String = "" // Name of the user
-    
-    var coreData = ModernCoreDataStack()
-    
     private let uniqueID = UIDevice.current.identifierForVendor?.uuidString
-    private var messages = [Message]()
+    private let dataManagerGCD: IDataManager = GCDDataManager()
+    private let messageActions: IMessageActions = MessageActions()
     private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
+    private var messages = [MessageModel]()
+    private var nameFromProfile: String = ""
+    
+    var theme = VCTheme()
+    var coreData = ModernCoreDataStack()
+    var currentChannel = ChannelModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchMessages()
         updateName()
-        self.hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAround()
         
         view.backgroundColor = theme.getCurrentBackgroundColor()
         tableViewMessages.backgroundColor = theme.getCurrentBackgroundColor()
@@ -65,51 +49,42 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         messageInput.layer.borderWidth = 1
         messageInput.layer.cornerRadius = 12
 
-        tableViewMessages.register(CustomConversationIncomeTableViewCell.self, forCellReuseIdentifier: "id1")
-        tableViewMessages.register(CustomConversationOutcomeTableViewCell.self, forCellReuseIdentifier: "id2")
-        tableViewMessages.delegate = self
+        tableViewMessages.register(CustomIncomeMessageTableViewCell.self, forCellReuseIdentifier: "id1")
+        tableViewMessages.register(CustomOutcomeMessageTableViewCell.self, forCellReuseIdentifier: "id2")
         tableViewMessages.dataSource = self
-        
     }
     
-    // Dismiss keyboard when tap on done
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        messageInput.resignFirstResponder()
-        return true
+    // MARK: - @IBActions
+    @IBAction func sendTapped(_ sender: Any) {
+        sendMessage()
+        messageInput.text = ""
     }
-    
+}
+
+extension ChatViewController {
     private func updateName() {
         dataManagerGCD.readData(isSuccessful: { (profile, responce) in
             if responce == SuccessStatus.success {
                 DispatchQueue.main.async(execute: {
-                    self.name = profile.nameFromFile ?? ""
+                    self.nameFromProfile = profile.nameFromFile ?? ""
                 })
             }
         })
     }
     
     private func sendMessage() {
-        if (messageInput.text == "") {
-            return
-        }
-        
-        let content = messageInput.text
-        let created = Date.init()
-        let senderId = uniqueID
-        let senderName = name
-        
-        reference.document(channel.identifier).collection("messages").addDocument(data: ["content": content ?? "", "created": created, "senderId": senderId ?? "", "senderName": senderName])
+        messageActions.sendMessage(identifier: currentChannel.identifier, text: messageInput.text, uniqueID: uniqueID, senderName: nameFromProfile)
     }
 
     private func fetchMessages() {
-        db.collection("channels").document(channel.identifier).collection("messages").addSnapshotListener { (querySnapshot, error) in
+        db.collection("channels").document(currentChannel.identifier).collection("messages").addSnapshotListener { (querySnapshot, error) in
             
             guard let documents = querySnapshot?.documents else {
                 print("No channels")
                 return
             }
             
-            self.messages = documents.map{ (queryDocumentSnapshot) -> Message in
+            self.messages = documents.map{ (queryDocumentSnapshot) -> MessageModel in
                 let data = queryDocumentSnapshot.data()
                 
                 let content = data["content"] as? String
@@ -122,7 +97,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                 self.coreData.persistentContainer.performBackgroundTask { context in
                     let messageDB = Message_db(content: content ?? "", created: created ?? Date.init(), messageId: messageId, senderId: senderId ?? "", senderName: senderName ?? "", in: context)
                     
-                    let channelDB = Channel_db(name: self.channel.name, identifier: self.channel.identifier, lastActivity: self.channel.lastActivity ?? Date.init(), lastMessage: self.channel.lastMessage ?? "", in: context)
+                    let channelDB = Channel_db(name: self.currentChannel.name, identifier: self.currentChannel.identifier, lastActivity: self.currentChannel.lastActivity ?? Date.init(), lastMessage: self.currentChannel.lastMessage ?? "", in: context)
                     
                     channelDB.addToMessages(messageDB)
                     
@@ -135,7 +110,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
 
-                return Message(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
+                return MessageModel(content: content ?? "", created: created ?? Date.init(), senderId: senderId ?? "", senderName: senderName ?? "")
             }
             
             self.messages.sort { (Message1, Message2) -> Bool in
@@ -144,22 +119,32 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         
             self.tableViewMessages.reloadData()
             self.scrollToBottom()
-//            self.simpleFertchRequest()
         }
     }
+}
+
+// MARK: -Keyboard
+/*
+ Hide the keyboard then we tapped outside UITextField
+ */
+extension ChatViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     
-    /*
-    func simpleFertchRequest() {
-            print("Simple Fetch Request")
-            
-            let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
-            let objects = try! coreData.persistentContainer.viewContext.fetch(fetchRequest)
-        
-            print(objects.count)
-            print("")
-    }*/
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
-    private func scrollToBottom(){
+    // Dismiss keyboard when tap on done
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        messageInput.resignFirstResponder()
+        return true
+    }
+    
+    func scrollToBottom() {
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.messages.count-1, section: 0)
             if (self.messages.count != 0) {
@@ -169,20 +154,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-// Hide the keyboard then we tapped outside UITextField
-extension ConversationViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-extension ConversationViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -191,11 +163,11 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
         let message = messages[indexPath.row]
         
         if message.senderId != uniqueID {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomConversationIncomeTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id1", for: indexPath) as? CustomIncomeMessageTableViewCell else { return UITableViewCell() }
             cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomConversationOutcomeTableViewCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "id2", for: indexPath) as? CustomOutcomeMessageTableViewCell else { return UITableViewCell() }
             cell.configure(with: .init(text: message.content, name: message.senderName, date: message.created, theme: theme))
             return cell
         }

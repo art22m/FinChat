@@ -7,48 +7,23 @@
 
 import UIKit
 
-protocol ConversationCellConfiguration : class {
-    var identifier : String {get set}
-    var name : String? {get set}
-    var message : String? {get set}
-    var date : Date? {get set}
-//    var theme : VCTheme {get set}
-}
-
-class CustomConversationListTableViewCell: UITableViewCell {
+class CustomChannelTableViewCell: UITableViewCell {
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelMessage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
     
-    
-    static let identifier = "CustomConversationListTableViewCell"
+    static let identifier = "CustomChannelTableViewCell"
     static func nib() -> UINib {
-        return UINib(nibName: "CustomConversationListTableViewCell", bundle: nil)
+        return UINib(nibName: "CustomChannelTableViewCell", bundle: nil)
     }
     
-    class Model : ConversationCellConfiguration {
-        var identifier: String
-        var name: String?
-        var message: String?
-        var date: Date?
-//        var theme: VCTheme
+    func configure(with pattern: ChannelCellPattern) {
+        self.labelName.textColor = pattern.theme.getCurrentFontColor()
+        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
+        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
+        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
         
-        init(identifier: String, name: String?, message: String?, date: Date?) {
-            self.identifier = identifier
-            self.name = name
-            self.message = message
-            self.date = date
-//            self.theme = theme
-        }
-    }
-    
-    func configure(with pattern: Model) {
-//        self.labelName.textColor = pattern.theme.getCurrentFontColor()
-//        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
-//        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
-//        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
-//        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
-//        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
         selectedBackgroundView = backgroundView
