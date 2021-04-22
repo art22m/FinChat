@@ -25,7 +25,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
         self.present(alertAdd, animated: true)
     }
     
-    private var channels = [ChannelModel]()
+    static var channels = [ChannelModel]()
     private lazy var db = Firestore.firestore()
     private let channelActions: IChannelActions = ChannelActions()
     let alertAdd = UIAlertController(title: "Channel", message: "Add channel", preferredStyle: .alert)
@@ -81,8 +81,8 @@ extension ChannelsViewController: UITableViewDelegate {
         if let destination = segue.destination as? ChatViewController {
             destination.theme.currentTheme = self.theme.currentTheme
             guard let indexPath = tableViewConversations.indexPathForSelectedRow else { return }
-            destination.currentChannel = channels[indexPath.row]
-            destination.title = channels[indexPath.row].name
+            destination.currentChannel = ChannelsViewController.channels[indexPath.row]
+            destination.title = ChannelsViewController.channels[indexPath.row].name
             destination.coreData = coreData
         } else if let themesVC = segue.destination as? ThemesViewController {
             themesVC.themeDelegate = self
@@ -130,7 +130,7 @@ extension ChannelsViewController {
                 return
             }
             
-            self.channels = documents.map{ (queryDocumentSnapshot) -> ChannelModel in
+            ChannelsViewController.channels = documents.map{ (queryDocumentSnapshot) -> ChannelModel in
                 let data = queryDocumentSnapshot.data()
                 
                 let id = queryDocumentSnapshot.documentID

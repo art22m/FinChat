@@ -35,19 +35,20 @@ class ChannelsTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         updateData()
-        guard let sections = self.fetchedResultsController.sections else {
-            fatalError("No sections")
-        }
-        let sectionInfo = sections[section]
-        return sectionInfo.numberOfObjects
+//        guard let sections = self.fetchedResultsController.sections else {
+//            fatalError("No sections")
+//        }
+//        let sectionInfo = sections[section]
+        return ChannelsViewController.channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         updateData()
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomChannelTableViewCell.identifier, for: indexPath) as? CustomChannelTableViewCell else { return UITableViewCell() }
         
-        let channel = self.fetchedResultsController.object(at: indexPath)
-        cell.configure(with: .init(identifier: channel.identifier ?? "", name: channel.name, message: channel.lastMessage, date: channel.lastActivity))
+//        let channel = self.fetchedResultsController.object(at: indexPath)
+        let channel = ChannelsViewController.channels[indexPath.row]
+        cell.configure(with: .init(identifier: channel.identifier , name: channel.name, message: channel.lastMessage, date: channel.lastActivity))
         
         return cell
     }
