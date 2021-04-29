@@ -42,7 +42,7 @@
                             <barButtonItem image="profileIcon" id="0Up-YW-eUe">
                                 <connections>
                                     <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
-                                    <segue destination="jYo-hZ-HgO" kind="custom" customClass="BottomCardSegue" customModule="FinChat" customModuleProvider="target" id="bSG-Jy-fcW"/>
+                                    <segue destination="jYo-hZ-HgO" kind="custom" customClass="СustomSegue" customModule="FinChat" customModuleProvider="target" id="bSG-Jy-fcW"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="addButtonIcon" id="FTF-2f-HWK">

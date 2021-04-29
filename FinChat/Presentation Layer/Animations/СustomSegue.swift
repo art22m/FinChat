@@ -1,5 +1,5 @@
 //
-//  AnimatedTransition.swift
+//  СustomSegue.swift
 //  FinChat
 //
 //  Created by Артём Мурашко on 29.04.2021.
@@ -8,6 +8,26 @@
 import Foundation
 import UIKit
 
+class СustomSegue: UIStoryboardSegue {
+    private var selfRetainer: СustomSegue? = nil
+    override func perform() {
+        destination.transitioningDelegate = self
+        selfRetainer = self
+        destination.modalPresentationStyle = .overCurrentContext
+        source.present(destination, animated: true, completion: nil)
+    }
+}
+
+extension СustomSegue: UIViewControllerTransitioningDelegate {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return Presenter()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return Dismisser()
+    }
+    
+}
 
 private class Presenter: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -47,25 +67,4 @@ private class Dismisser: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(true)
         })
     }
-}
-
-class BottomCardSegue: UIStoryboardSegue {
-    private var selfRetainer: BottomCardSegue? = nil
-    override func perform() {
-        destination.transitioningDelegate = self
-        selfRetainer = self
-        destination.modalPresentationStyle = .overCurrentContext
-        source.present(destination, animated: true, completion: nil)
-    }
-}
-
-extension BottomCardSegue: UIViewControllerTransitioningDelegate {
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Presenter()
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return Dismisser()
-    }
-    
 }

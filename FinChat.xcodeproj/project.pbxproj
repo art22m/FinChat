@@ -47,7 +47,8 @@
 		E5A09E6025DD2681009CCE18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5A09E5E25DD2681009CCE18 /* LaunchScreen.storyboard */; };
 		E5A81FE725ED41720042DDDD /* CustomConversationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */; };
 		E5A81FE825ED41720042DDDD /* CustomChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */; };
-		E5ABDDA5263B32FA0093A7C0 /* AnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA4263B32FA0093A7C0 /* AnimatedTransition.swift */; };
+		E5ABDDA5263B32FA0093A7C0 /* СustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */; };
+		E5ABDDA9263B44350093A7C0 /* TinkoffLogoSnowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,7 +96,8 @@
 		E5A09E6125DD2681009CCE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5A81FE525ED41720042DDDD /* CustomConversationListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomConversationListTableViewCell.swift; sourceTree = "<group>"; };
 		E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomChannelTableViewCell.xib; sourceTree = "<group>"; };
-		E5ABDDA4263B32FA0093A7C0 /* AnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTransition.swift; sourceTree = "<group>"; };
+		E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomSegue.swift"; sourceTree = "<group>"; };
+		E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffLogoSnowEffect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +197,7 @@
 		E56F78FB2628DEAE0043F913 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E5ABDDA3263B32DA0093A7C0 /* Animated Transition */,
+				E5ABDDA3263B32DA0093A7C0 /* Animations */,
 				E557BF7226320E77007B05AD /* Pictures Screen */,
 				E56F7948262907EE0043F913 /* Chat Screen */,
 				E56F7944262907980043F913 /* Profile Screen */,
@@ -401,12 +403,13 @@
 			path = FinChat;
 			sourceTree = "<group>";
 		};
-		E5ABDDA3263B32DA0093A7C0 /* Animated Transition */ = {
+		E5ABDDA3263B32DA0093A7C0 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				E5ABDDA4263B32FA0093A7C0 /* AnimatedTransition.swift */,
+				E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */,
+				E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */,
 			);
-			path = "Animated Transition";
+			path = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,10 +532,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */,
-				E5ABDDA5263B32FA0093A7C0 /* AnimatedTransition.swift in Sources */,
+				E5ABDDA5263B32FA0093A7C0 /* СustomSegue.swift in Sources */,
 				E557BF77263210E2007B05AD /* PicturesViewController.swift in Sources */,
 				E557BF6A26320B0B007B05AD /* Request.swift in Sources */,
 				E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */,
+				E5ABDDA9263B44350093A7C0 /* TinkoffLogoSnowEffect.swift in Sources */,
 				E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */,
 				E56F795B262913580043F913 /* ChannelsTableViewDataSource.swift in Sources */,
 				E56F79652629183F0043F913 /* MessageActionsService.swift in Sources */,

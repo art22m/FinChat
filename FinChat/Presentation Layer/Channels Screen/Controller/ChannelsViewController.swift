@@ -89,7 +89,6 @@ extension ChannelsViewController: UITableViewDelegate {
             themesVC.theme.currentTheme = self.theme.currentTheme
         } else if let profileVC = segue.destination as? ProfileViewController {
             profileVC.theme.currentTheme = self.theme.currentTheme
-//            let segue = BottomCardSegue(identifier: nil, source: self, destination: ProfileViewController)
         }
     }
 }
