@@ -160,7 +160,8 @@ extension ProfileViewController {
                     self.initialData.initialTextFieldDescription = self.textFieldDescription.text
                     self.initialData.initialAvatarImage = self.imageAvatar.image
                     
-                    self.labelInitials.text = self.textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+//                    self.labelInitials.text = self.textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\(String(describing: $0.first))") + "\(String(describing: $1.first))" }
+                    self.labelInitials.text = "AM"
                     
                     self.displayInitials()
                 })
@@ -219,7 +220,9 @@ extension ProfileViewController {
             buttonSaveGCD.isEnabled = false
         } else {
             if (textFieldName.text?.isEmpty == false) {
-                labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\(String(describing: $0.first))") + "\(String(describing: $1.first))" }
+//                labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\(String(describing: $0.first))") + "\(String(describing: $1.first))" }
+            
+                self.labelInitials.text = "AM"
             }
             
             buttonSaveGCD.alpha = 0.7
@@ -277,6 +280,20 @@ extension ProfileViewController {
             }))
         }
         
+        actionSheet.addAction(UIAlertAction(title: "Download", style: .default, handler: { (UIAlertAction) in
+            let model = PicturesModel(networkService:  NetworkService(requestSender: RequestSender(requestConfig: RequestConfig(request: Request(), parser: Parser()))))
+            let modalViewController = PicturesViewController(model: model)
+            model.networkDelegate = modalViewController
+            
+            modalViewController.completion = { [weak self] image in
+                guard let self = self else { return }
+                self.imageAvatar.image = image
+                self.editMode(.image)
+            }
+             
+            self.present(modalViewController, animated: true, completion: nil)
+        }))
+        
         if initialData.initialAvatarImage != UIImage(named: "avatarPlaceholder") {
             actionSheet.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { [self] (UIAlertAction) in
                     imageAvatar.image = UIImage(named: "avatarPlaceholder")
@@ -291,6 +308,7 @@ extension ProfileViewController {
     
     func showImagePickerController(sourceType: UIImagePickerController.SourceType) {
         let imagePickerController = UIImagePickerController()
+        
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
         imagePickerController.sourceType = sourceType

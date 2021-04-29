@@ -10,6 +10,13 @@
 		9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */; };
 		E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DE41E25FD4675009B1DF3 /* VCTheme.swift */; };
 		E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53BB2FC261673FD00407853 /* ObjectsExtension.swift */; };
+		E557BF67263209CA007B05AD /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF66263209CA007B05AD /* RequestSender.swift */; };
+		E557BF6A26320B0B007B05AD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF6926320B0B007B05AD /* Request.swift */; };
+		E557BF6D26320CAA007B05AD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF6C26320CAA007B05AD /* Parser.swift */; };
+		E557BF7026320D7D007B05AD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF6F26320D7D007B05AD /* NetworkService.swift */; };
+		E557BF77263210E2007B05AD /* PicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF76263210E2007B05AD /* PicturesViewController.swift */; };
+		E557BF7B2632121A007B05AD /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF7A2632121A007B05AD /* PictureCollectionViewCell.swift */; };
+		E557BF7E26322A32007B05AD /* PicturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E557BF7D26322A32007B05AD /* PicturesModel.swift */; };
 		E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810A92603EE8700E861A2 /* ProfileDataManager.swift */; };
 		E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55810AD2603F04400E861A2 /* GCDManager.swift */; };
 		E55BA8AC25EA727000EFB351 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */; };
@@ -48,6 +55,13 @@
 		CD04CA13C8CB41902F976115 /* Pods-FinChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinChat.release.xcconfig"; path = "Target Support Files/Pods-FinChat/Pods-FinChat.release.xcconfig"; sourceTree = "<group>"; };
 		E50DE41E25FD4675009B1DF3 /* VCTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTheme.swift; sourceTree = "<group>"; };
 		E53BB2FC261673FD00407853 /* ObjectsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsExtension.swift; sourceTree = "<group>"; };
+		E557BF66263209CA007B05AD /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		E557BF6926320B0B007B05AD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E557BF6C26320CAA007B05AD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		E557BF6F26320D7D007B05AD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E557BF76263210E2007B05AD /* PicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewController.swift; sourceTree = "<group>"; };
+		E557BF7A2632121A007B05AD /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		E557BF7D26322A32007B05AD /* PicturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesModel.swift; sourceTree = "<group>"; };
 		E55810A92603EE8700E861A2 /* ProfileDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManager.swift; sourceTree = "<group>"; };
 		E55810AD2603F04400E861A2 /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
 		E55BA8AB25EA727000EFB351 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
@@ -111,9 +125,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E557BF652632096A007B05AD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E557BF6C26320CAA007B05AD /* Parser.swift */,
+				E557BF66263209CA007B05AD /* RequestSender.swift */,
+				E557BF6926320B0B007B05AD /* Request.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E557BF7226320E77007B05AD /* Pictures Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E557BF7526320E90007B05AD /* View */,
+				E557BF7426320E89007B05AD /* Controller */,
+				E557BF7326320E85007B05AD /* Model */,
+			);
+			path = "Pictures Screen";
+			sourceTree = "<group>";
+		};
+		E557BF7326320E85007B05AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E557BF7D26322A32007B05AD /* PicturesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E557BF7426320E89007B05AD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E557BF76263210E2007B05AD /* PicturesViewController.swift */,
+				E557BF7A2632121A007B05AD /* PictureCollectionViewCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E557BF7526320E90007B05AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E56F78F92628DE8C0043F913 /* Core Layer */ = {
 			isa = PBXGroup;
 			children = (
+				E557BF652632096A007B05AD /* Network */,
 				E5978D1C26165857001DFF18 /* DataManager */,
 				E5978D1F261658A0001DFF18 /* CoreData */,
 			);
@@ -126,6 +185,7 @@
 				E55810AD2603F04400E861A2 /* GCDManager.swift */,
 				E56F79642629183F0043F913 /* MessageActionsService.swift */,
 				E56F796826291CF00043F913 /* ChannelActionService.swift */,
+				E557BF6F26320D7D007B05AD /* NetworkService.swift */,
 			);
 			path = "Service Layer";
 			sourceTree = "<group>";
@@ -133,6 +193,7 @@
 		E56F78FB2628DEAE0043F913 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
+				E557BF7226320E77007B05AD /* Pictures Screen */,
 				E56F7948262907EE0043F913 /* Chat Screen */,
 				E56F7944262907980043F913 /* Profile Screen */,
 				E56F793F262906FE0043F913 /* Themes Screen */,
@@ -457,11 +518,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56F791B2628E2820043F913 /* ChatViewController.swift in Sources */,
+				E557BF77263210E2007B05AD /* PicturesViewController.swift in Sources */,
+				E557BF6A26320B0B007B05AD /* Request.swift in Sources */,
 				E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */,
 				E55810AA2603EE8700E861A2 /* ProfileDataManager.swift in Sources */,
 				E56F795B262913580043F913 /* ChannelsTableViewDataSource.swift in Sources */,
 				E56F79652629183F0043F913 /* MessageActionsService.swift in Sources */,
+				E557BF7026320D7D007B05AD /* NetworkService.swift in Sources */,
 				E56F79222628E8C50043F913 /* EditingModes.swift in Sources */,
+				E557BF7E26322A32007B05AD /* PicturesModel.swift in Sources */,
 				E5A09E5825DD267F009CCE18 /* ProfileViewController.swift in Sources */,
 				E5676B0025EEE1E300DF4E75 /* CustomIncomeMessageTableViewCell.swift in Sources */,
 				E56F7958262911F80043F913 /* MessageCellModel.swift in Sources */,
@@ -473,11 +538,14 @@
 				E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */,
 				E56F79172628E25D0043F913 /* ThemesViewController.swift in Sources */,
 				E55BA8AC25EA727000EFB351 /* ChannelsViewController.swift in Sources */,
+				E557BF67263209CA007B05AD /* RequestSender.swift in Sources */,
 				E53BB2FD261673FD00407853 /* ObjectsExtension.swift in Sources */,
 				E55810AE2603F04400E861A2 /* GCDManager.swift in Sources */,
 				E50DE41F25FD4675009B1DF3 /* VCTheme.swift in Sources */,
 				E56F79282628EC250043F913 /* InitialData.swift in Sources */,
+				E557BF6D26320CAA007B05AD /* Parser.swift in Sources */,
 				E56F796926291CF00043F913 /* ChannelActionService.swift in Sources */,
+				E557BF7B2632121A007B05AD /* PictureCollectionViewCell.swift in Sources */,
 				E56F792E2628F4770043F913 /* ChannelModel.swift in Sources */,
 				E5A81FE725ED41720042DDDD /* CustomConversationListTableViewCell.swift in Sources */,
 			);
