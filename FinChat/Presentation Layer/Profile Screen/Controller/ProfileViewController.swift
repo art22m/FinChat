@@ -130,8 +130,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageAvatar.image = initialData.initialAvatarImage
         
         displayInitials()
-        print(buttonSaveGCD.layer.position.x)
-        print(buttonSaveGCD.layer.position.y)
         stopAnimateSaveButton()
         
         self.normalMode()
@@ -160,7 +158,7 @@ extension ProfileViewController {
         animationRotate.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
         
         let animationMoveX = CAKeyframeAnimation(keyPath: "position.x")
-        animationMoveX.values = [x, x - 20.0, x, x + 20.0, x]
+        animationMoveX.values = [x, x - 5.0, x, x + 5.0, x]
         animationMoveX.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
         
         let animationMoveY = CAKeyframeAnimation(keyPath: "position.y")
@@ -178,11 +176,16 @@ extension ProfileViewController {
     }
     
     private func stopAnimateSaveButton() {
-        UIView.animate(withDuration: 3.0) {
-            self.buttonSaveGCD.layer.removeAllAnimations()
-            self.buttonSaveGCD.layer.position.x = self.buttonEdit.layer.position.x
-            self.buttonSaveGCD.layer.position.y = self.buttonEdit.layer.position.y
-        }
+        let fromValue = buttonSaveGCD.layer.presentation()?.position
+        
+        buttonSaveGCD.layer.removeAllAnimations()
+        
+        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+        animation.fromValue = fromValue
+        animation.toValue = buttonEdit.layer.position
+        animation.duration = 3
+                
+        buttonSaveGCD.layer.add(animation, forKey: #keyPath(CALayer.position))
     }
 }
 
