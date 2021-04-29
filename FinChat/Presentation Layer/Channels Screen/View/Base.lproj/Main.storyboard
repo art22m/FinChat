@@ -42,7 +42,7 @@
                             <barButtonItem image="profileIcon" id="0Up-YW-eUe">
                                 <connections>
                                     <action selector="goToProfileButton:" destination="JcI-ZZ-SKg" id="oNI-Wb-6pw"/>
-                                    <segue destination="jYo-hZ-HgO" kind="presentation" id="bSG-Jy-fcW"/>
+                                    <segue destination="jYo-hZ-HgO" kind="custom" customClass="BottomCardSegue" customModule="FinChat" customModuleProvider="target" id="bSG-Jy-fcW"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="addButtonIcon" id="FTF-2f-HWK">
@@ -95,7 +95,9 @@
         <!--Profile-->
         <scene sceneID="vFa-wx-aCU">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="jYo-hZ-HgO" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Profile" id="jYo-hZ-HgO" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NRr-86-Q8t"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l23-I0-0r8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="128.80000000000001" y="493.40329835082463"/>
