@@ -12,7 +12,6 @@ protocol ConversationCellConfiguration: class {
     var name : String? {get set}
     var message : String? {get set}
     var date : Date? {get set}
-    var theme : VCTheme {get set}
 }
 
 class ChannelCellPattern: ConversationCellConfiguration {
@@ -20,13 +19,11 @@ class ChannelCellPattern: ConversationCellConfiguration {
     var name: String?
     var message: String?
     var date: Date?
-    var theme: VCTheme
     
     init(identifier: String, name: String?, message: String?, date: Date?) {
         self.identifier = identifier
         self.name = name
         self.message = message
         self.date = date
-        self.theme = VCTheme()
     }
 }

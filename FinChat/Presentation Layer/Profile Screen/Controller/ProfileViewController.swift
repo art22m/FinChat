@@ -19,6 +19,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var buttonSaveGCD: UIButton!
     @IBOutlet weak var saveIndicator: UIActivityIndicatorView!
     
+    var flag = true
+    var x: CGFloat = 0.0
+    var y: CGFloat = 0.0
+    
     let alertSuccess = UIAlertController(title: "Data", message: "Data saved successfully", preferredStyle: .alert)
     let alertError = UIAlertController(title: "Data", message: "Data didn't saved", preferredStyle: .alert)
     
@@ -91,6 +95,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - @IBActions
     @IBAction func saveGCDTapped(_ sender: Any) {
         saveIndicator.startAnimating()
+        stopAnimateSaveButton()
         
         dataFromProfile.nameFromProfile = textFieldName.text
         dataFromProfile.descriptionFromProfile = textFieldDescription.text
@@ -125,16 +130,59 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageAvatar.image = initialData.initialAvatarImage
         
         displayInitials()
+        print(buttonSaveGCD.layer.position.x)
+        print(buttonSaveGCD.layer.position.y)
+        stopAnimateSaveButton()
         
         self.normalMode()
     }
     
     @IBAction func editTapped(_ sender: Any) {
         editMode(.textFields)
+        stopAnimateSaveButton()
+        buttonSaveGCD.titleLabel?.textColor = UIColor(red: 90.0/255.0, green: 97.0/255.0, blue: 93.0/255.0, alpha: 1.0) // gray
     }
     
     @IBAction func buttonClose(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Animation
+
+extension ProfileViewController {
+    private func animateSaveButton() {
+        x = buttonSaveGCD.layer.position.x // Take default position of button
+        y = buttonSaveGCD.layer.position.y
+        
+        let animationRotate = CAKeyframeAnimation(keyPath: "transform.rotation")
+        animationRotate.values = [0.0, -.pi / 10.0, 0, .pi / 10.0, 0.0]
+        animationRotate.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        let animationMoveX = CAKeyframeAnimation(keyPath: "position.x")
+        animationMoveX.values = [x, x - 20.0, x, x + 20.0, x]
+        animationMoveX.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        let animationMoveY = CAKeyframeAnimation(keyPath: "position.y")
+        animationMoveY.values = [y, y - 5.0, y, y + 5.0, y]
+        animationMoveY.keyTimes = [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        let group = CAAnimationGroup()
+        group.duration = 0.3
+        group.repeatCount = .infinity
+        group.isRemovedOnCompletion = false
+        group.fillMode = .forwards
+        group.animations = [animationRotate, animationMoveX, animationMoveY]
+        
+        buttonSaveGCD.layer.add(group, forKey: nil)
+    }
+    
+    private func stopAnimateSaveButton() {
+        UIView.animate(withDuration: 3.0) {
+            self.buttonSaveGCD.layer.removeAllAnimations()
+            self.buttonSaveGCD.layer.position.x = self.buttonEdit.layer.position.x
+            self.buttonSaveGCD.layer.position.y = self.buttonEdit.layer.position.y
+        }
     }
 }
 
@@ -218,15 +266,19 @@ extension ProfileViewController {
         if (initialData.initialTextFieldName == textFieldName.text && initialData.initialTextFieldDescription == textFieldDescription.text && initialData.initialAvatarImage == imageAvatar.image) {
             buttonSaveGCD.alpha = 0.3
             buttonSaveGCD.isEnabled = false
+            buttonSaveGCD.titleLabel?.textColor = UIColor(red: 90.0/255.0, green: 97.0/255.0, blue: 93.0/255.0, alpha: 1.0)
+            stopAnimateSaveButton()
         } else {
             if (textFieldName.text?.isEmpty == false) {
 //                labelInitials.text = textFieldName.text?.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\(String(describing: $0.first))") + "\(String(describing: $1.first))" }
             
-                self.labelInitials.text = "AM"
+                self.labelInitials.text = "=)"
             }
             
+            buttonSaveGCD.titleLabel?.textColor = UIColor(red: 14.0/255.0, green: 97.0/255.0, blue: 9.0/255.0, alpha: 1.0) // green
             buttonSaveGCD.alpha = 0.7
             buttonSaveGCD.isEnabled = true
+            animateSaveButton()
         }
     }
 }

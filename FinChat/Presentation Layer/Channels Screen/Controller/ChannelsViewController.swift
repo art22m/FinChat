@@ -68,7 +68,7 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         
-        return ChannelsTableViewDataSource(fetchedResultsController: fetchedResultsController, context: context)
+        return ChannelsTableViewDataSource(fetchedResultsController: fetchedResultsController, context: context, theme: theme)
     }()
 }
 
