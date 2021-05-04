@@ -14,9 +14,10 @@ class ChannelsTableViewDataSource: NSObject, UITableViewDataSource {
     let context: NSManagedObjectContext
     var theme = VCTheme()
     
-    init(fetchedResultsController: NSFetchedResultsController<Channel_db>, context: NSManagedObjectContext) {
+    init(fetchedResultsController: NSFetchedResultsController<Channel_db>, context: NSManagedObjectContext, theme: VCTheme) {
         self.fetchedResultsController = fetchedResultsController
         self.context = context
+        self.theme = theme
         
         do {
             try fetchedResultsController.performFetch()
@@ -48,7 +49,7 @@ class ChannelsTableViewDataSource: NSObject, UITableViewDataSource {
         
 //        let channel = self.fetchedResultsController.object(at: indexPath)
         let channel = ChannelsViewController.channels[indexPath.row]
-        cell.configure(with: .init(identifier: channel.identifier , name: channel.name, message: channel.lastMessage, date: channel.lastActivity))
+        cell.configure(with: .init(identifier: channel.identifier , name: channel.name, message: channel.lastMessage, date: channel.lastActivity), currentTheme: theme)
         
         return cell
     }

@@ -17,12 +17,12 @@ class CustomChannelTableViewCell: UITableViewCell {
         return UINib(nibName: "CustomChannelTableViewCell", bundle: nil)
     }
     
-    func configure(with pattern: ChannelCellPattern) {
-        self.labelName.textColor = pattern.theme.getCurrentFontColor()
-        self.labelDate.textColor = pattern.theme.getCurrentFontColor()
-        self.labelMessage.textColor = pattern.theme.getCurrentFontColor()
-        self.contentView.backgroundColor = pattern.theme.getCurrentBackgroundColor()
-        self.backgroundColor = pattern.theme.getCurrentBackgroundColor()
+    func configure(with pattern: ChannelCellPattern, currentTheme: VCTheme) {
+        self.labelName.textColor = currentTheme.getCurrentFontColor()
+        self.labelDate.textColor = currentTheme.getCurrentFontColor()
+        self.labelMessage.textColor = currentTheme.getCurrentFontColor()
+        self.contentView.backgroundColor = currentTheme.getCurrentBackgroundColor()
+        self.backgroundColor = currentTheme.getCurrentBackgroundColor()
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
