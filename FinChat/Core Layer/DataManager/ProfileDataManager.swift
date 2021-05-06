@@ -18,7 +18,7 @@ class ProfileDataManager: IProfileManager {
     let fileName = "UserProfile.txt"
 
     func saveToFile(profile: CurrentData) -> SuccessStatus {
-            let filePath = directory!.appendingPathComponent(fileName)
+            guard let filePath = directory?.appendingPathComponent(fileName) else { return .error }
             var dataDictionary: [String: String] = [:]
             if let userName = profile.nameFromProfile {
                 dataDictionary["userName"] = userName
@@ -45,7 +45,7 @@ class ProfileDataManager: IProfileManager {
 
     func readFromFile() -> (CurrentData, SuccessStatus) {
         do {
-            let filePath = directory!.appendingPathComponent(fileName)
+            guard let filePath = directory?.appendingPathComponent(fileName) else { return (CurrentData(), .error) }
             let loadData = try Data(contentsOf: filePath)
             let jsonLoadData = try JSONSerialization.jsonObject(with: loadData, options: .mutableLeaves)
             
