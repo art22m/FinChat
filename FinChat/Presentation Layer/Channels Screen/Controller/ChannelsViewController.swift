@@ -54,6 +54,9 @@ class ChannelsViewController: UIViewController, NSFetchedResultsControllerDelega
         // Initialize the table
         tableViewConversations.register(CustomChannelTableViewCell.nib(), forCellReuseIdentifier: CustomChannelTableViewCell.identifier)
         tableViewConversations.delegate = self
+        
+        // Access ID for UI Test
+        buttonProfile.accessibilityIdentifier = "profile"
     }
     
     override func viewWillAppear(_ animated: Bool) {

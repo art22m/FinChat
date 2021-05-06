@@ -38,6 +38,16 @@
                ReferencedContainer = "container:FinChat.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E5B061742644661100836CAE"
+               BuildableName = "FinChatUITests.xctest"
+               BlueprintName = "FinChatUITests"
+               ReferencedContainer = "container:FinChat.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

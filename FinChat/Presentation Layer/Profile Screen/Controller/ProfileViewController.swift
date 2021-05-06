@@ -79,6 +79,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         imageAvatar.addGestureRecognizer(gestureRecognizer)
         imageAvatar.isUserInteractionEnabled = true
+        
+        // Access ID for UI Test
+        buttonEdit.accessibilityIdentifier = "edit"
+        textFieldName.accessibilityIdentifier = "profileName"
+        textFieldDescription.accessibilityIdentifier = "profileDescription"
     }
 
     @objc func tapOnAvatarImage(_ sender: UITapGestureRecognizer) {

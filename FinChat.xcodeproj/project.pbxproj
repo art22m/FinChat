@@ -51,10 +51,18 @@
 		E5A81FE825ED41720042DDDD /* CustomChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */; };
 		E5ABDDA5263B32FA0093A7C0 /* СustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */; };
 		E5ABDDA9263B44350093A7C0 /* TinkoffLogoSnowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */; };
+		E5B061782644661100836CAE /* ProfileTextFieldsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		E57E012D26415F1B00C0DEBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5A09E4825DD267F009CCE18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5A09E4F25DD267F009CCE18;
+			remoteInfo = FinChat;
+		};
+		E5B0617A2644661100836CAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E5A09E4825DD267F009CCE18 /* Project object */;
 			proxyType = 1;
@@ -114,6 +122,9 @@
 		E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomChannelTableViewCell.xib; sourceTree = "<group>"; };
 		E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomSegue.swift"; sourceTree = "<group>"; };
 		E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffLogoSnowEffect.swift; sourceTree = "<group>"; };
+		E5B061752644661100836CAE /* FinChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldsUITests.swift; sourceTree = "<group>"; };
+		E5B061792644661100836CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +140,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B061722644661100836CAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +426,7 @@
 			children = (
 				E5A09E5225DD267F009CCE18 /* FinChat */,
 				E57E012926415F1B00C0DEBE /* FinChatUnitTests */,
+				E5B061762644661100836CAE /* FinChatUITests */,
 				E5A09E5125DD267F009CCE18 /* Products */,
 				386846EF5F7AF7E289602080 /* Pods */,
 				8012722FD6F32EA3C1094464 /* Frameworks */,
@@ -419,6 +438,7 @@
 			children = (
 				E5A09E5025DD267F009CCE18 /* FinChat.app */,
 				E57E012826415F1B00C0DEBE /* FinChatUnitTests.xctest */,
+				E5B061752644661100836CAE /* FinChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -445,6 +465,15 @@
 				E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		E5B061762644661100836CAE /* FinChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */,
+				E5B061792644661100836CAE /* Info.plist */,
+			);
+			path = FinChatUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,6 +516,24 @@
 			productReference = E5A09E5025DD267F009CCE18 /* FinChat.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E5B061742644661100836CAE /* FinChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5B0617C2644661100836CAE /* Build configuration list for PBXNativeTarget "FinChatUITests" */;
+			buildPhases = (
+				E5B061712644661100836CAE /* Sources */,
+				E5B061722644661100836CAE /* Frameworks */,
+				E5B061732644661100836CAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5B0617B2644661100836CAE /* PBXTargetDependency */,
+			);
+			name = FinChatUITests;
+			productName = FinChatUITests;
+			productReference = E5B061752644661100836CAE /* FinChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -502,6 +549,10 @@
 					};
 					E5A09E4F25DD267F009CCE18 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					E5B061742644661100836CAE = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E5A09E4F25DD267F009CCE18;
 					};
 				};
 			};
@@ -520,6 +571,7 @@
 			targets = (
 				E5A09E4F25DD267F009CCE18 /* FinChat */,
 				E57E012726415F1B00C0DEBE /* FinChatUnitTests */,
+				E5B061742644661100836CAE /* FinChatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +596,13 @@
 				E56F79092628DFE50043F913 /* Profile.storyboard in Resources */,
 				E56F790D2628E0090043F913 /* Chat.storyboard in Resources */,
 				E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B061732644661100836CAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +700,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5B061712644661100836CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5B061782644661100836CAE /* ProfileTextFieldsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -648,6 +715,11 @@
 			isa = PBXTargetDependency;
 			target = E5A09E4F25DD267F009CCE18 /* FinChat */;
 			targetProxy = E57E012D26415F1B00C0DEBE /* PBXContainerItemProxy */;
+		};
+		E5B0617B2644661100836CAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5A09E4F25DD267F009CCE18 /* FinChat */;
+			targetProxy = E5B0617A2644661100836CAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -889,6 +961,46 @@
 			};
 			name = Release;
 		};
+		E5B0617D2644661100836CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				INFOPLIST_FILE = FinChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FinChat;
+			};
+			name = Debug;
+		};
+		E5B0617E2644661100836CAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				INFOPLIST_FILE = FinChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FinChat;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -915,6 +1027,15 @@
 			buildConfigurations = (
 				E5A09E6525DD2681009CCE18 /* Debug */,
 				E5A09E6625DD2681009CCE18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5B0617C2644661100836CAE /* Build configuration list for PBXNativeTarget "FinChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5B0617D2644661100836CAE /* Debug */,
+				E5B0617E2644661100836CAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
