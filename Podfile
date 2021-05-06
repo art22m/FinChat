@@ -10,3 +10,8 @@ target 'FinChat' do
   pod 'Firebase/Firestore', '7.8'
   pod 'SwiftLint'
 end
+
+target 'FinChatUnitTests' do
+  inherit! :search_paths
+  pod 'Firebase/Firestore', '7.8'
+end
