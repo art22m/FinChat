@@ -40,6 +40,8 @@
 		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
 		E57E012B26415F1B00C0DEBE /* NetworkServiceUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */; };
 		E57E01392641665D00C0DEBE /* RequestSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E01382641665D00C0DEBE /* RequestSenderMock.swift */; };
+		E58B7A85264488D200AF7EAE /* GCDManagerUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */; };
+		E58B7A902644895500AF7EAE /* ProfileDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */; };
 		E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5978D1826165802001DFF18 /* CoreDataStack.swift */; };
 		E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
@@ -109,6 +111,8 @@
 		E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceUnitTest.swift; sourceTree = "<group>"; };
 		E57E012C26415F1B00C0DEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E57E01382641665D00C0DEBE /* RequestSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderMock.swift; sourceTree = "<group>"; };
+		E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManagerUnitTest.swift; sourceTree = "<group>"; };
+		E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManagerMock.swift; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E5978D2226165A31001DFF18 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,6 +400,8 @@
 		E57E012926415F1B00C0DEBE /* FinChatUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */,
+				E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */,
 				E57E01382641665D00C0DEBE /* RequestSenderMock.swift */,
 				E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */,
 				E57E012C26415F1B00C0DEBE /* Info.plist */,
@@ -656,7 +662,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E57E012B26415F1B00C0DEBE /* NetworkServiceUnitTest.swift in Sources */,
+				E58B7A85264488D200AF7EAE /* GCDManagerUnitTest.swift in Sources */,
 				E57E01392641665D00C0DEBE /* RequestSenderMock.swift in Sources */,
+				E58B7A902644895500AF7EAE /* ProfileDataManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
