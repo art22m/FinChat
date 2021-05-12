@@ -807,7 +807,7 @@
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FinChatUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -830,7 +830,7 @@
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
 				INFOPLIST_FILE = FinChatUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1008,7 +1008,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				INFOPLIST_FILE = FinChatUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1028,7 +1028,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTG39GK7BU;
 				INFOPLIST_FILE = FinChatUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
