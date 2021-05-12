@@ -4,6 +4,7 @@
 target 'FinChat' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  inhibit_all_warnings!
 
   # Pods for FinChat
 
@@ -13,5 +14,4 @@ end
 
 target 'FinChatUnitTests' do
   inherit! :search_paths
-  pod 'Firebase/Firestore', '7.8'
 end
