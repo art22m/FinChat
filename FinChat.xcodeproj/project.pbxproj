@@ -38,6 +38,10 @@
 		E56F79652629183F0043F913 /* MessageActionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F79642629183F0043F913 /* MessageActionsService.swift */; };
 		E56F796926291CF00043F913 /* ChannelActionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F796826291CF00043F913 /* ChannelActionService.swift */; };
 		E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E570E5542614CFAC001A3065 /* GoogleService-Info.plist */; };
+		E57E012B26415F1B00C0DEBE /* NetworkServiceUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */; };
+		E57E01392641665D00C0DEBE /* RequestSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57E01382641665D00C0DEBE /* RequestSenderMock.swift */; };
+		E58B7A85264488D200AF7EAE /* GCDManagerUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */; };
+		E58B7A902644895500AF7EAE /* ProfileDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */; };
 		E5978D1926165802001DFF18 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5978D1826165802001DFF18 /* CoreDataStack.swift */; };
 		E5978D2326165A31001DFF18 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5978D2126165A31001DFF18 /* Chat.xcdatamodeld */; };
 		E5A09E5425DD267F009CCE18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09E5325DD267F009CCE18 /* AppDelegate.swift */; };
@@ -49,7 +53,25 @@
 		E5A81FE825ED41720042DDDD /* CustomChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */; };
 		E5ABDDA5263B32FA0093A7C0 /* СustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */; };
 		E5ABDDA9263B44350093A7C0 /* TinkoffLogoSnowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */; };
+		E5B061782644661100836CAE /* ProfileTextFieldsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E57E012D26415F1B00C0DEBE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5A09E4825DD267F009CCE18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5A09E4F25DD267F009CCE18;
+			remoteInfo = FinChat;
+		};
+		E5B0617A2644661100836CAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5A09E4825DD267F009CCE18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5A09E4F25DD267F009CCE18;
+			remoteInfo = FinChat;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8172123648C1AC8CF79DCFC3 /* Pods_FinChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +107,12 @@
 		E56F79642629183F0043F913 /* MessageActionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageActionsService.swift; sourceTree = "<group>"; };
 		E56F796826291CF00043F913 /* ChannelActionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelActionService.swift; sourceTree = "<group>"; };
 		E570E5542614CFAC001A3065 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E57E012826415F1B00C0DEBE /* FinChatUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinChatUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceUnitTest.swift; sourceTree = "<group>"; };
+		E57E012C26415F1B00C0DEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E57E01382641665D00C0DEBE /* RequestSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderMock.swift; sourceTree = "<group>"; };
+		E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManagerUnitTest.swift; sourceTree = "<group>"; };
+		E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManagerMock.swift; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E5978D2226165A31001DFF18 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		E5A09E5025DD267F009CCE18 /* FinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,14 +126,31 @@
 		E5A81FE625ED41720042DDDD /* CustomChannelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomChannelTableViewCell.xib; sourceTree = "<group>"; };
 		E5ABDDA4263B32FA0093A7C0 /* СustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СustomSegue.swift"; sourceTree = "<group>"; };
 		E5ABDDA8263B44350093A7C0 /* TinkoffLogoSnowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffLogoSnowEffect.swift; sourceTree = "<group>"; };
+		E5B061752644661100836CAE /* FinChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldsUITests.swift; sourceTree = "<group>"; };
+		E5B061792644661100836CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E57E012526415F1B00C0DEBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5A09E4D25DD267F009CCE18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9F58342C0674E8441AC4E7F2 /* Pods_FinChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B061722644661100836CAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +397,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		E57E012926415F1B00C0DEBE /* FinChatUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */,
+				E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */,
+				E57E01382641665D00C0DEBE /* RequestSenderMock.swift */,
+				E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */,
+				E57E012C26415F1B00C0DEBE /* Info.plist */,
+			);
+			path = FinChatUnitTests;
+			sourceTree = "<group>";
+		};
 		E5978D1C26165857001DFF18 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +431,8 @@
 			isa = PBXGroup;
 			children = (
 				E5A09E5225DD267F009CCE18 /* FinChat */,
+				E57E012926415F1B00C0DEBE /* FinChatUnitTests */,
+				E5B061762644661100836CAE /* FinChatUITests */,
 				E5A09E5125DD267F009CCE18 /* Products */,
 				386846EF5F7AF7E289602080 /* Pods */,
 				8012722FD6F32EA3C1094464 /* Frameworks */,
@@ -384,6 +443,8 @@
 			isa = PBXGroup;
 			children = (
 				E5A09E5025DD267F009CCE18 /* FinChat.app */,
+				E57E012826415F1B00C0DEBE /* FinChatUnitTests.xctest */,
+				E5B061752644661100836CAE /* FinChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -412,9 +473,36 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		E5B061762644661100836CAE /* FinChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */,
+				E5B061792644661100836CAE /* Info.plist */,
+			);
+			path = FinChatUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E57E012726415F1B00C0DEBE /* FinChatUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E57E013126415F1B00C0DEBE /* Build configuration list for PBXNativeTarget "FinChatUnitTests" */;
+			buildPhases = (
+				E57E012426415F1B00C0DEBE /* Sources */,
+				E57E012526415F1B00C0DEBE /* Frameworks */,
+				E57E012626415F1B00C0DEBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E57E012E26415F1B00C0DEBE /* PBXTargetDependency */,
+			);
+			name = FinChatUnitTests;
+			productName = FinChatUnitTests;
+			productReference = E57E012826415F1B00C0DEBE /* FinChatUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E5A09E4F25DD267F009CCE18 /* FinChat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5A09E6425DD2681009CCE18 /* Build configuration list for PBXNativeTarget "FinChat" */;
@@ -434,6 +522,24 @@
 			productReference = E5A09E5025DD267F009CCE18 /* FinChat.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E5B061742644661100836CAE /* FinChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5B0617C2644661100836CAE /* Build configuration list for PBXNativeTarget "FinChatUITests" */;
+			buildPhases = (
+				E5B061712644661100836CAE /* Sources */,
+				E5B061722644661100836CAE /* Frameworks */,
+				E5B061732644661100836CAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5B0617B2644661100836CAE /* PBXTargetDependency */,
+			);
+			name = FinChatUITests;
+			productName = FinChatUITests;
+			productReference = E5B061752644661100836CAE /* FinChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -443,8 +549,16 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					E57E012726415F1B00C0DEBE = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E5A09E4F25DD267F009CCE18;
+					};
 					E5A09E4F25DD267F009CCE18 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					E5B061742644661100836CAE = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E5A09E4F25DD267F009CCE18;
 					};
 				};
 			};
@@ -462,11 +576,20 @@
 			projectRoot = "";
 			targets = (
 				E5A09E4F25DD267F009CCE18 /* FinChat */,
+				E57E012726415F1B00C0DEBE /* FinChatUnitTests */,
+				E5B061742644661100836CAE /* FinChatUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E57E012626415F1B00C0DEBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5A09E4E25DD267F009CCE18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -479,6 +602,13 @@
 				E56F79092628DFE50043F913 /* Profile.storyboard in Resources */,
 				E56F790D2628E0090043F913 /* Chat.storyboard in Resources */,
 				E570E5552614CFAC001A3065 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5B061732644661100836CAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +657,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E57E012426415F1B00C0DEBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E57E012B26415F1B00C0DEBE /* NetworkServiceUnitTest.swift in Sources */,
+				E58B7A85264488D200AF7EAE /* GCDManagerUnitTest.swift in Sources */,
+				E57E01392641665D00C0DEBE /* RequestSenderMock.swift in Sources */,
+				E58B7A902644895500AF7EAE /* ProfileDataManagerMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5A09E4C25DD267F009CCE18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -567,7 +708,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5B061712644661100836CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5B061782644661100836CAE /* ProfileTextFieldsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E57E012E26415F1B00C0DEBE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5A09E4F25DD267F009CCE18 /* FinChat */;
+			targetProxy = E57E012D26415F1B00C0DEBE /* PBXContainerItemProxy */;
+		};
+		E5B0617B2644661100836CAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5A09E4F25DD267F009CCE18 /* FinChat */;
+			targetProxy = E5B0617A2644661100836CAE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E56F79042628DFD30043F913 /* Themes.storyboard */ = {
@@ -605,6 +767,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E57E012F26415F1B00C0DEBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
+				INFOPLIST_FILE = FinChatUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinChat.app/FinChat";
+			};
+			name = Debug;
+		};
+		E57E013026415F1B00C0DEBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/Pods/Firebase/CoreOnly/Sources";
+				INFOPLIST_FILE = FinChatUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinChat.app/FinChat";
+			};
+			name = Release;
+		};
 		E5A09E6225DD2681009CCE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -763,9 +969,58 @@
 			};
 			name = Release;
 		};
+		E5B0617D2644661100836CAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				INFOPLIST_FILE = FinChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FinChat;
+			};
+			name = Debug;
+		};
+		E5B0617E2644661100836CAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RTG39GK7BU;
+				INFOPLIST_FILE = FinChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat.FinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FinChat;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E57E013126415F1B00C0DEBE /* Build configuration list for PBXNativeTarget "FinChatUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E57E012F26415F1B00C0DEBE /* Debug */,
+				E57E013026415F1B00C0DEBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E5A09E4B25DD267F009CCE18 /* Build configuration list for PBXProject "FinChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -780,6 +1035,15 @@
 			buildConfigurations = (
 				E5A09E6525DD2681009CCE18 /* Debug */,
 				E5A09E6625DD2681009CCE18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5B0617C2644661100836CAE /* Build configuration list for PBXNativeTarget "FinChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5B0617D2644661100836CAE /* Debug */,
+				E5B0617E2644661100836CAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

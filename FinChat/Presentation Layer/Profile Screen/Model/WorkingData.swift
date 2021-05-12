@@ -15,5 +15,5 @@ class CurrentData {
     
     var nameFromProfile: String? = ""
     var descriptionFromProfile: String? = ""
-    var imageFromFile: UIImage? = UIImage(named: "avatarPlaceholder")
+    var imageFromFile: UIImage? = UIImage(named: "avatarPlaceholder")    
 }

@@ -9,18 +9,17 @@ import Foundation
 import UIKit
 
 protocol IProfileManager {
-    static func saveToFile(profile: CurrentData) -> SuccessStatus
-    static func readFromFile() -> (CurrentData, SuccessStatus)
+    func saveToFile(profile: CurrentData) -> SuccessStatus
+    func readFromFile() -> (CurrentData, SuccessStatus)
 }
 
 class ProfileDataManager: IProfileManager {
-    static let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    static let fileName = "UserProfile.txt"
-    static let filePath = directory!.appendingPathComponent(fileName)
+    let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    let fileName = "UserProfile.txt"
 
-    static func saveToFile(profile: CurrentData) -> SuccessStatus {
+    func saveToFile(profile: CurrentData) -> SuccessStatus {
+            guard let filePath = directory?.appendingPathComponent(fileName) else { return .error }
             var dataDictionary: [String: String] = [:]
-        
             if let userName = profile.nameFromProfile {
                 dataDictionary["userName"] = userName
             }
@@ -44,8 +43,9 @@ class ProfileDataManager: IProfileManager {
         }
 
 
-    static func readFromFile() -> (CurrentData, SuccessStatus) {
+    func readFromFile() -> (CurrentData, SuccessStatus) {
         do {
+            guard let filePath = directory?.appendingPathComponent(fileName) else { return (CurrentData(), .error) }
             let loadData = try Data(contentsOf: filePath)
             let jsonLoadData = try JSONSerialization.jsonObject(with: loadData, options: .mutableLeaves)
             

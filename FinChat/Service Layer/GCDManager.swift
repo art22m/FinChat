@@ -13,10 +13,20 @@ protocol IDataManager {
 }
 
 class GCDDataManager: IDataManager {
+    var profileDataManager: IProfileManager
+    
+    init(profileDataManager: IProfileManager) {
+        self.profileDataManager = profileDataManager
+    }
+    
+    init() {
+        self.profileDataManager = ProfileDataManager()
+    }
+    
     func saveData(dataToSave: CurrentData, isSuccessful: @escaping (SuccessStatus) -> Void) {
         let globalQueue = DispatchQueue.global(qos: .utility)
         globalQueue.async {
-            let status = ProfileDataManager.saveToFile(profile: dataToSave)
+            let status = self.profileDataManager.saveToFile(profile: dataToSave)
             isSuccessful(status)
         }
     }
@@ -24,7 +34,7 @@ class GCDDataManager: IDataManager {
     func readData(isSuccessful: @escaping ((CurrentData, SuccessStatus)) -> Void) {
         let globalQueue = DispatchQueue.global(qos: .utility)
         globalQueue.async {
-            let status: (CurrentData, SuccessStatus) = ProfileDataManager.readFromFile()
+            let status: (CurrentData, SuccessStatus) = self.profileDataManager.readFromFile()
             isSuccessful(status)
         }
     }
