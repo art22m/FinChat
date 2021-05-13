@@ -12,7 +12,7 @@ protocol IRequest {
 }
 
 class Request: IRequest {
-    lazy var APIkey = Bundle.main.object(forInfoDictionaryKey: "API_KEY")
+    lazy var APIkey = Bundle.main.object(forInfoDictionaryKey: "PICTURES_API_KEY")
     
     var mainURL: String? {
         if let APIkey = APIkey {
