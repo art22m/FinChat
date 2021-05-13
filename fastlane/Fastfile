@@ -23,7 +23,7 @@ default_platform(:ios)
 # end
 
 
-desc "Hello1"
+desc "say hello for testing"
 lane :say_hi do |options|
     puts "Hi there!"
 end
@@ -49,3 +49,35 @@ desc "installing dependencies, building using scan"
     build_for_testing
     run_tests
   end
+  
+  desc "successful test notification"
+    lane :discord_success do 
+      discord_notifier(
+        webhook_url: ENV["DISCORD_WEB_HOOK"],
+        title: "Test: Fintech Chat",
+        success: true,
+        thumbnail_url: "https://i.imgur.com/QiohjwO.png",
+        fields:[
+          {
+            name:"Author:", 
+            value:"Artem Murashko"
+          },
+        ]
+      )
+    end
+    
+    desc "failure test notification"
+      lane :discord_failure do 
+        discord_notifier(
+          webhook_url: ENV["DISCORD_WEB_HOOK"],
+          title: "Test: Fintech Chat",
+          success: false,
+          thumbnail_url: "https://i.imgur.com/sXg840H.jpg",
+          fields:[
+            {
+              name:"Author:", 
+              value:"Artem Murashko"
+            },
+          ]
+        )
+      end

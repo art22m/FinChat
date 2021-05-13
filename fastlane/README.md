@@ -19,7 +19,7 @@ or alternatively using `brew install fastlane`
 ```
 fastlane say_hi
 ```
-Hello1
+say hello for testing
 ### build_for_testing
 ```
 fastlane build_for_testing
@@ -35,6 +35,16 @@ running tests on compiled application
 fastlane build_and_test
 ```
 running building and testing
+### discord_success
+```
+fastlane discord_success
+```
+successful test notification
+### discord_failure
+```
+fastlane discord_failure
+```
+failure test notification
 
 ----
 
