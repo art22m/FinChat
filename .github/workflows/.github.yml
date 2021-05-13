@@ -21,14 +21,4 @@ jobs:
           bundle exec pod install
       - name: Build and test
         run: |
-          bundle exec fastlane say_hi
-      - name: Notify if failure
-        env:
-          DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
-        run: |
-          bundle exec fastlane discord_failure
-      - name: Notify if success
-        env:
-          DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
-        run: |
-          bundle exec fastlane discord_success
+          bundle exec fastlane build_and_test
