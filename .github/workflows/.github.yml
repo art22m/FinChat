@@ -1,21 +1,36 @@
 name: CI
+# This workflow is triggered on pushes to the repository.
 on:
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
+    branches:
+    - main
+
 jobs:
-  build:
+  test:
+    # Job name is Test
+    name: Test
+    # This job runs on macOS
     runs-on: macOS-latest
     steps:
-      uses: actions/checkout@v1
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.6
-        bundler-cache: true
-    - name: Build and run tests
-      env:
-        DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
-      run: |
-        bundle exec fastlane build_and_test
-        bundle exec fastlane discord_success
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+      - name: Dependencies
+        run: |
+          bundle exec pod install
+      - name: Build and test
+        run: |
+          bundle exec fastlane build_and_test
+        name: Notify if failure
+        env:
+          DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
+        if: ${{ failure() }}
+        run: |
+          bundle exec fastlane discord_failure
+        name: Notify if success
+        env:
+          DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
+        if: ${{ success() }}
+        run: |
+          bundle exec fastlane discord_success
