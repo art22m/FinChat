@@ -19,15 +19,13 @@ jobs:
       - name: Build and test
         run: |
           bundle exec fastlane say_hi
-        name: Notify if failure
+      - name: Notify if failure
         env:
           DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
-        if: ${{ failure() }}
         run: |
           bundle exec fastlane discord_failure
-        name: Notify if success
+      - name: Notify if success
         env:
           DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
-        if: ${{ success() }}
         run: |
           bundle exec fastlane discord_success
