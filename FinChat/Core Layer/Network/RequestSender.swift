@@ -33,7 +33,6 @@ class RequestSender: IRequestSender {
         }
     
         let task = session.dataTask(with: urlRequest) { (data, response, error) in
-//            print(data, response, error)
             guard error == nil else {
                 completionHandler(.failure(.clientError))
                 return
