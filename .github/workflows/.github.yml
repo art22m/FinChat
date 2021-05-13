@@ -18,3 +18,4 @@ jobs:
           DISCORD_WEB_HOOK: ${{ secrets.DISCORD_WEB_HOOK }}
         run: |
           bundle exec fastlane build_and_test
+          bundle exec fastlane discord_success
