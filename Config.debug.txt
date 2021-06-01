@@ -1,0 +1,19 @@
+//
+//  Config.debug.xcconfig
+//  FinChat
+//
+//  Created by Артём Мурашко on 13.05.2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+#include? "Pods/Target Support Files/Pods-FinChat/Pods-FinChat.debug.xcconfig"
+#include? "Config.xcconfig"
+
+CLIENT_ID = 964672379642-9dvdf650cvg32nsm77lrni4q8u8butp4.apps.googleusercontent.com
+REVERSED_CLIENT_ID = com.googleusercontent.apps.964672379642-9dvdf650cvg32nsm77lrni4q8u8butp4
+API_KEY = AIzaSyBCdmzgB9e75L_6w_W4UHcBj235srK6_64
+GCM_SENDER_ID = 964672379642
+STORAGE_BUCKET = tinkoffchat-6672e.appspot.com

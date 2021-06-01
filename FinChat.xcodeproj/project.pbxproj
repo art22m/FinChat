@@ -132,8 +132,6 @@
 		E5B061752644661100836CAE /* FinChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5B061772644661100836CAE /* ProfileTextFieldsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextFieldsUITests.swift; sourceTree = "<group>"; };
 		E5B061792644661100836CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5E00450264D35CD0089B288 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		E5E00454264D39330089B288 /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		EAB2EB41919C38403108392E /* libPods-FinChatUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinChatUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -440,8 +438,6 @@
 		E5A09E4725DD267F009CCE18 = {
 			isa = PBXGroup;
 			children = (
-				E5E00454264D39330089B288 /* Config.debug.xcconfig */,
-				E5E00450264D35CD0089B288 /* Config.xcconfig */,
 				E5A09E5225DD267F009CCE18 /* FinChat */,
 				E57E012926415F1B00C0DEBE /* FinChatUnitTests */,
 				E5B061762644661100836CAE /* FinChatUITests */,
@@ -966,7 +962,6 @@
 		};
 		E5A09E6525DD2681009CCE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5E00454264D39330089B288 /* Config.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
