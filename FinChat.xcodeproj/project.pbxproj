@@ -114,6 +114,7 @@
 		E57E012A26415F1B00C0DEBE /* NetworkServiceUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceUnitTest.swift; sourceTree = "<group>"; };
 		E57E012C26415F1B00C0DEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E57E01382641665D00C0DEBE /* RequestSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderMock.swift; sourceTree = "<group>"; };
+		E58118AD26664B5500A32971 /* Config.dubug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.dubug.xcconfig; sourceTree = "<group>"; };
 		E58B7A84264488D200AF7EAE /* GCDManagerUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManagerUnitTest.swift; sourceTree = "<group>"; };
 		E58B7A8F2644895500AF7EAE /* ProfileDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataManagerMock.swift; sourceTree = "<group>"; };
 		E5978D1826165802001DFF18 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -438,6 +439,7 @@
 		E5A09E4725DD267F009CCE18 = {
 			isa = PBXGroup;
 			children = (
+				E58118AD26664B5500A32971 /* Config.dubug.xcconfig */,
 				E5A09E5225DD267F009CCE18 /* FinChat */,
 				E57E012926415F1B00C0DEBE /* FinChatUnitTests */,
 				E5B061762644661100836CAE /* FinChatUITests */,
@@ -962,6 +964,7 @@
 		};
 		E5A09E6525DD2681009CCE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E58118AD26664B5500A32971 /* Config.dubug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
