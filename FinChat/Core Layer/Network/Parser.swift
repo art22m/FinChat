@@ -15,7 +15,6 @@ class Parser: IParser {
     func parse(data: Data) -> [Images]? {
         do {
             let images = try JSONDecoder().decode(DataModel.self, from: data).hits
-//            print(images)
             return images
         } catch {
             return nil

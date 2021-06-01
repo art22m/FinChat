@@ -12,8 +12,14 @@ protocol IRequest {
 }
 
 class Request: IRequest {
+    lazy var APIkey = Bundle.main.object(forInfoDictionaryKey: "PICTURES_API_KEY")
+    
     var mainURL: String? {
-        return "https://pixabay.com/api/?key=21288647-43db279afe2e05f96a06c2f01&q=yellow+flowers&image_type=photo&pretty=true&per_page=50"
+        if let APIkey = APIkey {
+            return "https://pixabay.com/api/?key=\(APIkey)&q=yellow+flowers&image_type=photo&pretty=true&per_page=50"
+        } else {
+            return nil
+        }
     }
 
     var urlRequest: URLRequest? {

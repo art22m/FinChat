@@ -1,0 +1,83 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# platform :ios do
+#   desc "Description of what the lane does"
+#   lane :custom_lane do
+#     # add actions here: https://docs.fastlane.tools/actions
+#   end
+# end
+
+
+desc "say hello for testing"
+lane :say_hi do |options|
+    puts "Hi there!"
+end
+
+desc "installing dependencies, building using scan"
+  lane :build_for_testing do
+    cocoapods
+    scan(
+      build_for_testing: true,
+      clean: true
+      )
+  end
+
+  desc "running tests on compiled application"
+  lane :run_tests do
+    scan(
+      skip_build: true
+      )
+  end
+
+  desc "running building and testing"
+  lane :build_and_test do
+    build_for_testing
+    run_tests
+  end
+  
+  desc "successful test notification"
+    lane :discord_success do 
+      discord_notifier(
+        webhook_url: ENV["DISCORD_WEB_HOOK"],
+        title: "Test: Fintech Chat",
+        success: true,
+        thumbnail_url: "https://i.imgur.com/QiohjwO.png",
+        fields:[
+          {
+            name:"Author:", 
+            value:"Artem Murashko"
+          },
+        ]
+      )
+    end
+    
+    desc "failure test notification"
+      lane :discord_failure do 
+        discord_notifier(
+          webhook_url: ENV["DISCORD_WEB_HOOK"],
+          title: "Test: Fintech Chat",
+          success: false,
+          thumbnail_url: "https://i.imgur.com/sXg840H.jpg",
+          fields:[
+            {
+              name:"Author:", 
+              value:"Artem Murashko"
+            },
+          ]
+        )
+      end
