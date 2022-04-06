@@ -37,7 +37,7 @@ GEM
       claide (>= 1.0.2, < 2.0)
       cocoapods-core (= 1.10.1)
       cocoapods-deintegrate (>= 1.0.3, < 2.0)
-      cocoapods-downloader (>= 1.4.0, < 2.0)
+      cocoapods-downloader (>= 1.6.2, < 2.0)
       cocoapods-plugins (>= 1.0.0, < 2.0)
       cocoapods-search (>= 1.0.0, < 2.0)
       cocoapods-trunk (>= 1.4.0, < 2.0)
@@ -61,7 +61,7 @@ GEM
       public_suffix
       typhoeus (~> 1.0)
     cocoapods-deintegrate (1.0.4)
-    cocoapods-downloader (1.4.0)
+    cocoapods-downloader (1.6.2)
     cocoapods-plugins (1.0.0)
       nap
     cocoapods-search (1.0.0)
